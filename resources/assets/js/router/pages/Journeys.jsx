@@ -1,5 +1,5 @@
 import React from 'react'
-import JourneyCard from '../../JourneyCard'
+import JourneyCard from '../../components/JourneyCard'
 
 export default function Journeys() {
     

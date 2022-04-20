@@ -1,6 +1,6 @@
 import React from 'react'
 import Finder from './Finder'
-import img from '../img/thousand-01.svg'
+import img from '../../../img/thousand-01.png'
 import { useState } from 'react'
 
 export default function Intro() {

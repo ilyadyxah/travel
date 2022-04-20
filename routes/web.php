@@ -15,15 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+ Route::view('/{path?}', 'index');
+ 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/homepage', [HomepageController::class, 'index'])
-    ->name('app::homepage');
+// Route::get('/homepage', [HomepageController::class, 'index'])
+//     ->name('app::homepage');
 
-Route::get('/trips', [TripController::class, 'index'])
-    ->name('app::trips');
+// Route::get('/trips', [TripController::class, 'index'])
+//     ->name('app::trips');
 
-Route::get('/trips/{id}', [TripController::class, 'detail'])
-    ->name('app::trips::detail');
+// Route::get('/trips/{id}', [TripController::class, 'detail'])
+//     ->name('app::trips::detail');
