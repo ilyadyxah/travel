@@ -24,52 +24,52 @@ class CitySeeder extends Seeder
     {
         $data = [
             [
-                'title' => 'екатеринбург',
+                'title' => 'Екатеринбург',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'челябинск',
+                'title' => 'Челябинск',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'москва',
+                'title' => 'Москва',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'санкт-петербург',
+                'title' => 'Санкт-Петербург',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'тюмень',
+                'title' => 'Тюмень',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'омск',
+                'title' => 'Омск',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'новосибирск',
+                'title' => 'Новосибирск',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'краснодар',
+                'title' => 'Краснодар',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'мурманск',
+                'title' => 'Мурманск',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],
             [
-                'title' => 'сочи',
+                'title' => 'Сочи',
 //                'coordinates' => "GeomFromText('POINT(37.774929 -122.419415)')",
 
             ],

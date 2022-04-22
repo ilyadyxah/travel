@@ -15,14 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/homepage', [HomepageController::class, 'index'])
+Route::get('/', [HomepageController::class, 'index'])
     ->name('app::homepage');
 
-Route::get('/trips', [TripController::class, 'index'])
+Route::get('/trips', [HomepageController::class, 'travelListing'])
     ->name('app::trips');
 
 Route::get('/trips/{id}', [TripController::class, 'detail'])

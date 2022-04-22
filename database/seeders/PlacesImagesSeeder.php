@@ -26,7 +26,7 @@ class PlacesImagesSeeder extends Seeder
                 'url' => 'https://ural-n.ru/uploads/topics/preview/00/00/00/39/6585ff0c20.jpg'
             ],
             [   'place_id' => 4,
-                'url' => 'https://img-fotki.yandex.ru/get/9799/132998484.51/0_e790d_e690aa74_XXL.jpg'
+                'url' => 'https://image-fotki.yandex.ru/get/9799/132998484.51/0_e790d_e690aa74_XXL.jpg'
             ],
             [   'place_id' => 5,
                 'url' => 'https://i.pinimg.com/originals/c0/ad/5b/c0ad5bc7f156956b190a269fb23cb048.jpg'
