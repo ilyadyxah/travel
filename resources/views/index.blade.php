@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/travel_style.css') }}" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <title>Travel</title>
     <script
         src="https://code.jquery.com/jquery-3.6.0.js"
@@ -32,28 +34,28 @@
         <div class='intro'>
             <div class='intro__inner'>
                 <h1>Исследуй и путешествуй</h1>
-                <div class='finder'>
+                <div class='finder d-flex flex-column'>
                         <h3>Поиск путешествия</h3>
-                        <div class='finder__switchers'>
-                            <select data-id="city">
+                        <div class='finder__switchers d-flex flex-column justify-content-around align-items-start'>
+                            <select data-id="city" class="mb-2">
                                 <option selected disabled>Выберите город</option>
                                 @foreach($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->title }}</option>
+                                    <option value="{{ $city->id }}">{{ Str::ucfirst($city->title) }}</option>
                                 @endforeach
                             </select>
-                            <select>
+                            <select disabled class="mb-2">
                                 <option>option 1</option>
                                 <option>option 2</option>
                                 <option>option 3</option>
                                 <option>option 4</option>
                             </select>
-                            <select>
+                            <select disabled class="mb-2">
                                 <option>option 1</option>
                                 <option>option 2</option>
                                 <option>option 3</option>
                                 <option>option 4</option>
                             </select>
-                            <select>
+                            <select disabled class="mb-2">
                                 <option>option 1</option>
                                 <option>option 2</option>
                                 <option>option 3</option>
