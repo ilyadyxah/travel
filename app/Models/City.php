@@ -24,6 +24,8 @@ class City extends Model
             'id', 'id'
         );
     }
+
+
     public function sluggable(): array
     {
         return [

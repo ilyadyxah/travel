@@ -16,11 +16,16 @@ return new class extends Migration
         Schema::create('places_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('place_id');
-            $table->string('url');
+            $table->unsignedBigInteger('image_id');
             $table->timestamps();
             $table->foreign('place_id')
                 ->references('id')
                 ->on('places')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->foreign('image_id')
+                ->references('id')
+                ->on('images')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
