@@ -26,5 +26,11 @@ Route::view('/{path?}', 'app');
 // Route::get('/trips', [TripController::class, 'index'])
 //     ->name('app::trips');
 
+// Route::get('/', [HomepageController::class, 'index'])
+//     ->name('app::homepage');
+
+// Route::get('/trips', [HomepageController::class, 'travelListing'])
+//     ->name('app::trips');
+
 // Route::get('/trips/{id}', [TripController::class, 'detail'])
 //     ->name('app::trips::detail');
