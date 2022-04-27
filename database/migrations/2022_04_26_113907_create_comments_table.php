@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('places_images', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->default(1);
             $table->unsignedBigInteger('place_id');
-            $table->string('url');
+            $table->char('user_name', 150);
+            $table->text('message');
             $table->timestamps();
-            $table->foreign('place_id')
-                ->references('id')
-                ->on('places')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('places_images');
+        Schema::dropIfExists('comments');
     }
 };

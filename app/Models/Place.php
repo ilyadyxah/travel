@@ -26,6 +26,26 @@ class Place extends Model
         );
     }
 
+    public function images(): BelongsToMany
+    {
+        return $this->belongsToMany(Image::class, 'places_images',
+            'place_id', 'image_id',
+            'id', 'id'
+        );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function sluggable(): array
     {
         return [

@@ -20,14 +20,16 @@ class HomepageController extends Controller
     {
         if ($request->ajax()) {
             $cityId = $request['cityId'];
-            $places = DB::table('cities_places as c')
-                ->where('city_id', '=', $cityId)
-                ->join('places as p', 'c.place_id', '=', 'p.id')
-                ->join('places_images as pim', 'c.place_id', '=', 'pim.place_id')
-                ->get();
+            $city = City::find($cityId);
+
+//            $places = DB::table('cities_places as c')
+//                ->where('city_id', '=', $cityId)
+//                ->join('places as p', 'c.place_id', '=', 'p.id')
+//                ->join('places_images as pim', 'c.place_id', '=', 'pim.place_id')
+//                ->get();
 
             return view('blocks.places', [
-                'places' => $places,
+                'places' => $city->places,
             ]);
         }
     }

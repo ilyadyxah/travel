@@ -16,10 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            PlaceSeeder::class,
             CitySeeder::class,
+            ImagesSeeder::class,
+            PlaceSeeder::class,
             CitiesPlacesSeeder::class,
-            PlacesImagesSeeder::class
+            PlacesImagesSeeder::class,
+            PlacesLikesSeeder::class,
+            CommentsSeeder::class,
 
         ]);
     }
