@@ -37,7 +37,7 @@ export default function RoutesWay() {
         <Routes path="/home">
           <Route path="/home" element={<Home />} />
         </Routes>
-        <Routes path="/journeys">
+        <Routes>
           <Route path="/journeys" element={<Journeys />} />
         </Routes>
         <Routes path="/about">
