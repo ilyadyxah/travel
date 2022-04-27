@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 import React from 'react'
-import RoutesWay from "./components/router/RoutesWay"
+import RoutesWay from "./router/RoutesWay"
 import "../css/index.css"
 
 import { createRoot } from 'react-dom/client';
