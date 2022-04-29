@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/test', [HomepageControllerAlias::class, 'testApi']);
 
+Route::get('/all', [HomepageControllerAlias::class, 'getAll']);
 
