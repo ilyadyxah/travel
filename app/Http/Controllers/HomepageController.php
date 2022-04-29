@@ -33,4 +33,9 @@ class HomepageController extends Controller
             ]);
         }
     }
+
+    public function testApi()
+    {
+        return 'Hello';
+    }
 }
