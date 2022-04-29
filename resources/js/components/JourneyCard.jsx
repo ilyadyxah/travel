@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 export default function JourneyCard(props) {
   const [journey] = useState(props);
-  console.log(journey)
 
   return (
     <div>
