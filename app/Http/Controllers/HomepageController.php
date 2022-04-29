@@ -67,6 +67,6 @@ class HomepageController extends Controller
 
         $data = ['places' => $places, 'pictures' => $pictures, 'comments' => $comments, 'likes' => $likes];
 
-        return json_encode($data);
+        return response()->json($data);
     }
 }
