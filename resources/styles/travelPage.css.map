@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,iBAAiB,CAAC;EACd,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CACjC;;AAED,AAAA,YAAY,CAAC;EACT,SAAS,EAAE,KAAK;EAChB,UAAU,EAAE,KAAK;CACpB;;AAED,AAAA,aAAa,CAAC;EACV,SAAS,EAAE,IAAI;CAClB;;AAED,AAAA,mBAAmB,CAAC;EAChB,UAAU,EAAE,IAAI;CACnB",
+    "sources": [
+        "travelPage.scss"
+    ],
+    "names": [],
+    "file": "travelPage.css"
+}

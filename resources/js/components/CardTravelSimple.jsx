@@ -18,36 +18,36 @@ const StyledRating = styled(Rating)({
     color: '#3C587F',
   },
 });
- 
+
 
 
 export default function CardTravelSipmle({ travel }) {
-const [value, setValue] = useState(travel.raiting);
+  const [value, setValue] = useState(travel.raiting);
 
   return (
-    
+
     <section className='card' >
-      <Link to={`journeys/${travel.id}`} key={travel.id} >
+      <Link to={`${travel.id}`} key={travel.id} >
         <div className='card__img_container'>
           <img className='card__img' src={img3} alt={travel.city} />
           {/* <img className='card__img' src={require(`${travel.imgSrc}`).default} alt={travel.city} /> */}
           <div className='card__mask'></div>
-          <p className='card__price'>{travel.price }</p>
-         <h2 className='card__head'>{travel.city}</h2>
+          <p className='card__price'>{travel.price}</p>
+          <h2 className='card__head'>{travel.city}</h2>
         </div>
-        </Link>
-        <div className='card__bottom'>
+      </Link>
+      <div className='card__bottom'>
         <StyledRating
           name="simple-controlled"
-            value={travel.raiting}
-            // readOnly 
-             onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-          />
-          <p className='card__dura'>{travel.duration } часов</p>
-          </div>
-        
+          value={travel.raiting}
+          // readOnly 
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+        <p className='card__dura'>{travel.duration} часов</p>
+      </div>
+
     </section>
   );
 }

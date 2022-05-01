@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=, initial-scale=1.0"> -->
     <title>TravelForAll</title>
-    <link href="{{mix('css/index.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{mix('styles/index.css')}}" rel="stylesheet" type="text/css">
 
 </head>
 <body>
