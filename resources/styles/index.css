@@ -1,10 +1,40 @@
-@import url(c:\Users\Pavel\Git_Projects\travel\resources\styles\travelPage.css);
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Inter', sans-serif;
+}
+
+.travel__head_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.travel__img {
+  max-width: 800px;
+  max-height: 600px;
+}
+
+.travel__head {
+  font-size: 32px;
+}
+
+.travel__head_lower {
+  font-style: 27px;
+}
+
+.travel_card {
+  max-width: 32%;
+  inline-size: -webkit-fill-available;
+}
+
+.travel_card_main {
+  max-width: 100%;
 }
 
 .container {
@@ -190,15 +220,15 @@ select {
 }
 
 .card {
-  max-width: 345px;
+  max-width: 360px;
   max-height: 480px;
-  margin: 35px;
+  min-height: 350px;
   cursor: pointer;
 }
 
 .card__img_container {
-  max-height: inherit;
-  max-width: 345px;
+  max-height: 445px;
+  max-width: 360px;
   overflow: hidden;
   position: relative;
 }
@@ -215,17 +245,10 @@ select {
 .card__mask {
   background: -webkit-gradient(linear, left top, left bottom, from(#00BCD40A), color-stop(66%, #00BCD41F), to(#3C587F));
   background: linear-gradient(180deg, #00BCD40A 0%, #00BCD41F 66%, #3C587F 100%);
-  width: 345px;
+  max-width: 345px;
   height: 100%;
   position: absolute;
   top: 0;
-}
-
-.card__img {
-  max-width: 345px;
-  max-height: -webkit-fit-content;
-  max-height: -moz-fit-content;
-  max-height: fit-content;
 }
 
 .card__head {
@@ -260,8 +283,6 @@ select {
       -ms-flex-direction: column;
           flex-direction: column;
   max-width: 1200px;
-  width: 90%;
-  overflow-x: hidden;
   margin-top: 48px;
 }
 
@@ -421,6 +442,17 @@ select {
 
 .swiper-wrapper_full {
   width: 100%;
+}
+
+.travel_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .footer {
