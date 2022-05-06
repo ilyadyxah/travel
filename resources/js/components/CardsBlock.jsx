@@ -14,9 +14,10 @@ const CardsBlock = () => {
     useEffect(() => {
         fetch('/api/all')
             .then(res => res.json())
-            .then(res => setTravels(res))
+            .then(res =>
+                setTravels(res))
+        // console.log(res))
     }, [])
-    // console.log(travels)
     if (travels) {
         // console.log(travels)
         return (
@@ -30,7 +31,7 @@ const CardsBlock = () => {
                             clickable: true,
                         }}
                         className="mySwiper">
-                        {travels.places.map(travel => <SwiperSlide  ><CardTravelSimple travel={travel} /></SwiperSlide>)}
+                        {travels.map(travel => <SwiperSlide  ><CardTravelSimple travel={travel} /></SwiperSlide>)}
                     </Swiper>
                 </div>
                 {/* <div className="slider_btn_container">

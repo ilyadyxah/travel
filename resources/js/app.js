@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Layout } from '../js/components/Layout';
 import { TravelPage } from './router/pages/TravelPage';
 import { NotFound } from './router/pages/NotFound';
+import Mediacontent from './router/pages/MediaContent';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
@@ -21,9 +22,11 @@ root.render(
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="journeys" element={<Journeys />} />
+                    <Route path="journeys/:id" element={<TravelPage />} />
                     <Route path=":id" element={<TravelPage />} />
                     <Route path="about" element={<About />} />
                     <Route path="help" element={<Help />} />
+                    <Route path="media" element={<Mediacontent />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>

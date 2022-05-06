@@ -6,6 +6,10 @@
   font-family: 'Inter', sans-serif;
 }
 
+.App-header {
+  max-width: 100%;
+}
+
 .travel__head_box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -35,6 +39,7 @@
 
 .travel_card_main {
   max-width: 100%;
+  background-color: #6495ed;
 }
 
 .container {
@@ -441,7 +446,7 @@ select {
 }
 
 .swiper-wrapper_full {
-  width: 100%;
+  max-width: 100%;
 }
 
 .travel_container {

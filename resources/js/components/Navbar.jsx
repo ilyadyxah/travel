@@ -14,7 +14,7 @@ export default function Navbar() {
                     <Link to="/journeys" className='nav_link' >Путешествия</Link>
                 </li>
                 <li>
-                    <Link to="/about" className='nav_link'>О нас</Link>
+                    <Link to="/media" className='nav_link'>Media</Link>
                 </li>
                 <li>
                     <Link to="/help" className='nav_link'>Нужна помощь?</Link>

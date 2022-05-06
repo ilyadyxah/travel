@@ -1,5 +1,5 @@
 import React from 'react';
-import CardsBlock from './CardsBlock';
+import CategoriesSwiper from './CategoriesSwiper';
 
 const TravelCategories = () => {
     return (
@@ -9,7 +9,7 @@ const TravelCategories = () => {
                 <div className='underline_block'></div>
                 <p className='text_blue videos__header_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam vitae voluptatem voluptate modi, porro aspernatur animi tenetur, consequuntur reprehenderit accusamus aliquam qui maxime amet vel eligendi quod laudantium? Consequuntur nesciunt a numquam expedita porro perspiciatis labore quibusdam officiis eveniet adipisci.</p>
             </div>
-            <CardsBlock />
+            <CategoriesSwiper />
         </div>
     );
 }

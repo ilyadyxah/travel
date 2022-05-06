@@ -15,10 +15,10 @@ const StyledRating = styled(Rating)({
 
 function CardTravelSipmle({ travel }) {
 
-
+  // console.log(travel)
   return (
     <section className='card' >
-      <Link to={`${travel.id}`} key={travel.id} >
+      <Link to={`journeys/${travel.place_id}`} key={travel.place_id} >
         <div className='card__img_container'>
           <img className='card__img' src={travel.main_picture} alt={travel.city} />
           <div className='card__mask'></div>
@@ -39,7 +39,7 @@ function CardTravelSipmle({ travel }) {
         {/* <p className='card__dura'>{travel.duration} часов</p> */}
       </div>
 
-    </section>
+    </section >
   );
 }
 

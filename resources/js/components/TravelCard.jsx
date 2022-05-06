@@ -9,8 +9,10 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Rating from '@mui/material/Rating';
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -36,60 +38,30 @@ const StyledRating = styled(Rating)({
 
 export default function TravelCard({ travel }) {
   const [expanded, setExpanded] = useState(false);
-  const [images, setimages] = useState(null);
-
-  // console.log(travel)
-  // if (travel) {
-  // useEffect(() => {
-  //   fetch('/api/all')
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       // console.log(res)
-  //       res.pictures.forEach(pic => {
-  //         let img = [];
-  //         if (pic.place_id == travel.place_id) {
-  //           img.push(pic)
-  //         }
-  //         setimages(img)
-  //       });
-  //     })
-  // }, [expanded]);
-  // console.log(images)
-  // }
-
-
-  // const leyer = (images) => {
-  //   if (images) {
-  //     console.log(images)
-  //     return <SwiperSlide><img src={images.image} alt="foto" /></SwiperSlide>
-  //   }
-  // }
-
-
-
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  // console.log(travel)
   return (
     <Paper elevation={3} background="#6495ed">
-      <CardHeader
-
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={travel.title}
-        subheader={travel.city}
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image={travel.main_picture}
-        alt="Picture"
-      />
+      <Link to={`${travel.place_id}`} key={travel.place_id} travel={travel}>
+        <CardHeader
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={travel.title}
+          subheader={travel.city}
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          image={travel.main_picture}
+          alt="Picture"
+        />
+      </Link>
       <StyledRating
         name="simple-controlled"
         // value={travel.raiting}
@@ -120,11 +92,21 @@ export default function TravelCard({ travel }) {
           <Typography paragraph>{travel.description}</Typography>
         </CardContent>
         <CardContent>
-          <Swiper >
-            {/* {leyer({ images })} */}
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={30}
+            modules={[Navigation, Pagination]}
+            pagination={{
+              clickable: true,
+            }}>
+            {travel.image.map(img =>
+              <SwiperSlide>
+                <img src={img} alt='Image' />
+              </SwiperSlide>
+            )}
           </Swiper>
         </CardContent>
       </Collapse>
-    </Paper>
+    </Paper >
   )
 }

@@ -52,8 +52,8 @@ export default function Journeys() {
 
     return (
       <Grid container spacing={3}>
-        {travels.places.map(travel => <Grid item xs={4}>
-          <TravelCard travel={travel} key={travel.id} /></Grid>
+        {travels.map(travel => <Grid item xs={4}>
+          <TravelCard travel={travel} key={travel.place_id} /></Grid>
         )}
       </Grid>
     )

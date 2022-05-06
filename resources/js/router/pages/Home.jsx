@@ -6,6 +6,7 @@ import Videos from '../../components/Videos'
 import TravelCategories from '../../components/Travel_categories'
 
 export default function Home() {
+
   return (
     <>
       <Intro />

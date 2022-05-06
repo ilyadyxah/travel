@@ -5590,6 +5590,786 @@ const iconButtonClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_1__["default"])(
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/ImageListItemBar/ImageListItemBar.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@mui/material/ImageListItemBar/ImageListItemBar.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/composeClasses/composeClasses.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/capitalize */ "./node_modules/@mui/material/utils/capitalize.js");
+/* harmony import */ var _imageListItemBarClasses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./imageListItemBarClasses */ "./node_modules/@mui/material/ImageListItemBar/imageListItemBarClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["actionIcon", "actionPosition", "className", "subtitle", "title", "position"];
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    position,
+    actionIcon,
+    actionPosition
+  } = ownerState;
+  const slots = {
+    root: ['root', `position${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(position)}`],
+    titleWrap: ['titleWrap', `titleWrap${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(position)}`, actionIcon && `titleWrapActionPos${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(actionPosition)}`],
+    title: ['title'],
+    subtitle: ['subtitle'],
+    actionIcon: ['actionIcon', `actionIconActionPos${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(actionPosition)}`]
+  };
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_6__["default"])(slots, _imageListItemBarClasses__WEBPACK_IMPORTED_MODULE_7__.getImageListItemBarUtilityClass, classes);
+};
+
+const ImageListItemBarRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, styles[`position${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(ownerState.position)}`]];
+  }
+})(({
+  theme,
+  ownerState
+}) => {
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    background: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    alignItems: 'center',
+    fontFamily: theme.typography.fontFamily
+  }, ownerState.position === 'bottom' && {
+    bottom: 0
+  }, ownerState.position === 'top' && {
+    top: 0
+  }, ownerState.position === 'below' && {
+    position: 'relative',
+    background: 'transparent',
+    alignItems: 'normal'
+  });
+});
+const ImageListItemBarTitleWrap = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'TitleWrap',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.titleWrap, styles[`titleWrap${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(ownerState.position)}`], ownerState.actionIcon && styles[`titleWrapActionPos${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(ownerState.actionPosition)}`]];
+  }
+})(({
+  theme,
+  ownerState
+}) => {
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    flexGrow: 1,
+    padding: '12px 16px',
+    color: theme.palette.common.white,
+    overflow: 'hidden'
+  }, ownerState.position === 'below' && {
+    padding: '6px 0 12px',
+    color: 'inherit'
+  }, ownerState.actionIcon && ownerState.actionPosition === 'left' && {
+    paddingLeft: 0
+  }, ownerState.actionIcon && ownerState.actionPosition === 'right' && {
+    paddingRight: 0
+  });
+});
+const ImageListItemBarTitle = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'Title',
+  overridesResolver: (props, styles) => styles.title
+})(({
+  theme
+}) => {
+  return {
+    fontSize: theme.typography.pxToRem(16),
+    lineHeight: '24px',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap'
+  };
+});
+const ImageListItemBarSubtitle = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'Subtitle',
+  overridesResolver: (props, styles) => styles.subtitle
+})(({
+  theme
+}) => {
+  return {
+    fontSize: theme.typography.pxToRem(12),
+    lineHeight: 1,
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap'
+  };
+});
+const ImageListItemBarActionIcon = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('div', {
+  name: 'MuiImageListItemBar',
+  slot: 'ActionIcon',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.actionIcon, styles[`actionIconActionPos${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(ownerState.actionPosition)}`]];
+  }
+})(({
+  ownerState
+}) => {
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.actionPosition === 'left' && {
+    order: -1
+  });
+});
+const ImageListItemBar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.forwardRef(function ImageListItemBar(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__["default"])({
+    props: inProps,
+    name: 'MuiImageListItemBar'
+  });
+
+  const {
+    actionIcon,
+    actionPosition = 'right',
+    className,
+    subtitle,
+    title,
+    position = 'bottom'
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(props, _excluded);
+
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, props, {
+    position,
+    actionPosition
+  });
+
+  const classes = useUtilityClasses(ownerState);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ImageListItemBarRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    ownerState: ownerState,
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__["default"])(classes.root, className),
+    ref: ref
+  }, other, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ImageListItemBarTitleWrap, {
+      ownerState: ownerState,
+      className: classes.titleWrap,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ImageListItemBarTitle, {
+        className: classes.title,
+        children: title
+      }), subtitle ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ImageListItemBarSubtitle, {
+        className: classes.subtitle,
+        children: subtitle
+      }) : null]
+    }), actionIcon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ImageListItemBarActionIcon, {
+      ownerState: ownerState,
+      className: classes.actionIcon,
+      children: actionIcon
+    }) : null]
+  }));
+});
+ true ? ImageListItemBar.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * An IconButton element to be used as secondary action target
+   * (primary action target is the item itself).
+   */
+  actionIcon: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node),
+
+  /**
+   * Position of secondary action IconButton.
+   * @default 'right'
+   */
+  actionPosition: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['left', 'right']),
+
+  /**
+   * @ignore
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string),
+
+  /**
+   * Position of the title bar.
+   * @default 'bottom'
+   */
+  position: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['below', 'bottom', 'top']),
+
+  /**
+   * String or element serving as subtitle (support text).
+   */
+  subtitle: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+
+  /**
+   * Title to be displayed.
+   */
+  title: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageListItemBar);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ImageListItemBar/imageListItemBarClasses.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@mui/material/ImageListItemBar/imageListItemBarClasses.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "getImageListItemBarUtilityClass": () => (/* binding */ getImageListItemBarUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClasses/generateUtilityClasses.js");
+
+function getImageListItemBarUtilityClass(slot) {
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiImageListItemBar', slot);
+}
+const imageListItemBarClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiImageListItemBar', ['root', 'positionBottom', 'positionTop', 'positionBelow', 'titleWrap', 'titleWrapBottom', 'titleWrapTop', 'titleWrapBelow', 'titleWrapActionPosLeft', 'titleWrapActionPosRight', 'title', 'subtitle', 'actionIcon', 'actionIconActionPosLeft', 'actionIconActionPosRight']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (imageListItemBarClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ImageListItem/ImageListItem.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@mui/material/ImageListItem/ImageListItem.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/integerPropType.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+/* harmony import */ var _ImageList_ImageListContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ImageList/ImageListContext */ "./node_modules/@mui/material/ImageList/ImageListContext.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var _utils_isMuiElement__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../utils/isMuiElement */ "./node_modules/@mui/material/utils/isMuiElement.js");
+/* harmony import */ var _imageListItemClasses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./imageListItemClasses */ "./node_modules/@mui/material/ImageListItem/imageListItemClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["children", "className", "cols", "component", "rows", "style"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    variant
+  } = ownerState;
+  const slots = {
+    root: ['root', variant],
+    img: ['img']
+  };
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_6__["default"])(slots, _imageListItemClasses__WEBPACK_IMPORTED_MODULE_7__.getImageListItemUtilityClass, classes);
+};
+
+const ImageListItemRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('li', {
+  name: 'MuiImageListItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [{
+      [`& .${_imageListItemClasses__WEBPACK_IMPORTED_MODULE_7__["default"].img}`]: styles.img
+    }, styles.root, styles[ownerState.variant]];
+  }
+})(({
+  ownerState
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+  display: 'inline-block',
+  position: 'relative',
+  lineHeight: 0
+}, ownerState.variant === 'standard' && {
+  // For titlebar under list item
+  display: 'flex',
+  flexDirection: 'column'
+}, ownerState.variant === 'woven' && {
+  height: '100%',
+  alignSelf: 'center',
+  '&:nth-of-type(even)': {
+    height: '70%'
+  }
+}, {
+  [`& .${_imageListItemClasses__WEBPACK_IMPORTED_MODULE_7__["default"].img}`]: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    objectFit: 'cover',
+    width: '100%',
+    height: '100%'
+  }, ownerState.variant === 'standard' && {
+    height: 'auto',
+    flexGrow: 1
+  })
+}));
+const ImageListItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.forwardRef(function ImageListItem(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__["default"])({
+    props: inProps,
+    name: 'MuiImageListItem'
+  }); // TODO: - Use jsdoc @default?: "cols rows default values are for docs only"
+
+  const {
+    children,
+    className,
+    cols = 1,
+    component = 'li',
+    rows = 1,
+    style
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(props, _excluded);
+
+  const {
+    rowHeight = 'auto',
+    gap,
+    variant
+  } = react__WEBPACK_IMPORTED_MODULE_3__.useContext(_ImageList_ImageListContext__WEBPACK_IMPORTED_MODULE_10__["default"]);
+  let height = 'auto';
+
+  if (variant === 'woven') {
+    height = undefined;
+  } else if (rowHeight !== 'auto') {
+    height = rowHeight * rows + gap * (rows - 1);
+  }
+
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, props, {
+    cols,
+    component,
+    gap,
+    rowHeight,
+    rows,
+    variant
+  });
+
+  const classes = useUtilityClasses(ownerState);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ImageListItemRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    as: component,
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__["default"])(classes.root, classes[variant], className),
+    ref: ref,
+    style: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+      height,
+      gridColumnEnd: variant !== 'masonry' ? `span ${cols}` : undefined,
+      gridRowEnd: variant !== 'masonry' ? `span ${rows}` : undefined,
+      marginBottom: variant === 'masonry' ? gap : undefined
+    }, style),
+    ownerState: ownerState
+  }, other, {
+    children: react__WEBPACK_IMPORTED_MODULE_3__.Children.map(children, child => {
+      if (! /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.isValidElement(child)) {
+        return null;
+      }
+
+      if (true) {
+        if ((0,react_is__WEBPACK_IMPORTED_MODULE_4__.isFragment)(child)) {
+          console.error(["MUI: The ImageListItem component doesn't accept a Fragment as a child.", 'Consider providing an array instead.'].join('\n'));
+        }
+      }
+
+      if (child.type === 'img' || (0,_utils_isMuiElement__WEBPACK_IMPORTED_MODULE_11__["default"])(child, ['Image'])) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.cloneElement(child, {
+          className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__["default"])(classes.img, child.props.className)
+        });
+      }
+
+      return child;
+    })
+  }));
+});
+ true ? ImageListItem.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component, normally an `<img>`.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().string),
+
+  /**
+   * Width of the item in number of grid columns.
+   * @default 1
+   */
+  cols: _mui_utils__WEBPACK_IMPORTED_MODULE_13__["default"],
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().elementType),
+
+  /**
+   * Height of the item in number of grid rows.
+   * @default 1
+   */
+  rows: _mui_utils__WEBPACK_IMPORTED_MODULE_13__["default"],
+
+  /**
+   * @ignore
+   */
+  style: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().object),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_12___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_12___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_12___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_12___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_12___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_12___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_12___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_12___default().object)])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageListItem);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ImageListItem/imageListItemClasses.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@mui/material/ImageListItem/imageListItemClasses.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "getImageListItemUtilityClass": () => (/* binding */ getImageListItemUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClasses/generateUtilityClasses.js");
+
+function getImageListItemUtilityClass(slot) {
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiImageListItem', slot);
+}
+const imageListItemClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiImageListItem', ['root', 'img', 'standard', 'woven', 'masonry', 'quilted']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (imageListItemClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ImageList/ImageList.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@mui/material/ImageList/ImageList.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/integerPropType.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var _imageListClasses__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./imageListClasses */ "./node_modules/@mui/material/ImageList/imageListClasses.js");
+/* harmony import */ var _ImageListContext__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ImageListContext */ "./node_modules/@mui/material/ImageList/ImageListContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["children", "className", "cols", "component", "rowHeight", "gap", "style", "variant"];
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    variant
+  } = ownerState;
+  const slots = {
+    root: ['root', variant]
+  };
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_5__["default"])(slots, _imageListClasses__WEBPACK_IMPORTED_MODULE_6__.getImageListUtilityClass, classes);
+};
+
+const ImageListRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_7__["default"])('ul', {
+  name: 'MuiImageList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, styles[ownerState.variant]];
+  }
+})(({
+  ownerState
+}) => {
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    display: 'grid',
+    overflowY: 'auto',
+    listStyle: 'none',
+    padding: 0,
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch'
+  }, ownerState.variant === 'masonry' && {
+    display: 'block'
+  });
+});
+const ImageList = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.forwardRef(function ImageList(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_8__["default"])({
+    props: inProps,
+    name: 'MuiImageList'
+  });
+
+  const {
+    children,
+    className,
+    cols = 2,
+    component = 'ul',
+    rowHeight = 'auto',
+    gap = 4,
+    style: styleProp,
+    variant = 'standard'
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(props, _excluded);
+
+  const contextValue = react__WEBPACK_IMPORTED_MODULE_3__.useMemo(() => ({
+    rowHeight,
+    gap,
+    variant
+  }), [rowHeight, gap, variant]);
+  react__WEBPACK_IMPORTED_MODULE_3__.useEffect(() => {
+    if (true) {
+      // Detect Internet Explorer 8+
+      if (document !== undefined && 'objectFit' in document.documentElement.style === false) {
+        console.error(['MUI: ImageList v5+ no longer natively supports Internet Explorer.', 'Use v4 of this component instead, or polyfill CSS object-fit.'].join('\n'));
+      }
+    }
+  }, []);
+  const style = variant === 'masonry' ? (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    columnCount: cols,
+    columnGap: gap
+  }, styleProp) : (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    gridTemplateColumns: `repeat(${cols}, 1fr)`,
+    gap
+  }, styleProp);
+
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, props, {
+    component,
+    gap,
+    rowHeight,
+    variant
+  });
+
+  const classes = useUtilityClasses(ownerState);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ImageListRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    as: component,
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__["default"])(classes.root, classes[variant], className),
+    ref: ref,
+    style: style,
+    ownerState: ownerState
+  }, other, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ImageListContext__WEBPACK_IMPORTED_MODULE_9__["default"].Provider, {
+      value: contextValue,
+      children: children
+    })
+  }));
+});
+ true ? ImageList.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component, normally `ImageListItem`s.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node.isRequired),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string),
+
+  /**
+   * Number of columns.
+   * @default 2
+   */
+  cols: _mui_utils__WEBPACK_IMPORTED_MODULE_11__["default"],
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+
+  /**
+   * The gap between items in px.
+   * @default 4
+   */
+  gap: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number),
+
+  /**
+   * The height of one row in px.
+   * @default 'auto'
+   */
+  rowHeight: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['auto']), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number)]),
+
+  /**
+   * @ignore
+   */
+  style: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+
+  /**
+   * The variant to use.
+   * @default 'standard'
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['masonry', 'quilted', 'standard', 'woven']), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string)])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageList);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ImageList/ImageListContext.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@mui/material/ImageList/ImageListContext.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/**
+ * @ignore - internal component.
+ * @type {React.Context<{} | {expanded: boolean, disabled: boolean, toggle: () => void}>}
+ */
+
+const ImageListContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext({});
+
+if (true) {
+  ImageListContext.displayName = 'ImageListContext';
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageListContext);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ImageList/imageListClasses.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@mui/material/ImageList/imageListClasses.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "getImageListUtilityClass": () => (/* binding */ getImageListUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/base */ "./node_modules/@mui/base/generateUtilityClasses/generateUtilityClasses.js");
+
+function getImageListUtilityClass(slot) {
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiImageList', slot);
+}
+const imageListClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiImageList', ['root', 'masonry', 'quilted', 'standard', 'woven']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (imageListClasses);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/Paper/Paper.js":
 /*!***************************************************!*\
   !*** ./node_modules/@mui/material/Paper/Paper.js ***!
@@ -14535,13 +15315,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_router_pages_Journeys__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../js/router/pages/Journeys */ "./resources/js/router/pages/Journeys.jsx");
 /* harmony import */ var _js_router_pages_Help__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../js/router/pages/Help */ "./resources/js/router/pages/Help.jsx");
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _js_components_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../js/components/Layout */ "./resources/js/components/Layout.jsx");
 /* harmony import */ var _router_pages_TravelPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./router/pages/TravelPage */ "./resources/js/router/pages/TravelPage.jsx");
 /* harmony import */ var _router_pages_NotFound__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./router/pages/NotFound */ "./resources/js/router/pages/NotFound.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _router_pages_MediaContent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./router/pages/MediaContent */ "./resources/js/router/pages/MediaContent.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -14558,30 +15340,36 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var container = document.getElementById('root');
 var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_6__.createRoot)(container);
-root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), {
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Routes, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), {
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Routes, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_js_components_Layout__WEBPACK_IMPORTED_MODULE_7__.Layout, {}),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_js_components_Layout__WEBPACK_IMPORTED_MODULE_7__.Layout, {}),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
           index: true,
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_js_router_pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_js_router_pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
           path: "journeys",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_js_router_pages_Journeys__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_js_router_pages_Journeys__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+          path: "journeys/:id",
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_router_pages_TravelPage__WEBPACK_IMPORTED_MODULE_8__.TravelPage, {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
           path: ":id",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_router_pages_TravelPage__WEBPACK_IMPORTED_MODULE_8__.TravelPage, {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_router_pages_TravelPage__WEBPACK_IMPORTED_MODULE_8__.TravelPage, {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
           path: "about",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_js_router_pages_About__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_js_router_pages_About__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
           path: "help",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_js_router_pages_Help__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_js_router_pages_Help__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+          path: "media",
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_router_pages_MediaContent__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
           path: "*",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_router_pages_NotFound__WEBPACK_IMPORTED_MODULE_9__.NotFound, {})
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_router_pages_NotFound__WEBPACK_IMPORTED_MODULE_9__.NotFound, {})
         })]
       })
     })
@@ -14685,10 +15473,11 @@ var StyledRating = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_2__["default
 
 function CardTravelSipmle(_ref) {
   var travel = _ref.travel;
+  // console.log(travel)
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
     className: "card",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-      to: "".concat(travel.id),
+      to: "journeys/".concat(travel.place_id),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "card__img_container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -14702,7 +15491,7 @@ function CardTravelSipmle(_ref) {
           children: [travel.city, ", ", travel.title]
         })]
       })
-    }, travel.id), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    }, travel.place_id), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "card__bottom",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(StyledRating, {
         name: "simple-controlled" // value={travel.raiting}
@@ -14780,8 +15569,8 @@ var CardsBlock = function CardsBlock() {
       return res.json();
     }).then(function (res) {
       return setTravels(res);
-    });
-  }, []); // console.log(travels)
+    }); // console.log(res))
+  }, []);
 
   if (travels) {
     // console.log(travels)
@@ -14797,7 +15586,7 @@ var CardsBlock = function CardsBlock() {
             clickable: true
           },
           className: "mySwiper",
-          children: travels.places.map(function (travel) {
+          children: travels.map(function (travel) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(swiper_react__WEBPACK_IMPORTED_MODULE_2__.SwiperSlide, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CardTravelSimple__WEBPACK_IMPORTED_MODULE_1__["default"], {
                 travel: travel
@@ -14811,6 +15600,53 @@ var CardsBlock = function CardsBlock() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CardsBlock);
+
+/***/ }),
+
+/***/ "./resources/js/components/CategoriesSwiper.jsx":
+/*!******************************************************!*\
+  !*** ./resources/js/components/CategoriesSwiper.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var swiper_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper/react */ "./node_modules/swiper/react/swiper-react.js");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+var CaregoriesSwiper = function CaregoriesSwiper() {
+  // const [travels, setTravels] = useState(null);
+  // useEffect(() => {
+  //     fetch('/api/all')
+  //         .then(res => res.json())
+  //         .then(res => setTravels(res))
+  // }, [])
+  // console.log(travels)
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(swiper_react__WEBPACK_IMPORTED_MODULE_1__.Swiper, {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      modules: [swiper__WEBPACK_IMPORTED_MODULE_2__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_2__.Pagination],
+      pagination: {
+        clickable: true
+      },
+      className: "mySwiper"
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CaregoriesSwiper);
 
 /***/ }),
 
@@ -15000,9 +15836,9 @@ function Navbar() {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-          to: "/about",
+          to: "/media",
           className: "nav_link",
-          children: "\u041E \u043D\u0430\u0441"
+          children: "Media"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
@@ -15089,24 +15925,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TravelCard)
 /* harmony export */ });
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/IconButton/IconButton.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardHeader/CardHeader.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardMedia/CardMedia.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardActions/CardActions.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Collapse/Collapse.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardContent/CardContent.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_material_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/styles */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/IconButton/IconButton.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardHeader/CardHeader.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardMedia/CardMedia.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardActions/CardActions.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Collapse/Collapse.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardContent/CardContent.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/styles */ "./node_modules/@mui/material/styles/styled.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mui_icons_material_MoreVert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/icons-material/MoreVert */ "./node_modules/@mui/icons-material/MoreVert.js");
-/* harmony import */ var _mui_icons_material_Favorite__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/icons-material/Favorite */ "./node_modules/@mui/icons-material/Favorite.js");
-/* harmony import */ var _mui_icons_material_Share__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/icons-material/Share */ "./node_modules/@mui/icons-material/Share.js");
-/* harmony import */ var _mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/icons-material/ExpandMore */ "./node_modules/@mui/icons-material/ExpandMore.js");
-/* harmony import */ var _mui_material_Rating__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Rating */ "./node_modules/@mui/material/Rating/Rating.js");
+/* harmony import */ var _mui_icons_material_MoreVert__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/icons-material/MoreVert */ "./node_modules/@mui/icons-material/MoreVert.js");
+/* harmony import */ var _mui_icons_material_Favorite__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/icons-material/Favorite */ "./node_modules/@mui/icons-material/Favorite.js");
+/* harmony import */ var _mui_icons_material_Share__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @mui/icons-material/Share */ "./node_modules/@mui/icons-material/Share.js");
+/* harmony import */ var _mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @mui/icons-material/ExpandMore */ "./node_modules/@mui/icons-material/ExpandMore.js");
+/* harmony import */ var _mui_material_Rating__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/Rating */ "./node_modules/@mui/material/Rating/Rating.js");
 /* harmony import */ var swiper_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper/react */ "./node_modules/swiper/react/swiper-react.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 var _excluded = ["expand"];
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -15146,11 +15984,13 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 
 
-var ExpandMore = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(function (props) {
+
+
+var ExpandMore = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_4__["default"])(function (props) {
   var expand = props.expand,
       other = _objectWithoutProperties(props, _excluded);
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], _objectSpread({}, other));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], _objectSpread({}, other));
 })(function (_ref) {
   var theme = _ref.theme,
       expand = _ref.expand;
@@ -15162,7 +16002,7 @@ var ExpandMore = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_3__["default"]
     })
   };
 });
-var StyledRating = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(_mui_material_Rating__WEBPACK_IMPORTED_MODULE_5__["default"])({
+var StyledRating = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_4__["default"])(_mui_material_Rating__WEBPACK_IMPORTED_MODULE_6__["default"])({
   '& .MuiRating-iconFilled': {
     color: "#39A9B7"
   },
@@ -15178,55 +16018,31 @@ function TravelCard(_ref2) {
       expanded = _useState2[0],
       setExpanded = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState4 = _slicedToArray(_useState3, 2),
-      images = _useState4[0],
-      setimages = _useState4[1]; // console.log(travel)
-  // if (travel) {
-  // useEffect(() => {
-  //   fetch('/api/all')
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       // console.log(res)
-  //       res.pictures.forEach(pic => {
-  //         let img = [];
-  //         if (pic.place_id == travel.place_id) {
-  //           img.push(pic)
-  //         }
-  //         setimages(img)
-  //       });
-  //     })
-  // }, [expanded]);
-  // console.log(images)
-  // }
-  // const leyer = (images) => {
-  //   if (images) {
-  //     console.log(images)
-  //     return <SwiperSlide><img src={images.image} alt="foto" /></SwiperSlide>
-  //   }
-  // }
-
-
   var handleExpandClick = function handleExpandClick() {
     setExpanded(!expanded);
-  };
+  }; // console.log(travel)
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
     elevation: 3,
     background: "#6495ed",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      action: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        "aria-label": "settings",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_icons_material_MoreVert__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-      }),
-      title: travel.title,
-      subheader: travel.city
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      component: "img",
-      height: "194",
-      image: travel.main_picture,
-      alt: "Picture"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledRating, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+      to: "".concat(travel.place_id),
+      travel: travel,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        action: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          "aria-label": "settings",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_MoreVert__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+        }),
+        title: travel.title,
+        subheader: travel.city
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        component: "img",
+        height: "194",
+        image: travel.main_picture,
+        alt: "Picture"
+      })]
+    }, travel.place_id), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledRating, {
       name: "simple-controlled" // value={travel.raiting}
       ,
       value: 5,
@@ -15234,32 +16050,47 @@ function TravelCard(_ref2) {
       onChange: function onChange(event, newValue) {
         setValue(newValue);
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
       disableSpacing: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
         "aria-label": "add to favorites",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_icons_material_Favorite__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_Favorite__WEBPACK_IMPORTED_MODULE_13__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
         "aria-label": "share",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_icons_material_Share__WEBPACK_IMPORTED_MODULE_12__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ExpandMore, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_Share__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ExpandMore, {
         expand: expanded,
         onClick: handleExpandClick,
         "aria-expanded": expanded,
         "aria-label": "show more",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_13__["default"], {})
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_15__["default"], {})
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_16__["default"], {
       "in": expanded,
       timeout: "auto",
       unmountOnExit: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_18__["default"], {
           paragraph: true,
           children: travel.description
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(swiper_react__WEBPACK_IMPORTED_MODULE_1__.Swiper, {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(swiper_react__WEBPACK_IMPORTED_MODULE_1__.Swiper, {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          modules: [swiper__WEBPACK_IMPORTED_MODULE_2__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_2__.Pagination],
+          pagination: {
+            clickable: true
+          },
+          children: travel.image.map(function (img) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(swiper_react__WEBPACK_IMPORTED_MODULE_1__.SwiperSlide, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                src: img,
+                alt: "Image"
+              })
+            });
+          })
+        })
       })]
     })]
   });
@@ -15280,7 +16111,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CardsBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardsBlock */ "./resources/js/components/CardsBlock.jsx");
+/* harmony import */ var _CategoriesSwiper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoriesSwiper */ "./resources/js/components/CategoriesSwiper.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -15301,7 +16132,7 @@ var TravelCategories = function TravelCategories() {
         className: "text_blue videos__header_text",
         children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam vitae voluptatem voluptate modi, porro aspernatur animi tenetur, consequuntur reprehenderit accusamus aliquam qui maxime amet vel eligendi quod laudantium? Consequuntur nesciunt a numquam expedita porro perspiciatis labore quibusdam officiis eveniet adipisci."
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_CardsBlock__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_CategoriesSwiper__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
   });
 };
 
@@ -15561,18 +16392,130 @@ function Journeys() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
       container: true,
       spacing: 3,
-      children: travels.places.map(function (travel) {
+      children: travels.map(function (travel) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
           item: true,
           xs: 4,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_TravelCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
             travel: travel
-          }, travel.id)
+          }, travel.place_id)
         });
       })
     });
   }
 }
+
+/***/ }),
+
+/***/ "./resources/js/router/pages/MediaContent.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/router/pages/MediaContent.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_material_ImageList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material/ImageList */ "./node_modules/@mui/material/ImageList/ImageList.js");
+/* harmony import */ var _mui_material_ImageListItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/ImageListItem */ "./node_modules/@mui/material/ImageListItem/ImageListItem.js");
+/* harmony import */ var _mui_material_ImageListItemBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/ImageListItemBar */ "./node_modules/@mui/material/ImageListItemBar/ImageListItemBar.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+var Mediacontent = function Mediacontent() {
+  var _travels$;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      travels = _useState2[0],
+      settravels = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetch('/api/all').then(function (res) {
+      return res.json();
+    }).then(function (res) {
+      return settravels(res);
+    });
+  }, []);
+
+  if ((_travels$ = travels[0]) !== null && _travels$ !== void 0 && _travels$.image) {
+    // console.log(travels[0])
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_ImageList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      gap: 20,
+      children: travels.map(function (travel) {
+        return travel.image.map(function (item) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            elevation: 3,
+            background: "#6495ed",
+            margin: 10,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_ImageListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                src: "".concat(item, "?w=248&fit=crop&auto=format"),
+                srcSet: "".concat(item, "?w=248&fit=crop&auto=format&dpr=2 2x"),
+                alt: "{item.title}",
+                loading: "lazy"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_ImageListItemBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                title: travel.title,
+                subtitle: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  children: travel.city
+                }),
+                position: "below"
+              })]
+            })
+          }, item);
+        });
+      })
+    }) // <ImageList >
+    //     {travels.forEach(travel =>
+    //         travel.image.map(item =>
+    //             <ImageListItem key={travel.place_id}>
+    //                 <Paper elevation={3} background="#6495ed" margin={10}>
+    //                     <img
+    //                         src={`${item}?w=248&fit=crop&auto=format`}
+    //                         // srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+    //                         // alt={item.title}
+    //                         loading="lazy"
+    //                     />
+    //                     <ImageListItemBar
+    //                         title={travel.title}
+    //                         subtitle={travel.city} //{<span>by: {item.author}</span>}
+    //                         position="below"
+    //                     />
+    //                 </Paper>
+    //             </ImageListItem>
+    //         )
+    //     )
+    //     }
+    // </ImageList >
+    ;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Mediacontent);
 
 /***/ }),
 
@@ -15620,6 +16563,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mui_material_Rating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Rating */ "./node_modules/@mui/material/Rating/Rating.js");
 /* harmony import */ var _mui_material_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/styles */ "./node_modules/@mui/material/styles/styled.js");
 /* harmony import */ var _img_img_travel_03_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../img/img_travel_03.jpg */ "./resources/img/img_travel_03.jpg");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ImageList/ImageList.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ImageListItem/ImageListItem.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -15642,6 +16587,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var StyledRating = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(_mui_material_Rating__WEBPACK_IMPORTED_MODULE_4__["default"])({
   '& .MuiRating-iconFilled': {
     color: "#39A9B7"
@@ -15651,69 +16598,103 @@ var StyledRating = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_3__["default
   }
 });
 
-var TravelPage = function TravelPage(_ref) {
-  var travels = _ref.travels;
-
+var TravelPage = function TravelPage() {
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
       id = _useParams.id;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    id: 1,
-    city: 'Vologda',
-    type: 'Bus tour',
-    duration: 8,
-    dateNextTtavel: "1 августа 2022",
-    raiting: 1.5,
-    price: "300$",
-    imgSrc: " ".concat(_img_img_travel_03_jpg__WEBPACK_IMPORTED_MODULE_1__["default"])
-  }),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
       travel = _useState2[0],
-      setTravel = _useState2[1]; // const useEffect(() => {
-  //     fetch(`/&{id}`)
-  //          .then(res => res.json())
-  //          .then(data => setTravel(data))
-  // }, [id]);
+      settravel = _useState2[1];
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetch("/api/all").then(function (res) {
+      return res.json();
+    }).then(function (res) {
+      res.forEach(function (el) {
+        if (el.place_id == id) {
+          settravel(el);
+        }
+      });
+    });
+  }, [id]);
+  var ref = react__WEBPACK_IMPORTED_MODULE_0___default().useRef(null);
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "travel__head_box",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-        className: "travel__img",
-        src: travel.imgSrc,
-        alt: "Image"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "travel__head_box-text",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-          className: "travel__head",
-          children: "Place"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-          className: "travel__head_lower",
-          children: "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0442\u0443\u0440\u0430/\u043C\u0430\u0440\u0448\u0440\u0443\u0442\u0430"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-          className: "travel__dura",
-          children: ["\u041F\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u0435 \u043D\u0430 ", travel.duration, " \u0447\u0430\u0441\u043E\u0432"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledRating, {
-          name: "simple-controlled",
-          value: travel.raiting,
-          readOnly: true
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-          className: "text_blue",
-          children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed odio voluptate nobis ea illo maiores? Ratione rerum consequatur quibusdam nihil assumenda voluptas vitae itaque laboriosam placeat commodi, maiores quidem, nemo quae recusandae quis porro impedit."
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      map = _React$useState2[0],
+      setMap = _React$useState2[1];
+
+  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
+    if (ref.current && !map) {
+      setMap(new window.google.maps.Map(ref.current, {}));
+    }
+  }, [ref, map]);
+  console.log(travel, id);
+
+  if (travel) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "travel__head_box",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+          className: "travel__img",
+          src: travel.main_picture,
+          alt: "Image"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "travel__head_box-text",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+            className: "travel__head",
+            children: travel.city
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+            className: "travel__head_lower",
+            children: travel.title
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+            className: "travel__dura",
+            children: ["\u041F\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u0435 \u043D\u0430 '", travel.duration, "' \u0447\u0430\u0441\u043E\u0432"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledRating, {
+            name: "simple-controlled" // value={travel.raiting}
+            ,
+            value: 4,
+            readOnly: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+            className: "text_blue",
+            children: travel.description
+          })]
         })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "travel__photos",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          sx: {
+            width: 500,
+            height: 450
+          },
+          children: travel.image.map(function (img) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              sx: true,
+              gap: 20,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                src: img,
+                alt: "",
+                loading: "lazy"
+              })
+            });
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "travel__revievs",
+        children: travel.comments.map(function (comment) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+            children: [comment[0], ": ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              children: comment[1]
+            })]
+          });
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "travel__map",
+        children: "Map"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "travel__photos",
-      children: "Photos"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "travel__revievs",
-      children: "\u041E\u0442\u0437\u044B\u0432\u044B"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "travel__map",
-      children: "\u041A\u0430\u0440\u0442\u0430"
-    })]
-  });
+    });
+  }
 };
 
 

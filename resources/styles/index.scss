@@ -5,6 +5,10 @@
   font-family: 'Inter', sans-serif;
 }
 
+.App-header {
+  max-width: 100%
+}
+
 @import "travelPage";
 @import "travelCard";
 // $main_theme_color: #AFB0B9;
@@ -358,7 +362,7 @@ select {
 
 
 .swiper-wrapper_full {
-  width: 100%;
+  max-width: 100%;
 }
 
 
