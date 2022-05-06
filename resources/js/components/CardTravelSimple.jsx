@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 import Rating from '@mui/material/Rating';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -14,7 +16,11 @@ const StyledRating = styled(Rating)({
 });
 
 function CardTravelSipmle({ travel }) {
-
+  const [likes, setlikes] = useState(travel.likes);
+  const addLike = () => {
+    let liked = likes + 1;
+    setlikes(liked)
+  }
   // console.log(travel)
   return (
     <section className='card' >
@@ -22,23 +28,16 @@ function CardTravelSipmle({ travel }) {
         <div className='card__img_container'>
           <img className='card__img' src={travel.main_picture} alt={travel.city} />
           <div className='card__mask'></div>
-          {/* <p className='card__price'>{travel.price}</p> */}
+
           <h2 className='card__head'>{travel.city}, {travel.title}</h2>
         </div>
       </Link>
-      <div className='card__bottom'>
-        <StyledRating
-          name="simple-controlled"
-          // value={travel.raiting}
-          value={5}
-          readOnly
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        />
-        {/* <p className='card__dura'>{travel.duration} часов</p> */}
-      </div>
-
+      <p className='card__like'><IconButton aria-label="add to favorites" onClick={addLike}>
+        <p>{likes}</p>
+        <FavoriteIcon />
+      </IconButton></p>
+      {/* <div className='card__bottom'>
+      </div> */}
     </section >
   );
 }

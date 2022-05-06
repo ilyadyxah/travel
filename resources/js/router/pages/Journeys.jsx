@@ -4,40 +4,6 @@ import { useEffect, useState } from 'react';
 import { backdropClasses, Grid } from '@mui/material';
 import { forEach, forIn } from 'lodash';
 
-// const trBase = (base) => {
-//   let result = [];
-//   for (const part of base) {
-//     part => {
-//       for (let i = 0; i < base[part].length; i++)
-//         if (base.part[i]) {
-//           let item = {
-//             place_id: base[part][i].place_id,
-//             title: base[part][i].title,
-//             main_picture: base[part][i].main_picture,
-//             description: base[part][i].description,
-//             city: base[part][i].city,
-//           }
-//           console.log(base.places, item)
-//         }
-//     }
-//     result.push(item)
-//   }
-// for (let i = 0; i < base.places.length; i++)
-//   if (base.places[i]) {
-//     let item = {
-//       place_id: base.places[i].place_id,
-//       title: base.places[i].title,
-//       main_picture: base.places[i].main_picture,
-//       description: base.places[i].description,
-//       city: base.places[i].city,
-//     }
-//     console.log(base.places, item)
-//     result.push(item)
-//   }
-// return result
-// }
-
-
 
 export default function Journeys() {
   const [travels, settravels] = useState(null);
@@ -49,11 +15,10 @@ export default function Journeys() {
   }, []);
 
   if (travels) {
-
     return (
       <Grid container spacing={3}>
-        {travels.map(travel => <Grid item xs={4}>
-          <TravelCard travel={travel} key={travel.place_id} /></Grid>
+        {travels.map(travel => <Grid item xs={4} key={travel.place_id}>
+          <TravelCard travel={travel} /></Grid>
         )}
       </Grid>
     )

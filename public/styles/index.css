@@ -14,6 +14,18 @@
   justify-content: space-between;
 }
 
+.travel__head_box-text {
+  margin: 25px;
+  padding: 15px;
+  color: #000;
+}
+
+.travel__head-text {
+  font-size: 18px;
+  line-height: 28px;
+  padding: 15px;
+}
+
 .travel__img {
   max-width: 800px;
   max-height: 600px;
@@ -193,10 +205,11 @@ select {
   position: relative;
 }
 
-.card__price {
-  color: #fff;
-  background: #4285f4;
+.card__like {
+  color: #f50404;
+  background: #42f4f4d3;
   position: absolute;
+  font-size: large;
   top: 25px;
   padding: 12px;
   font-size: large;
@@ -353,6 +366,22 @@ select {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+.travel__overview {
+  display: flex;
+  justify-content: space-around;
+  padding: 25px;
+  margin: 25px;
+  box-shadow: 0 0 10px #202336;
+}
+
+.travel__revievs {
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 38px;
 }
 
 .footer {

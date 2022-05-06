@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination"
-import axios from "axios";
+// import axios from "axios";
 
 const CardsBlock = () => {
     const [travels, setTravels] = useState(null);
@@ -16,7 +16,6 @@ const CardsBlock = () => {
             .then(res => res.json())
             .then(res =>
                 setTravels(res))
-        // console.log(res))
     }, [])
     if (travels) {
         // console.log(travels)
@@ -31,7 +30,7 @@ const CardsBlock = () => {
                             clickable: true,
                         }}
                         className="mySwiper">
-                        {travels.map(travel => <SwiperSlide  ><CardTravelSimple travel={travel} /></SwiperSlide>)}
+                        {travels.map(travel => <SwiperSlide key={travel.place_id}  ><CardTravelSimple travel={travel} /></SwiperSlide>)}
                     </Swiper>
                 </div>
                 {/* <div className="slider_btn_container">

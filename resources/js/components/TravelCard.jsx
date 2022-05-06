@@ -36,13 +36,20 @@ const StyledRating = styled(Rating)({
 
 
 
+
 export default function TravelCard({ travel }) {
   const [expanded, setExpanded] = useState(false);
-
+  const [likes, setlikes] = useState(travel.likes || null);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  // console.log(travel)
+
+  const addLike = () => {
+    let liked = likes + 1;
+    setlikes(liked)
+  }
+
+  // console.log(likes)
   return (
     <Paper elevation={3} background="#6495ed">
       <Link to={`${travel.place_id}`} key={travel.place_id} travel={travel}>
@@ -60,22 +67,24 @@ export default function TravelCard({ travel }) {
           height="194"
           image={travel.main_picture}
           alt="Picture"
+          loading='lazy'
         />
       </Link>
-      <StyledRating
+      {/* <StyledRating
         name="simple-controlled"
-        // value={travel.raiting}
+        value={travel.raiting}
         value={5}
         readOnly
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-      />
+      /> */}
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <p>{likes}</p>
+        <IconButton aria-label="add to favorites" onClick={addLike}>
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" >
           <ShareIcon />
         </IconButton>
         <ExpandMore
@@ -100,7 +109,7 @@ export default function TravelCard({ travel }) {
               clickable: true,
             }}>
             {travel.image.map(img =>
-              <SwiperSlide>
+              <SwiperSlide key={img}>
                 <img src={img} alt='Image' />
               </SwiperSlide>
             )}

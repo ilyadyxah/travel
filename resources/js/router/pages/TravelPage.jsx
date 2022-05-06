@@ -3,11 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import { styled } from '@mui/material/styles';
-import pic from "../../../img/img_travel_03.jpg"
-import { Swipe } from '@mui/icons-material';
-import { ImageList, ImageListItem } from '@mui/material';
-
-
+import { Box, ImageList, ImageListItem } from '@mui/material';
+import Rewiewcard from '../../components/RewiewCard';
+import { IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -18,30 +17,29 @@ const StyledRating = styled(Rating)({
   },
 });
 
+const renderRewiews = (travel) => {
+  if (travel.comments)
+    return (travel.comments.map(comment => <Rewiewcard comment={comment} ></Rewiewcard>))
+  else return <p>No comment yet(</p>
+};
 
 const TravelPage = () => {
   const { id } = useParams()
   const [travel, settravel] = useState(null);
+  const [likes, setlikes] = useState(null);
+
   useEffect(() => {
     fetch("/api/all").then(res => res.json()).then(res => {
-      res.forEach(el => { if (el.place_id == id) { settravel(el) } });
+      res.forEach(el => { if (el.place_id == id) { settravel(el); setlikes(el.likes || null) } });
     })
   }, [id]);
 
-  const ref = React.useRef(null);
-  const [map, setMap] = React.useState();
+  const addLike = () => {
+    let liked = likes + 1;
+    setlikes(liked)
+  }
 
-  React.useEffect(() => {
-    if (ref.current && !map) {
-      setMap(new window.google.maps.Map(ref.current, {}));
-    }
-  }, [ref, map]);
-
-
-
-
-
-  console.log(travel, id)
+  // console.log(travel)
   if (travel) {
     return (
       <>
@@ -51,29 +49,31 @@ const TravelPage = () => {
             <h2 className='travel__head'>{travel.city}</h2>
             <h3 className='travel__head_lower'>{travel.title}</h3>
             <p className='travel__dura'>Путешествие на '{travel.duration}' часов</p>
-            <StyledRating
-              name="simple-controlled"
-              // value={travel.raiting}
-              value={4}
-              readOnly
-            />
-            <p className='text_blue'>{travel.description}</p>
+
+            <IconButton aria-label="add to favorites" onClick={addLike}>
+              <p>{likes}</p>
+              <FavoriteIcon />
+            </IconButton>
+            <p className='travel__head-text'>{travel.description}</p>
           </div>
         </div>
-        <div className='travel__photos'>
-          <ImageList sx={{ width: 500, height: 450 }}>
-            {travel.image.map(img =>
-              <ImageListItem sx gap={20}>
-                <img src={img} alt="" loading='lazy' />
-              </ImageListItem>
-            )}
-          </ImageList>
+        <div className='travel__overview'>
+          <div className='travel__photos'>
+            <Box sm={{ width: 550 }}>
+              <ImageList sx={{ width: 500 }}>
+                {travel.image.map(img =>
+                  <ImageListItem sx={{ maxWidth: 450 }} gap={20} key={img}>
+                    <img src={img} alt="" loading='lazy' />
+                  </ImageListItem>
+                )}
+              </ImageList>
+            </Box>
+          </div>
+          <div className='travel__revievs'>
+            {renderRewiews(travel)}
+          </div>
         </div>
-        <div className='travel__revievs'>
-          {travel.comments.map(comment =>
-            <p>{comment[0]}: <span>{comment[1]}</span></p>
-          )}
-        </div>
+
         <div className='travel__map' >
           Map
         </div>
