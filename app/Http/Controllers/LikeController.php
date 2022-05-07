@@ -7,24 +7,44 @@ use Illuminate\Support\Facades\DB;
 
 class LikeController extends Controller
 {
-    public function likeHandle(int $place_id)
+    public function likeHandle(string $like, int $place_id)
     {
-        try {
-            DB::table('likes')->insert([
+        if ($like == 'like') {
+            try {
+                DB::table('likes')->insert([
                     'place_id' => $place_id,
 //                    пока ставлю, что лайкает только пользователь 1
-//                    'user_id' => 1,
+                    'user_id' => 1,
                 ]);
-            $likes = DB::table('likes')
-                ->where('place_id', $place_id)
-                ->get()
-                ->count();
+                $likes = DB::table('likes')
+                    ->where('place_id', $place_id)
+                    ->get()
+                    ->count();
+            } catch (\Exception $e) {
+                return response()->json('error', 400);
+            }
+        } else if ($like == 'dislike') {
+            try {
+                DB::table('likes')->
+                where([
+                    ['place_id', '=', $place_id],
+                    ['user_id', '=', 1],
+                ])
+                    ->limit(1)
+                    ->delete();
 
-            return response()->json($likes);
-
-        }catch(\Exception $e){
-            return response()->json('error', 400);
+                $likes = DB::table('likes')
+                    ->where('place_id', $place_id)
+                    ->get()
+                    ->count();
+            } catch
+            (\Exception $e) {
+                return response()->json('error', 400);
+            }
         }
+
+        return response()->json($likes);
+
 
     }
 
