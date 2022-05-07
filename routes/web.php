@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
 
