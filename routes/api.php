@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomepageController as HomepageControllerAlias;
+use App\Http\Controllers\LikeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/test', [HomepageControllerAlias::class, 'testApi']);
 
 Route::get('/all', [HomepageControllerAlias::class, 'getAll']);
+Route::get('/likes/{place_id}', [LikeController::class, 'likeHandle'])
+    ->where('place_id', '\d+')
+    ->name('likeHandle');
 
