@@ -7,6 +7,7 @@ import { Box, ImageList, ImageListItem } from '@mui/material';
 import Rewiewcard from '../../components/RewiewCard';
 import { IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import LikeBtn from '../../components/LikeBtn';
 
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -26,18 +27,14 @@ const renderRewiews = (travel) => {
 const TravelPage = () => {
   const { id } = useParams()
   const [travel, settravel] = useState(null);
-  const [likes, setlikes] = useState(null);
 
   useEffect(() => {
     fetch("/api/all").then(res => res.json()).then(res => {
-      res.forEach(el => { if (el.place_id == id) { settravel(el); setlikes(el.likes || null) } });
+      res.forEach(el => { if (el.place_id == id) { settravel(el) } });
     })
   }, [id]);
 
-  const addLike = () => {
-    let liked = likes + 1;
-    setlikes(liked)
-  }
+
 
   // console.log(travel)
   if (travel) {
@@ -49,11 +46,7 @@ const TravelPage = () => {
             <h2 className='travel__head'>{travel.city}</h2>
             <h3 className='travel__head_lower'>{travel.title}</h3>
             <p className='travel__dura'>Путешествие на '{travel.duration}' часов</p>
-
-            <IconButton aria-label="add to favorites" onClick={addLike}>
-              <p>{likes}</p>
-              <FavoriteIcon />
-            </IconButton>
+            <LikeBtn travel={travel} />
             <p className='travel__head-text'>{travel.description}</p>
           </div>
         </div>

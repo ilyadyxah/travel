@@ -16,7 +16,7 @@ export default function Journeys() {
 
   if (travels) {
     return (
-      <Grid container spacing={3}>
+      <Grid container spacing={3} >
         {travels.map(travel => <Grid item xs={4} key={travel.place_id}>
           <TravelCard travel={travel} /></Grid>
         )}

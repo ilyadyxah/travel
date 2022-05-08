@@ -5,11 +5,11 @@ import NavBar from "../components/Navbar"
 const Layout = () => {
     return (
         <>
-            <header className="App-header">
+            <header className="App-header container">
                 <NavBar />
             </header>
             <main className='container'>
-                <Outlet />  
+                <Outlet />
             </main>
             <footer className='footer'>
                 2022 г.
@@ -18,4 +18,4 @@ const Layout = () => {
     );
 }
 
-export {Layout};
+export { Layout };

@@ -17,6 +17,7 @@ const CardsBlock = () => {
             .then(res =>
                 setTravels(res))
     }, [])
+
     if (travels) {
         // console.log(travels)
         return (
@@ -40,7 +41,6 @@ const CardsBlock = () => {
             </div>
         )
     }
-
 }
 
 export default CardsBlock;

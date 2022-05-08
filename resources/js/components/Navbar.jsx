@@ -13,6 +13,9 @@ export default function Navbar() {
                 <li >
                     <Link to="/journeys" className='nav_link' >Путешествия</Link>
                 </li>
+                <li >
+                    <Link to="/map" className='nav_link' >Map</Link>
+                </li>
                 <li>
                     <Link to="/media" className='nav_link'>Media</Link>
                 </li>

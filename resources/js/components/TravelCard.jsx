@@ -13,6 +13,8 @@ import { Pagination, Navigation } from "swiper";
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { color } from '@mui/system';
+import LikeBtn from './LikeBtn';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -44,15 +46,12 @@ export default function TravelCard({ travel }) {
     setExpanded(!expanded);
   };
 
-  const addLike = () => {
-    let liked = likes + 1;
-    setlikes(liked)
-  }
+
 
   // console.log(likes)
   return (
-    <Paper elevation={3} background="#6495ed">
-      <Link to={`${travel.place_id}`} key={travel.place_id} travel={travel}>
+    <Paper elevation={3} background="#6495ed" sx={{ a: { textDecoration: 'none' } }}>
+      <Link to={`${travel.place_id}`} key={travel.place_id} travel={travel} >
         <CardHeader
           action={
             <IconButton aria-label="settings">
@@ -63,13 +62,14 @@ export default function TravelCard({ travel }) {
           subheader={travel.city}
         />
         <CardMedia
+
           component="img"
           height="194"
           image={travel.main_picture}
           alt="Picture"
           loading='lazy'
         />
-      </Link>
+      </Link >
       {/* <StyledRating
         name="simple-controlled"
         value={travel.raiting}
@@ -79,11 +79,12 @@ export default function TravelCard({ travel }) {
           setValue(newValue);
         }}
       /> */}
-      <CardActions disableSpacing>
-        <p>{likes}</p>
+      <CardActions disableSpacing  >
+        <LikeBtn travel={travel} />
+        {/* <p>{likes}</p>
         <IconButton aria-label="add to favorites" onClick={addLike}>
           <FavoriteIcon />
-        </IconButton>
+        </IconButton> */}
         <IconButton aria-label="share" >
           <ShareIcon />
         </IconButton>
