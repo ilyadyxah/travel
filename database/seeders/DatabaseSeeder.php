@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             PlacesImagesSeeder::class,
             PlacesLikesSeeder::class,
             CommentsSeeder::class,
+            TransportsSeeder::class,
+            PlacesTransportsSeeder::class,
 
         ]);
     }
