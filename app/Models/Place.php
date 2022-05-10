@@ -77,11 +77,9 @@ class Place extends Model
                     'p.complexity as complexity',
                     'im.url as main_picture')
                 ->addSelect(DB::raw("GROUP_CONCAT(tr.transport_id) as `transports`"));
-
     }
 
-
-    public static function getWithFilters(array $filters): Collection
+    public static function getWithBaseFilters(array $filters, $filteredWithTransport = null): Builder
     {
         return
             self::getPlaces()
@@ -108,16 +106,43 @@ class Place extends Model
                     function ($query, $complexity) {
                         return $query->having('complexity', $complexity);
                     })
-                ->when($filters['transport'],
-                    function ($query, $transport) {
-                        return $query->havingRaw('transports', $transport);
-                    })
-                ->groupBy('place_id')
-                ->get();
+                ->when($filteredWithTransport,
+                    function ($query, $places_id) {
+                        return $query->whereIn('cp.place_id', $places_id);
+                    });
+
     }
 
-    public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): Collection
+    public static function transportFilter($filters)
     {
-        return self::getWithFilters($filters)->slice(($page - 1) * $itemsPerPage, $itemsPerPage);
+        return
+            DB::table('places_transports as ptr')
+                ->join('transports as tr', 'ptr.transport_id', '=', 'tr.id')
+                ->select(
+                    'ptr.place_id as place_id',
+                    'tr.id'
+                )
+                ->when($filters['transport'],
+                    function ($query, $transport) {
+                        return $query->having('tr.id', $transport);
+                    })
+                ->pluck('place_id')
+                ->toArray();
     }
+
+    public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): array|null
+    {
+        $filteredWithTransport = $filters['transport'] ? self::transportFilter($filters) : null;
+        if (!empty($filteredWithTransport)) {
+            return
+                self::getWithBaseFilters($filters, $filteredWithTransport)
+                    ->groupBy('place_id')
+                    ->get()
+                    ->slice(($page - 1) * $itemsPerPage, $itemsPerPage)
+                    ->toArray();
+        }
+        return null;
+    }
+
+
 }

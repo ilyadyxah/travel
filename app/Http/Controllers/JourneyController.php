@@ -27,18 +27,23 @@ class JourneyController extends Controller
         $itemsPerPage = 15;
         $places = Place::getWhithFiltersOnPage($page, $itemsPerPage, $filters);
 
-        // Извлекаем id мест в массив
-        $placesId = [];
-        foreach ($places as $place) {
-            $placesId[] = $place->place_id;
+        if ($places != null) {
+            // Извлекаем id мест в массив
+            $placesId = [];
+            foreach ($places as $place) {
+                $placesId[] = $place->place_id;
+            }
+
+            // Получаем данные из других таблиц по id места.
+            $pictures = Image::getInPlaces($placesId);
+            $comments = Comment::getInPlaces($placesId);
+            $likes = Like::getInPlaces($placesId);
+
+            return response()->json($this->getFinalData($places, $comments, $likes, $pictures));
         }
 
-        // Получаем данные из других таблиц по id места.
-        $pictures = Image::getInPlaces($placesId);
-        $comments = Comment::getInPlaces($placesId);
-        $likes = Like::getInPlaces($placesId);
+        return response()->json(['message' => 'Путешествия не найдены']);
 
-        return response()->json($this->getFinalData($places, $comments, $likes, $pictures));
     }
 
     public function getFinalData($places, $comments, $likes, $pictures): array
