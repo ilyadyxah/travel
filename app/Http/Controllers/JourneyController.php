@@ -17,15 +17,14 @@ class JourneyController extends Controller
         $filters = [
             'city' => $request->city, // город
             'transport' => $request->transport, // вид транспорта
-            'complexity' => $request->complexity, // сложность
-            'minDistance' => $request->minDistance, //.. и т.д.
+            'complexity' => (int)$request->complexity, // сложность
+            'minDistance' => (int)$request->minDistance, //.. и т.д.
             'maxDistance' => $request->maxDistance,
             'minCost' => $request->minCost,
             'maxCost' => $request->maxCost,
         ];
-
         // Получаем места по 5 штук на заданной странице
-        $itemsPerPage = 7;
+        $itemsPerPage = 15;
         $places = Place::getWhithFilters($page, $itemsPerPage, $filters);
 
         // Извлекаем id мест в массив
