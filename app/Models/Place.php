@@ -6,6 +6,8 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class Place extends Model
@@ -57,9 +59,8 @@ class Place extends Model
         ];
     }
 
-    public static function getPlaces($filters)
+    public static function getPlaces(): Builder
     {
-
         return
             DB::table('cities_places as cp')
                 ->join('cities as c', 'cp.city_id', '=', 'c.id')
@@ -75,7 +76,15 @@ class Place extends Model
                     'p.cost as cost',
                     'p.complexity as complexity',
                     'im.url as main_picture')
-                ->addSelect(DB::raw("GROUP_CONCAT(tr.transport_id) as `transports`"))
+                ->addSelect(DB::raw("GROUP_CONCAT(tr.transport_id) as `transports`"));
+
+    }
+
+
+    public static function getWithFilters(array $filters): Collection
+    {
+        return
+            self::getPlaces()
                 ->when($filters['city'], function ($query, $city) {
                     return $query->having('city', $city);
                 })
@@ -107,8 +116,8 @@ class Place extends Model
                 ->get();
     }
 
-    public static function getWhithFilters($page, $itemsPerPage, $filters)
+    public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): Collection
     {
-        return self::getPlaces($filters)->slice(($page - 1) * $itemsPerPage, $itemsPerPage);
+        return self::getWithFilters($filters)->slice(($page - 1) * $itemsPerPage, $itemsPerPage);
     }
 }

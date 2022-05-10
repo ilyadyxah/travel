@@ -25,7 +25,7 @@ class JourneyController extends Controller
         ];
         // Получаем места по 5 штук на заданной странице
         $itemsPerPage = 15;
-        $places = Place::getWhithFilters($page, $itemsPerPage, $filters);
+        $places = Place::getWhithFiltersOnPage($page, $itemsPerPage, $filters);
 
         // Извлекаем id мест в массив
         $placesId = [];
@@ -41,7 +41,7 @@ class JourneyController extends Controller
         return response()->json($this->getFinalData($places, $comments, $likes, $pictures));
     }
 
-    public function getFinalData($places, $comments, $likes, $pictures)
+    public function getFinalData($places, $comments, $likes, $pictures): array
     {
         //Слияние массивов в один
         foreach ($places as $place) {
