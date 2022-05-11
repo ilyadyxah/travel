@@ -11,8 +11,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
-        "laravel/tinker": "^2.7",
-      "ext-http": "*"
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

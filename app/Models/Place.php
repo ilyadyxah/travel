@@ -6,8 +6,8 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class Place extends Model
@@ -38,7 +38,7 @@ class Place extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function comments()
     {
@@ -113,7 +113,7 @@ class Place extends Model
 
     }
 
-    public static function transportFilter($filters)
+    public static function transportFilter($filters): array
     {
         return
             DB::table('places_transports as ptr')
@@ -132,17 +132,23 @@ class Place extends Model
 
     public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): array|null
     {
-        $filteredWithTransport = $filters['transport'] ? self::transportFilter($filters) : null;
-        if (!empty($filteredWithTransport)) {
-            return
-                self::getWithBaseFilters($filters, $filteredWithTransport)
-                    ->groupBy('place_id')
-                    ->get()
-                    ->slice(($page - 1) * $itemsPerPage, $itemsPerPage)
-                    ->toArray();
+        if (!empty($filters['transport'])) {
+            $filteredWithTransport = self::transportFilter($filters);
+            if (!empty($filteredWithTransport)) {
+                return
+                    self::getWithBaseFilters($filters, $filteredWithTransport)
+                        ->groupBy('place_id')
+                        ->get()
+                        ->slice(($page - 1) * $itemsPerPage, $itemsPerPage)
+                        ->toArray();
+            }
+            return null;
         }
-        return null;
+        return
+            self::getWithBaseFilters($filters)
+                ->groupBy('place_id')
+                ->get()
+                ->slice(($page - 1) * $itemsPerPage, $itemsPerPage)
+                ->toArray();
     }
-
-
 }
