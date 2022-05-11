@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Http\Request;
@@ -29,3 +30,7 @@ Route::get('/journeys/{like}/{place_id}', [LikeController::class, 'likeHandle'])
     ->where('place_id', '\d+')
     ->name('likeHandle');
 
+Route::get('/filters/cities', [FilterController::class, 'getCityFilter'])
+    ->name('cities');
+Route::get('/filters/transports', [FilterController::class, 'getTransportFilter'])
+    ->name('transports');
