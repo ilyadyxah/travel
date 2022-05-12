@@ -1,19 +1,14 @@
-// import { ExpandMore } from '@mui/icons-material';
 import { Paper, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react'
 import { useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Rating from '@mui/material/Rating';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { color } from '@mui/system';
 import LikeBtn from './LikeBtn';
 
 const ExpandMore = styled((props) => {
@@ -46,9 +41,6 @@ export default function TravelCard({ travel }) {
     setExpanded(!expanded);
   };
 
-
-
-  // console.log(likes)
   return (
     <Paper elevation={3} background="#6495ed" sx={{ a: { textDecoration: 'none' } }}>
       <Link to={`${travel.place_id}`} key={travel.place_id} travel={travel} >

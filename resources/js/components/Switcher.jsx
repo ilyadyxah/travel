@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from 'react'
+import { toArray } from "lodash";
 
-export default function Switcher(props) {
+export default function Switcher({ prop, typeOfSelect }) {
+  const [options, setOptions] = useState(Object.values(prop));
 
-  const [option, setOption] = useState(props.option);
-
-  return (
-        <select>
-          <option>{option}</option>
-          <option>{option}</option>
-          <option>{option}</option>
-          <option>{option}</option>
-        </select>
-  )
+  if (options) {
+    // console.log(options, prop)
+    return (
+      <select>
+        <option value={typeOfSelect}>{typeOfSelect}</option>
+        {options.map(item => <option key={item}>{item}</option>)}
+      </select>
+    )
+  }
 }

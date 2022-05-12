@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export default function Finder(props) {
   const [findOption, setFindOption] = useState(props);
+
   //  console.log(props)
   return (
     <div className='finder'>

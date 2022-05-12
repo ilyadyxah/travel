@@ -1,5 +1,4 @@
 require('./bootstrap');
-
 import React from 'react'
 import "../styles/index.css"
 import Home from "../js/router/pages/Home";
