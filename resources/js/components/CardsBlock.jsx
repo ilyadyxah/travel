@@ -12,7 +12,7 @@ const CardsBlock = () => {
     const [page, setPage] = useState(1)
 
     useEffect(() => {
-        fetch('/api/all')
+        fetch(`/api/journeys/${page}`)
             .then(res => res.json())
             .then(res =>
                 setTravels(res))

@@ -9,8 +9,9 @@
   max-width: 100%
 }
 
-@import "travelPage";
-@import "travelCard";
+@import "_finder.scss";
+@import "_travelPage.scss";
+@import "_travelCard.scss";
 // $main_theme_color: #AFB0B9;
 
 
@@ -120,39 +121,9 @@ h1 {
   color: #202336;
 }
 
-.finder {
-  // margin-left: 190px;
-  display: flex;
-  max-width: 550px;
-  max-height: 344px;
-  text-align: center;
-  left: 190px;
-  top: 434px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 27px;
-  padding-bottom: 18px;
-  margin-bottom: 38px;
 
-  h3 {
-    margin-bottom: 12px;
-  }
-}
 
-.finder__switchers {
-  max-width: 500px;
-  flex-wrap: wrap;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 32px;
-  display: flex;
-  align-items: center;
-  color: #4A4C53;
-}
+
 
 select {
   margin: 15px;

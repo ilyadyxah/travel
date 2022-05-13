@@ -18,13 +18,18 @@ const SwitcherRange = ({ range, name, step }) => {
     }
 
     return (
-        <div>
+        <div className='finder__input_box'>
+            <label htmlFor="name">
+                {name} От
+                <input className='find_input' type='number' step={step} value={valueMin} min='0' onChange={handleChangeMin} />
+            </label>
             <label htmlFor="">
-                {name}
-                <input type='number' step={step} value={valueMin} min='0' onChange={handleChangeMin} />
-                <input type='number' step={step} value={valueMax} min={valueMin} onChange={handleChangeMax} />
+                До
+                <input className='find_input' type='number' step={step} value={valueMax} min={valueMin} onChange={handleChangeMax} />
             </label>
         </div>
+
+
     );
 }
 

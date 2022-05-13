@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import React from 'react'
-import { toArray } from "lodash";
+// import { toArray } from "lodash";
 
 export default function Switcher({ prop, typeOfSelect }) {
-  const [options, setOptions] = useState(Object.values(prop));
+  const [options, setOptions] = useState('');
+
+  useEffect(() => {
+    setOptions(Object.values(prop))
+  }, [prop]);
 
   if (options) {
-    // console.log(options, prop)
     return (
-      <select>
+      <select className="find_select">
         <option value={typeOfSelect}>{typeOfSelect}</option>
         {options.map(item => <option key={item}>{item}</option>)}
       </select>
