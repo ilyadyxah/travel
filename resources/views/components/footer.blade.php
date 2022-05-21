@@ -1,6 +1,6 @@
 <nav class="navbar container">
     <img src={{asset('images/logo.png')}} alt="Logo" class='logo_nav' />
-    <ul class='navbar__inner'>
+    <ul class='navbar__inner '>
         <li >
             <a href="{{ route('home') }}" class='nav_link'>Домой</a>
         </li>

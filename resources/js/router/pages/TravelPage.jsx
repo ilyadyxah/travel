@@ -29,7 +29,7 @@ const TravelPage = () => {
   const [travel, settravel] = useState(null);
 
   useEffect(() => {
-    fetch("/api/all").then(res => res.json()).then(res => {
+    fetch("/api/journeys").then(res => res.json()).then(res => {
       res.forEach(el => { if (el.place_id == id) { settravel(el) } });
     })
   }, [id]);

@@ -22,8 +22,8 @@ root.render(
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="journeys" element={<Journeys />} />
+                    <Route path="journeys/:city:transport" element={<Journeys />} />
                     <Route path="journeys/:id" element={<TravelPage />} />
-                    <Route path="journeys/:id?city?=cityName$transports?=transpornName" element={<TravelPage />} />
                     <Route path="about" element={<About />} />
                     <Route path="help" element={<Help />} />
                     <Route path="media" element={<Mediacontent />} />

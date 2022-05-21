@@ -17886,10 +17886,10 @@ root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx
           path: "journeys",
           element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_js_router_pages_Journeys__WEBPACK_IMPORTED_MODULE_4__["default"], {})
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
-          path: "journeys/:id",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_router_pages_TravelPage__WEBPACK_IMPORTED_MODULE_8__.TravelPage, {})
+          path: "journeys/:city:transport",
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_js_router_pages_Journeys__WEBPACK_IMPORTED_MODULE_4__["default"], {})
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
-          path: "journeys/:id?city?=cityName$transports?=transpornName",
+          path: "journeys/:id",
           element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_router_pages_TravelPage__WEBPACK_IMPORTED_MODULE_8__.TravelPage, {})
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
           path: "about",
@@ -18198,6 +18198,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Switcher__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Switcher */ "./resources/js/components/Switcher.jsx");
 /* harmony import */ var _SwitcherRange__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SwitcherRange */ "./resources/js/components/SwitcherRange.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -18217,9 +18219,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Finder(_ref) {
-  var onfindReqwest = _ref.onfindReqwest;
 
+
+function Finder() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       findTransport = _useState2[0],
@@ -18231,6 +18233,48 @@ function Finder(_ref) {
       _useState4 = _slicedToArray(_useState3, 2),
       findCity = _useState4[0],
       setFindCity = _useState4[1];
+
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useSearchParams)(),
+      _useSearchParams2 = _slicedToArray(_useSearchParams, 2),
+      searchParams = _useSearchParams2[0],
+      setSearchParams = _useSearchParams2[1];
+
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)(); // const [findReqwest, setFindReqwest] = useState(null);
+
+  var checkFunc = function checkFunc(data, word) {
+    if (data && data != word) {
+      return data;
+    } else return null;
+  }; // Создаём объект из значений полей формы и передаём в URL
+
+
+  var handlefindReqwest = function handlefindReqwest(e) {
+    e.preventDefault();
+    var value = {
+      // city: e.target[0].value,
+      city: checkFunc(e.target[0].value, 'Город'),
+      transport: checkFunc(e.target[1].value, 'Транспорт'),
+      // transport: e.target[1].value,
+      // complexity: e.target[2].value,
+      complexity: checkFunc(e.target[2].value, 'Сложность'),
+      // minCost: checkFunc(e.target[3].value ),
+      minCost: e.target[3].value,
+      maxCost: e.target[4].value,
+      minDistance: e.target[5].value,
+      maxDistance: e.target[6].value
+    }; // let city = value.city
+    // let transports = value.transports
+    // let minCost = value.minCost
+    // let maxCost = value.maxCost
+    // let difficultyMin = value.difficultyMin
+    // let difficultyMax = value.difficultyMax
+    // let distanceMin = value.distanceMin
+    // let distanceMax = value.distanceMax
+    // setSearchParams({ city, transports, minCost, maxCost, difficultyMin, difficultyMax, distanceMin, distanceMax })
+    // navigate('/journeys')
+
+    setSearchParams(value);
+  };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetch('/api/filters/cities').then(function (res) {
@@ -18249,7 +18293,7 @@ function Finder(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "finder",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-      onSubmit: onfindReqwest,
+      onSubmit: handlefindReqwest,
       className: "finder__form",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
         children: "\u041F\u043E\u0438\u0441\u043A \u043F\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u044F"
@@ -18263,6 +18307,9 @@ function Finder(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Switcher__WEBPACK_IMPORTED_MODULE_1__["default"], {
             prop: findTransport,
             typeOfSelect: "\u0422\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Switcher__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            prop: ['1', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50'],
+            typeOfSelect: "\u0421\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u044C"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "finder__form_box_inner",
@@ -18272,12 +18319,6 @@ function Finder(_ref) {
               max: 100000
             },
             name: "\u0426\u0435\u043D\u0430"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SwitcherRange__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            range: {
-              min: 1,
-              max: 10
-            },
-            name: "\u0421\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u044C"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SwitcherRange__WEBPACK_IMPORTED_MODULE_2__["default"], {
             range: {
               min: 1,
@@ -18314,42 +18355,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Finder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Finder */ "./resources/js/components/Finder.jsx");
 /* harmony import */ var _img_thousand_01_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/thousand-01.png */ "./resources/img/thousand-01.png");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
 
-
-
 function Intro() {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
-
-  var handlefindReqwest = function handlefindReqwest(e) {
-    e.preventDefault();
-    var value = {
-      city: e.target[0].value,
-      transport: e.target[1].value,
-      minCost: e.target[2].value,
-      maxCost: e.target[3].value,
-      difficultyMin: e.target[4].value,
-      difficultyMax: e.target[5].value,
-      distanceMin: e.target[6].value,
-      distanceMax: e.target[7].value
-    };
-    navigate("/journeys/1?city=".concat(value.city, "\n      & transports=").concat(value.transport));
-  };
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "intro",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "intro__inner",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
         children: "\u0418\u0441\u0441\u043B\u0435\u0434\u0443\u0439 \u0438 \u043F\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0443\u0439"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Finder__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        onfindReqwest: handlefindReqwest
-      })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Finder__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "intro_img_box",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
@@ -19073,7 +19092,7 @@ var SwitcherRange = function SwitcherRange(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "finder__input_box",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
-      htmlFor: "name",
+      "for": "name",
       children: [name, " \u041E\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         className: "find_input",
         type: "number",
@@ -19387,6 +19406,45 @@ var Videos = function Videos() {
 
 /***/ }),
 
+/***/ "./resources/js/functions/index.js":
+/*!*****************************************!*\
+  !*** ./resources/js/functions/index.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pagination */ "./resources/js/functions/pagination.js");
+
+
+/***/ }),
+
+/***/ "./resources/js/functions/pagination.js":
+/*!**********************************************!*\
+  !*** ./resources/js/functions/pagination.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var paginator = document.getElementById('pagination');
+paginator.appendChild( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+  children: "1"
+}));
+
+var pagination = function pagination() {
+  console.log('AAAAAAAAARRRGGGHHHH!!!!!!!!');
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (pagination);
+
+/***/ }),
+
 /***/ "./resources/js/router/pages/About.jsx":
 /*!*********************************************!*\
   !*** ./resources/js/router/pages/About.jsx ***!
@@ -19504,10 +19562,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_TravelCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/TravelCard */ "./resources/js/components/TravelCard.jsx");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
-/* harmony import */ var _mui_material_Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/Pagination */ "./node_modules/@mui/material/Pagination/Pagination.js");
-/* harmony import */ var _mui_material_Stack__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Stack */ "./node_modules/@mui/material/Stack/Stack.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
+/* harmony import */ var _mui_material_Pagination__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/Pagination */ "./node_modules/@mui/material/Pagination/Pagination.js");
+/* harmony import */ var _mui_material_Stack__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/Stack */ "./node_modules/@mui/material/Stack/Stack.js");
 /* harmony import */ var _components_Finder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Finder */ "./resources/js/components/Finder.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -19531,7 +19590,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Journeys() {
+
+function Journeys(paam) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
       _useState2 = _slicedToArray(_useState, 2),
       page = _useState2[0],
@@ -19547,6 +19607,12 @@ function Journeys() {
       initFind = _useState6[0],
       setInitFind = _useState6[1];
 
+  var _useSearchParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useSearchParams)(),
+      _useSearchParams2 = _slicedToArray(_useSearchParams, 2),
+      searchParams = _useSearchParams2[0],
+      setSearchParams = _useSearchParams2[1]; // console.log(searchParams)
+
+
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState8 = _slicedToArray(_useState7, 2),
       findReqwest = _useState8[0],
@@ -19554,28 +19620,28 @@ function Journeys() {
 
   var handleChange = function handleChange(event, value) {
     setPage(value);
-  };
+  }; // const handlefindReqwest = (e) => {
+  //   e.preventDefault()
+  //   console.log("onfindReqwest in journeys")
+  //   let value = {
+  //     city: e.target[0].value,
+  //     transport: e.target[1].value,
+  //     minCost: e.target[2].value,
+  //     maxCost: e.target[3].value,
+  //     difficultyMin: e.target[4].value,
+  //     difficultyMax: e.target[5].value,
+  //     distanceMin: e.target[6].value,
+  //     distanceMax: e.target[7].value,
+  //   }
+  //   setFindReqwest(value)
+  //   let init = !initFind;
+  //   setInitFind(init)
+  //   console.log("onfindReqwest in journeys", value)
+  // }
 
-  var handlefindReqwest = function handlefindReqwest(e) {
-    e.preventDefault();
-    console.log("onfindReqwest in journeys");
-    var value = {
-      city: e.target[0].value,
-      transport: e.target[1].value,
-      minCost: e.target[2].value,
-      maxCost: e.target[3].value,
-      difficultyMin: e.target[4].value,
-      difficultyMax: e.target[5].value,
-      distanceMin: e.target[6].value,
-      distanceMax: e.target[7].value
-    };
-    setFindReqwest(value);
-    var init = !initFind;
-    setInitFind(init); // console.log("onfindReqwest in journeys", value)
-  };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    findReqwest ? fetch("/api/journeys/".concat(page, "?city=").concat(findReqwest.city, "\n        &transports=").concat(findReqwest.transport)) // // & minCost=${findReqwest.minCost}
+    findReqwest ? fetch("/api/journeys/".concat(page, "?city=").concat(searchParams.get('city'), "\n        &transports=").concat(searchParams.get('transport'))) // // & minCost=${findReqwest.minCost}
     // // & maxCost=${findReqwest.maxCost}
     // // & difficultyMin=${findReqwest.difficultyMin}
     // // & difficultyMax=${findReqwest.difficultyMax}
@@ -19591,14 +19657,12 @@ function Journeys() {
     }).then(function (res) {
       setTravels(res);
     });
-  }, [initFind, page]);
+  }, [searchParams.getAll, page]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Finder__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      onfindReqwest: handlefindReqwest
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Finder__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
       container: true,
       spacing: 3,
-      children: travels == null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: travels == null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
         item: true,
         xs: 8,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
@@ -19608,7 +19672,7 @@ function Journeys() {
       : travels.message ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         children: [travels.message, " "]
       }) : travels.map(function (travel) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
           item: true,
           xs: 4,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_TravelCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -19616,7 +19680,7 @@ function Journeys() {
           })
         }, travel.place_id);
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Stack__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Stack__WEBPACK_IMPORTED_MODULE_6__["default"], {
       spacing: 3,
       sx: {
         '& .MuiPagination-ul': {
@@ -19627,7 +19691,7 @@ function Journeys() {
           fontSize: '25px'
         }
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Pagination__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Pagination__WEBPACK_IMPORTED_MODULE_7__["default"], {
         count: 10,
         size: "large",
         page: page,
@@ -19854,7 +19918,7 @@ var TravelPage = function TravelPage() {
       settravel = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetch("/api/all").then(function (res) {
+    fetch("/api/journeys").then(function (res) {
       return res.json();
     }).then(function (res) {
       res.forEach(function (el) {
@@ -92638,6 +92702,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["styles/index"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["styles/index"], () => (__webpack_require__("./resources/js/functions/index.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["styles/index"], () => (__webpack_require__("./resources/styles/index.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	

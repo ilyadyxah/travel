@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
  Route::get('/', [HomepageController::class, 'index'])
      ->name('home');
 
-// Route::get('/trips', [TripController::class, 'index'])
-//     ->name('app::trips');
+Route::get('/trips', [TripController::class, 'index'])
+    ->name('app::trips');
 
 // Route::get('/', [HomepageController::class, 'index'])
 //     ->name('app::homepage');

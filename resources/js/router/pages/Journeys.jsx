@@ -5,11 +5,15 @@ import { Grid } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Finder from '../../components/Finder';
+import { useSearchParams } from 'react-router-dom';
 
-export default function Journeys() {
+export default function Journeys(paam) {
   const [page, setPage] = useState(1);
   const [travels, setTravels] = useState(null);
   const [initFind, setInitFind] = useState(false);
+  let [searchParams, setSearchParams] = useSearchParams()
+
+  // console.log(searchParams)
 
   const [findReqwest, setFindReqwest] = useState(null);
 
@@ -17,30 +21,33 @@ export default function Journeys() {
     setPage(value);
   };
 
-  const handlefindReqwest = (e) => {
-    e.preventDefault()
-    console.log("onfindReqwest in journeys")
-    let value = {
-      city: e.target[0].value,
-      transport: e.target[1].value,
-      minCost: e.target[2].value,
-      maxCost: e.target[3].value,
-      difficultyMin: e.target[4].value,
-      difficultyMax: e.target[5].value,
-      distanceMin: e.target[6].value,
-      distanceMax: e.target[7].value,
-    }
-    setFindReqwest(value)
-    let init = !initFind;
-    setInitFind(init)
-    // console.log("onfindReqwest in journeys", value)
-  }
+
+
+  // const handlefindReqwest = (e) => {
+  //   e.preventDefault()
+  //   console.log("onfindReqwest in journeys")
+  //   let value = {
+  //     city: e.target[0].value,
+  //     transport: e.target[1].value,
+  //     minCost: e.target[2].value,
+  //     maxCost: e.target[3].value,
+  //     difficultyMin: e.target[4].value,
+  //     difficultyMax: e.target[5].value,
+  //     distanceMin: e.target[6].value,
+  //     distanceMax: e.target[7].value,
+  //   }
+  //   setFindReqwest(value)
+  //   let init = !initFind;
+  //   setInitFind(init)
+  //   console.log("onfindReqwest in journeys", value)
+  // }
+
 
 
   useEffect(() => {
     findReqwest ?
-      fetch(`/api/journeys/${page}?city=${findReqwest.city}
-        &transports=${findReqwest.transport}`)
+      fetch(`/api/journeys/${page}?city=${searchParams.get('city')}
+        &transports=${searchParams.get('transport')}`)
         // // & minCost=${findReqwest.minCost}
         // // & maxCost=${findReqwest.maxCost}
         // // & difficultyMin=${findReqwest.difficultyMin}
@@ -58,11 +65,11 @@ export default function Journeys() {
         .then(res => {
           setTravels(res)
         })
-  }, [initFind, page])
+  }, [searchParams.getAll, page])
 
   return (
     <>
-      <Finder onfindReqwest={handlefindReqwest} />
+      <Finder />
 
       <Grid container spacing={3} >
         {travels == null
