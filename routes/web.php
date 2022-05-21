@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
@@ -14,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('/{path?}', 'app');
+//Route::view('/{path?}', 'app');
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-// Route::get('/homepage', [HomepageController::class, 'index'])
-//     ->name('app::homepage');
+ Route::get('/', [HomepageController::class, 'index'])
+     ->name('home');
 
 // Route::get('/trips', [TripController::class, 'index'])
 //     ->name('app::trips');

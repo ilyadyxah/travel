@@ -9,10 +9,9 @@
   max-width: 100%
 }
 
-@import "_finder.scss";
+@import "_finder.css";
 @import "_travelPage.scss";
 @import "_travelCard.scss";
-// $main_theme_color: #AFB0B9;
 
 
 .container {
@@ -134,13 +133,13 @@ select {
   border-radius: 6px;
 }
 
-// .finder_btn {
-//   max-width: max-content;
-//   font-family: 'Inter';
-//   font-style: normal;
-//   font-weight: 500;
-//   line-height: 48px;
-// }
+.finder_btn {
+  max-width: max-content;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  line-height: 48px;
+}
 
 .section {
   display: flex;
@@ -194,18 +193,18 @@ select {
   // z-index: 2;
 }
 
-// .card__img {
-// max-width: 100%;
-// max-height: 100%;
-// position: absolute;
-// top: 50%;
-// left: 50%;
-// transform: translate(-50%, -50%);
-// -webkit-transform: translate(-50%, -50%);
-// -moz-transform: translate(-50%, -50%);
-// -ms-transform: translate(-50%, -50%);
-// -o-transform: translate(-50%, -50%);
-// }
+/* .card__img {*/
+/*// max-width: 100%;*/
+/*// max-height: 100%;*/
+/*// position: absolute;*/
+/*// top: 50%;*/
+/*// left: 50%;*/
+/*// transform: translate(-50%, -50%);*/
+/*// -webkit-transform: translate(-50%, -50%);*/
+/*// -moz-transform: translate(-50%, -50%);*/
+/*// -ms-transform: translate(-50%, -50%);*/
+/*// -o-transform: translate(-50%, -50%);*/
+/*// }*/
 
 .card__head {
   position: absolute;
@@ -324,9 +323,9 @@ select {
   line-height: 2rem;
 }
 
-// .swiper-slide-next {
-//   bottom: 10%;
-// }
+/*// .swiper-slide-next {*/
+/*//   bottom: 10%;*/
+/*// }*/
 
 .text_block {
   display: flex;
@@ -419,11 +418,11 @@ select {
   }
 }
 
-// @media(max-width:1020px) {
-//   .nav_link {
-//     font-size: 20%;
-//   }
-// }
+/*// @media(max-width:1020px) {*/
+/*//   .nav_link {*/
+/*//     font-size: 20%;*/
+/*//   }*/
+/*// }*/
 
 @media (max-width:970px) {
   .navbar__inner {
