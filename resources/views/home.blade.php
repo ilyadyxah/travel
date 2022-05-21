@@ -78,7 +78,7 @@
         @foreach($places as $place)
             <div class="col-4">
                 <a class="card bg-dark text-white">
-                    <img class='card-img' src="{{ $place->images->find($place->main_picture_id)->url }}" alt="{{ $place->title }}"/>
+                    <img class='card-img' src="{{ $images->find($place->main_picture_id)->url }}" alt="{{ $place->title }}"/>
                     <div class="card-img-overlay">
                         <h5 class="card-title">{{Str::ucfirst($place->title)}}</h5>
                         <p class="card-text">{{ $place->description }}</p>

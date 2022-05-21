@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JourneyController;
-use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,8 +23,8 @@ use Illuminate\Support\Facades\Route;
  Route::get('/', [HomepageController::class, 'index'])
      ->name('home');
 
-// Route::get('/trips', [TripController::class, 'index'])
-//     ->name('app::trips');
+ Route::get('/journeys', [journeyController::class, 'getJourneysWithFilters'])
+     ->name('app::journeys');
 
 // Route::get('/', [HomepageController::class, 'index'])
 //     ->name('app::homepage');

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class JourneyController extends Controller
 {
-    public function getJourneysWithFilters(Request $request, $page = 1): JsonResponse
+    public function getJourneysWithFilters(Request $request, $page = 1)
     {
         // Определяем фильтры из запроса
         $filters = [
@@ -39,10 +39,16 @@ class JourneyController extends Controller
             $comments = Comment::getInPlaces($placesId);
             $likes = Like::getInPlaces($placesId);
 
-            return response()->json($this->getFinalData($places, $comments, $likes, $pictures));
+//            return response()->json($this->getFinalData($places, $comments, $likes, $pictures));
+            return view('trips', [
+                'journeys' => $this->getFinalData($places, $comments, $likes, $pictures)
+            ]);
         }
 
-        return response()->json(['message' => 'Путешествия не найдены']);
+//        return response()->json(['message' => 'Путешествия не найдены']);
+        return view('trips', [
+            'message' => 'Путешествия не найдены'
+        ]);
 
     }
 
