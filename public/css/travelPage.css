@@ -1,0 +1,22 @@
+.travel__head_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.travel__img {
+  max-width: 800px;
+  max-height: 600px;
+}
+
+.travel__head {
+  font-size: 32px;
+}
+
+.travel__head_lower {
+  font-style: 27px;
+}
+/*# sourceMappingURL=travelPage.css.map */
