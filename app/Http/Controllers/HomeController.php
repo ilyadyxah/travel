@@ -3,25 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
-use App\Models\Like;
 use App\Models\Place;
 use App\Services\LikeService;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory as FactoryAlias;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class HomepageController extends Controller
+class HomeController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Create a new controller instance.
      *
-     * @param Request $request
-     * @return Application|FactoryAlias|View
+     * @return void
+     */
+    public function __construct()
+    {
+//        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-
         return view('home', [
             'places' => Place::all(),
             'images' => Image::all(),
