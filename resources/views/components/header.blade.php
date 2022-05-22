@@ -16,11 +16,18 @@
         <li>
             <a href="#" class='nav_link'>Нужна помощь?</a>
         </li>
-        <li>
-            <button class='nav_link btn'>Login</button>
-        </li>
-        <li>
-            <button class='nav_link btn'>Register</button>
-        </li>
+        @guest
+            <li>
+                <a href="{{route('login')}}" class='nav_link btn'>Вход</a>
+            </li>
+            <li>
+                <a href="{{route('register')}}" class='nav_link btn'>Регистрация</a>
+            </li>
+        @endguest
+        @auth
+            <li>
+                <a href="{{route('logout')}}" class='nav_link btn'>Выйти</a>
+            </li>
+        @endauth
     </ul>
 </nav>

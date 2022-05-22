@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JourneyController;
-use App\Http\Controllers\TripController;
+use App\Http\Controllers\LikeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,8 +26,16 @@ use Illuminate\Support\Facades\Route;
  Route::get('/', [HomepageController::class, 'index'])
      ->name('home');
 
-// Route::get('/trips', [TripController::class, 'index'])
-//     ->name('app::trips');
+ Route::get('/journeys', [journeyController::class, 'getJourneysWithFilters'])
+     ->name('app::journeys');
+
+//likes
+Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
+    ->where('place', '\d+')
+    ->name('like');
+Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
+    ->where('place', '\d+')
+    ->name('like');
 
 // Route::get('/', [HomepageController::class, 'index'])
 //     ->name('app::homepage');
@@ -35,3 +45,9 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/trips/{id}', [TripController::class, 'detail'])
 //     ->name('app::trips::detail');
+
+Auth::routes(['verify' => true]);
+Route::get('/logout', [LoginController::class, 'logout'])
+    ->name('logout');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

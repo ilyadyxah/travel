@@ -16,11 +16,6 @@
         <li>
             <a href="#" class='nav_link'>Нужна помощь?</a>
         </li>
-        <li>
-            <button class='nav_link btn'>Login</button>
-        </li>
-        <li>
-            <button class='nav_link btn'>Register</button>
-        </li>
+
     </ul>
 </nav>
