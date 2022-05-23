@@ -14,10 +14,6 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <title>Travel</title>
-
-
-
-
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;

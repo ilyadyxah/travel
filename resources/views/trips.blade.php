@@ -6,8 +6,10 @@
 
 @endsection
 @section('content')
+    @include('components.filter')
     <div class="row g-4">
-        @if (isset($journeys))
+        @if ($journeys->count())
+            <h3> Найдено {{ $journeys->count() }} путешествий </h3>
             @foreach($journeys as $journey)
                 <div class="col-4">
                     <a class="card bg-dark text-white">
@@ -24,7 +26,7 @@
                 </div>
             @endforeach
         @else
-            <p>Путешествия не найдены</p>
+            <h3>{{ $message }}</h3>
         @endif
     </div>
 @endsection

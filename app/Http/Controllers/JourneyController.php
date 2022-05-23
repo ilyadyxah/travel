@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Like;
 use App\Models\Place;
+use App\Models\Transport;
+use App\Services\LikeService;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -27,16 +30,17 @@ class JourneyController extends Controller
         $itemsPerPage = 15;
         $places = Place::getWhithFiltersOnPage($page, $itemsPerPage, $filters);
 
-        if ($places->count() !== 0) {
-            return view('trips', [
-                'images' => Image::all(),
-                'journeys' => $places,
-            ]);
-        }
-
         return view('trips', [
-            'message' => 'Путешествия не найдены',
+            'images' => Image::all(),
+            'journeys' => $places,
+            'cities' => City::all()->reject(function ($city) {
+                return $city->places->count() === 0;
+            }),
+            'transports' => Transport::all()->reject(function ($transport) {
+                return $transport->places->count() === 0;
+            }),
+            'likes' => app(LikeService::class)->getLikedPlacesId(),
+            'message' => $places->count() == 0 ? 'Путешествий не найдено' : ''
         ]);
-
     }
 }
