@@ -10,23 +10,20 @@ class LikeController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param Place $product
+     * @param Place $place
      * @return \Illuminate\Http\Response
      */
     public function likeHandling(Place $place)
     {
-
         return app(LikeService::class)->likeHandle($place);
     }
 
     public function placeLikeCount(Place $place)
     {
         try {
-
             $response['count'] = $place->likes->count();;
             return response()->json($response);
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json('error', 400);
         }
     }

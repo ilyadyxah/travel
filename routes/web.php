@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\LikeController;
@@ -24,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
  Route::get('/', [HomepageController::class, 'index'])
-     ->name('home');
+     ->name('app::home');
 
- Route::get('/journeys', [journeyController::class, 'getJourneysWithFilters'])
+ Route::match(['get', 'post'], '/journeys', [JourneyController::class, 'getJourneysWithFilters'])
      ->name('app::journeys');
 
 //likes
@@ -37,6 +38,10 @@ Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
     ->where('place', '\d+')
     ->name('like');
 
+//favorites
+Route::get('/favorite/{place}', [FavoriteController::class, 'favoriteHandling'])
+    ->where('place', '\d+')
+    ->name('favorite');
 // Route::get('/', [HomepageController::class, 'index'])
 //     ->name('app::homepage');
 

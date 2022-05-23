@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Place;
+use App\Services\FavoriteService;
 use App\Services\LikeService;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,7 @@ class HomeController extends Controller
             'places' => Place::all(),
             'images' => Image::all(),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
+            'favorites' => app(FavoriteService::class)->getFavoritePlacesId()
 
         ]);
     }

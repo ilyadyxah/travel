@@ -18,14 +18,4 @@ class Comment extends Model
         'user_name',
         'message',
     ];
-
-    public static function getInPlaces($placesId)
-    {
-        return
-            DB::table('comments as c')
-                ->select('c.place_id', 'c.user_name', 'c.message')
-                ->whereIn('c.place_id', $placesId)
-                ->get();
-    }
 }
-

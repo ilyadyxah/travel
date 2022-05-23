@@ -23,14 +23,4 @@ class Image extends Model
     {
         return $this->hasMany(Place::class);
     }
-
-    public static function getInPlaces($placesId)
-    {
-        return
-            DB::table('places_images as pim')
-                ->join('images', 'pim.image_id', '=', 'images.id')
-                ->select('pim.place_id', 'images.url as image')
-                ->whereIn('pim.place_id', $placesId)
-                ->get();
-    }
 }
