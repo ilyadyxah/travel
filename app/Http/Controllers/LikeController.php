@@ -10,7 +10,7 @@ class LikeController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param Place $product
+     * @param Place $place
      * @return \Illuminate\Http\Response
      */
     public function likeHandling(Place $place)

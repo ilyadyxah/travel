@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Image;
 use App\Models\Like;
 use App\Models\Place;
+use App\Services\FavoriteService;
 use App\Models\Transport;
 use App\Services\LikeService;
 use Illuminate\Contracts\Foundation\Application;
