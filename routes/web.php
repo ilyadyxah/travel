@@ -31,12 +31,12 @@ use Illuminate\Support\Facades\Route;
      ->name('app::journeys');
 
 //likes
-//Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
-//    ->where('place', '\d+')
-//    ->name('like');
-//Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
-//    ->where('place', '\d+')
-//    ->name('like');
+Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
+    ->where('place', '\d+')
+    ->name('like');
+Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
+    ->where('place', '\d+')
+    ->name('like');
 
 //favorites
 Route::get('/favorite/{place}', [FavoriteController::class, 'favoriteHandling'])
