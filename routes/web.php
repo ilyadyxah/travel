@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
  Route::get('/', [HomepageController::class, 'index'])
      ->name('app::home');
 
- Route::post('/journeys', [JourneyController::class, 'getJourneysWithFilters'])
+ Route::match(['get', 'post'], '/journeys', [JourneyController::class, 'getJourneysWithFilters'])
      ->name('app::journeys');
 
 //likes
