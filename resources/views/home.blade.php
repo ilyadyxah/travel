@@ -10,59 +10,56 @@
     <div class='intro'>
         <div class='intro__inner'>
             <h1>Исследуй и путешествуй</h1>
-{{--            <Finder onfindReqwest={handlefindReqwest} />--}}
             <div class='finder'>
-                <form onSubmit={onfindReqwest} class='finder__form'>
+                <form method="post" action="{{ route('app::journeys') }}" class='finder__form'>
+                    @csrf
                     <h3>Поиск путешествия</h3>
                     <div class='finder__form_box'>
                         <div class="finder__form_box_inner_switch">
-                            <select class="find_select">
-                                <option value="1" >город</option>
+                            <select name="city" class="find_select">
+                                <option value="" selected>Выберите город</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}"> {{ $city->title }}</option>
+                                @endforeach
                             </select>
-                            <select class="find_select">
-                                <option value="1" >транспорт</option>
+                            <select name="transport" class="find_select">
+                                <option value="" selected>Выберите транспорт</option>
+                                @foreach($transports as $transport)
+                                    <option value="{{ $transport->id }}">{{ $transport->title }}</option>
+                                @endforeach
+                            </select>
+                            <select name="complexity" class="find_select">
+                                <option value="" selected>Выберите сложность</option>
+                                @for($i = 1; $i <= 5; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
                             </select>
                         </div>
                         <div class="finder__form_box_inner">
                             <div class='finder__input_box'>
-                                <label for="name">
+                                <label for="minCost">
                                     <span>Цена</span><br> От
-                                    <input name="name" class='find_input' type='number' step={step} value={valueMin} min='0' onChange={handleChangeMin} />
+                                    <input name="minCost" class='find_input' type='number'>
                                 </label>
-                                <label for="">
+                                <label for="maxCost">
                                     До
-                                    <input class='find_input' type='number' step={step} value={valueMax} min={valueMin} onChange={handleChangeMax} />
+                                    <input name="maxCost" class='find_input' type='number'>
                                 </label>
                             </div>
                         </div>
                         <div class="finder__form_box_inner">
                             <div class='finder__input_box'>
-                                <label for="name">
-                                    <span>Сложность</span><br> От
-                                    <input name="name" class='find_input' type='number' step={step} value={valueMin} min='0' onChange={handleChangeMin} />
-                                </label>
-                                <label for="">
-                                    До
-                                    <input class='find_input' type='number' step={step} value={valueMax} min={valueMin} onChange={handleChangeMax} />
-                                </label>
-                            </div>
-                        </div>
-                        <div class="finder__form_box_inner">
-                            <div class='finder__input_box'>
-                                <label for="name">
+                                <label for="minDistance">
                                     <span>Удаленность</span><br> От
-                                    <input name="name" class='find_input' type='number' step={step} value={valueMin} min='0' onChange={handleChangeMin} />
+                                    <input name="minDistance" class='find_input' type='number'>
                                 </label>
                                 <label for="">
                                     До
-                                    <input class='find_input' type='number' step={step} value={valueMax} min={valueMin} onChange={handleChangeMax} />
+                                    <input name="maxDistance" class='find_input' type='number'>
                                 </label>
                             </div>
                         </div>
-
-
                     </div>
-
 
                     <p><input class='btn finder_btn' type="submit" value="Найти путешествие" /></p>
                 </form>

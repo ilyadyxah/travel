@@ -17,7 +17,7 @@ class LikeService
             ->get()->toArray() : DB::table('likes')
             ->where('session_token', session()->get('_token'))
             ->get()->toArray();
-        foreach ($data as $key => $value){
+        foreach ($data as $key => $value) {
             $likedPlacesId[] = $value->place_id;
         }
         return $likedPlacesId;
@@ -26,22 +26,21 @@ class LikeService
     public function likeHandle(Place $place)
     {
         try {
-            if (Auth::check()){
+            if (Auth::check()) {
                 $like = DB::table('likes')
                     ->where('place_id', '=', $place->id)
                     ->where('user_id', '=', Auth::user()->getAuthIdentifier());
-            }
-            else {
+            } else {
                 $like = DB::table('likes')
                     ->where('place_id', '=', $place->id)
                     ->where('session_token', '=', session()->get('_token'));
             }
-            if ($like->exists()){
+            if ($like->exists()) {
                 $like->delete();
                 $response = [
                     'state' => 'like',
                 ];
-            } else{
+            } else {
                 DB::table('likes')->insert([
                     'place_id' => $place->id,
                     'user_id' => Auth::user()->id ?? 1,
@@ -54,7 +53,7 @@ class LikeService
             $response['total'] = $place->likes->count();
             return response()->json($response);
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json('error', 400);
         }
 

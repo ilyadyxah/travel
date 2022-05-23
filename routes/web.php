@@ -24,18 +24,18 @@ use Illuminate\Support\Facades\Route;
 // });
 
  Route::get('/', [HomepageController::class, 'index'])
-     ->name('home');
+     ->name('app::home');
 
- Route::get('/journeys', [journeyController::class, 'getJourneysWithFilters'])
+ Route::post('/journeys', [JourneyController::class, 'getJourneysWithFilters'])
      ->name('app::journeys');
 
 //likes
-Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
-    ->where('place', '\d+')
-    ->name('like');
-Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
-    ->where('place', '\d+')
-    ->name('like');
+//Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
+//    ->where('place', '\d+')
+//    ->name('like');
+//Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
+//    ->where('place', '\d+')
+//    ->name('like');
 
 // Route::get('/', [HomepageController::class, 'index'])
 //     ->name('app::homepage');
