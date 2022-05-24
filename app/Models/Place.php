@@ -66,7 +66,7 @@ class Place extends Model
         ];
     }
 
-    public static function getWithFilters(array $filters, $filteredWithTransport = null): Collection|array
+    public static function getWithFilters(array $filters, $filteredWithTransport = null)
     {
         $places =
             Place::query()
@@ -93,8 +93,7 @@ class Place extends Model
                 ->when($filteredWithTransport,
                     function ($query, $places_id) {
                         return $query->whereIn('id', $places_id);
-                    })
-                ->get();
+                    });
 
         if ($filters['city']) {
             $places = $places->reject(function ($place) use ($filters) {
@@ -113,11 +112,26 @@ class Place extends Model
         return $places;
     }
 
-    public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): mixed
+    public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): Collection|array
     {
         return
-            self::getWithFilters($filters)
+            self::findWithSearchQuery($filters)
+                ->get()
                 ->slice(($page - 1) * $itemsPerPage, $itemsPerPage);
+    }
+
+    public static function findWithSearchQuery($filters)
+    {
+        $places =
+            self::getWithFilters($filters);
+
+        if ($search = $filters['search']) {
+            $places = $places
+                ->where('title', 'like', "%$search%")
+                ->orWhere('description', 'like', "%$search%");
+        }
+
+        return $places;
     }
 
 }

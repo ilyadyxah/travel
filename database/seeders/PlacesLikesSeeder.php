@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class PlacesLikesSeeder extends Seeder
 {
@@ -15,9 +17,12 @@ class PlacesLikesSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@mail.ru',
+            'password' => Hash::make('password'),
+        ]);
         DB::table('likes')->insert($this->getData());
-
-
     }
 
     private function getData(): array

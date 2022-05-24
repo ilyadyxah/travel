@@ -4,17 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Image;
-use App\Models\Like;
 use App\Models\Place;
-use App\Services\FavoriteService;
 use App\Models\Transport;
+use App\Services\FavoriteService;
 use App\Services\LikeService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class HomepageController extends Controller
 {
@@ -36,10 +33,7 @@ class HomepageController extends Controller
                 return $transport->places->count() === 0;
             }),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
-            // пока так todo
-            'favorites' => Auth::check() ? app(FavoriteService::class)->getFavoritePlacesId() : []
-
-
+            'favorites' => app(FavoriteService::class)->getFavoritePlacesId()
         ]);
     }
 }

@@ -31,7 +31,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('places', function (Blueprint $table) {
-            $table->dropColumn('main_picture_id');
+            $table
+                ->dropForeign('places_main_picture_id_foreign')
+                ->dropColumn('main_picture_id');
         });
     }
 };

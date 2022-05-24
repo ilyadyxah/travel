@@ -25,6 +25,7 @@ class JourneyController extends Controller
             'maxDistance' => $request->maxDistance,
             'minCost' => $request->minCost,
             'maxCost' => $request->maxCost,
+            'search' => $request->search,
         ];
         // Получаем места по 5 штук на заданной странице
         $itemsPerPage = 15;
