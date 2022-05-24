@@ -95,6 +95,14 @@ class Place extends Model
                         return $query->whereIn('id', $places_id);
                     });
 
+        if ($search = $filters['search']) {
+            $places = $places
+                ->where('title', 'like', "%$search%")
+                ->orWhere('description', 'like', "%$search%");
+        }
+
+        $places = $places->get();
+
         if ($filters['city']) {
             $places = $places->reject(function ($place) use ($filters) {
                 return
@@ -115,23 +123,8 @@ class Place extends Model
     public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): Collection|array
     {
         return
-            self::findWithSearchQuery($filters)
-                ->get()
+            self::getWithFilters($filters)
                 ->slice(($page - 1) * $itemsPerPage, $itemsPerPage);
-    }
-
-    public static function findWithSearchQuery($filters)
-    {
-        $places =
-            self::getWithFilters($filters);
-
-        if ($search = $filters['search']) {
-            $places = $places
-                ->where('title', 'like', "%$search%")
-                ->orWhere('description', 'like', "%$search%");
-        }
-
-        return $places;
     }
 
 }
