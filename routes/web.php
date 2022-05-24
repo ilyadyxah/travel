@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\LikeController;
@@ -30,13 +31,17 @@ use Illuminate\Support\Facades\Route;
      ->name('app::journeys');
 
 //likes
-//Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
-//    ->where('place', '\d+')
-//    ->name('like');
-//Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
-//    ->where('place', '\d+')
-//    ->name('like');
+Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
+    ->where('place', '\d+')
+    ->name('like');
+Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
+    ->where('place', '\d+')
+    ->name('like');
 
+//favorites
+Route::get('/favorite/{place}', [FavoriteController::class, 'favoriteHandling'])
+    ->where('place', '\d+')
+    ->name('favorite');
 // Route::get('/', [HomepageController::class, 'index'])
 //     ->name('app::homepage');
 

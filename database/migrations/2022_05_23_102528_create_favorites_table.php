@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('place_id');
             $table->unsignedBigInteger('user_id')->default(1);
-            $table->string('session_token')->nullable();
             $table->foreign('place_id')
                 ->references('id')
                 ->on('places')
@@ -39,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('likes');
+        Schema::dropIfExists('favorites');
     }
 };
