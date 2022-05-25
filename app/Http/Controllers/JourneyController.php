@@ -47,4 +47,5 @@ class JourneyController extends Controller
             'message' => $places->count() == 0 ? 'Путешествий не найдено' : ''
         ]);
     }
+
 }

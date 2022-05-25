@@ -7,10 +7,10 @@ function favoriteHandle(favorite) {
         console.log(result);
         favorite.firstElementChild.remove();
         if(result.state === 'true'){
-            favorite.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>';
+            favorite.innerHTML = '<i class="fa-solid fa-star"></i>';
 
         } else{
-            favorite.innerHTML = '<i class="fa-regular fa-thumbs-up"></i>';
+            favorite.innerHTML = '<i class="fa-regular fa-star"></i>';
         }
         favorite.style.pointerEvents='auto';
     })

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+
     <title>Travel</title>
     <style>
         .bd-placeholder-img {

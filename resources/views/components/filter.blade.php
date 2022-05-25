@@ -25,7 +25,6 @@
                 <option value="{{ $i }}">{{ $i }}</option>
             @endfor
         </select>
-</div>
 <div class="finder__form_box_inner">
     <div class='finder__input_box'>
         <label for="minCost">

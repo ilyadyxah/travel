@@ -1,26 +1,15 @@
 @extends('layouts.main')
 @section('title')
-    @parent Главная
+    @parent Мои места
 @endsection
 @section('header')
-
+    <div class="container text-center ">
+        <h2>Мои {{ $title }} места</h2>
+    </div>
 @endsection
 @section('content')
-    <div class='intro'>
-        <div class="row container">
-            <div class='intro__inner col'>
-                <h1>Исследуй и путешествуй</h1>
-                @include('components.filter')
-            </div>
-            <div class='intro_img_box col'>
-                <img class='intro_img' src="{{ asset('images/thousand-01.png') }}" alt="img" />
-            </div>
-        </div>
-    </div>
-
     <div class="row g-4 container">
-
-        @foreach($places as $place)
+    @forelse($places as $place)
             <div class="col-4">
                 <a class="card bg-dark text-white">
                     <img class='card-img' src="{{ $images->find($place->main_picture_id)->url }}" alt="{{ $place->title }}"/>
@@ -33,6 +22,7 @@
                 <span like="{{$place->id}}" onclick="likeHandle(this)">
                     @if(in_array($place->id, $likes))
                         <i class="fa-solid fa-thumbs-up"></i>
+
                     @else
                         <i class="fa-regular fa-thumbs-up"></i>
                     @endif
@@ -45,17 +35,21 @@
                             <i class="fa-star fa-solid"></i>
                         @else
                             <i class="fa-star fa-regular"></i>
+
                         @endif
                     </span>
                 @endauth
             </div>
-        @endforeach
+        @empty
+            <div class=" text-center">
+                <h4>Ничего не найдено</h4>
+            </div>
+        @endforelse
     </div>
-    @endsection
+@endsection
 @once
     @push('js')
         <script src="{{ asset('js/likeHandle.js')}}"></script>
         <script src="{{ asset('js/favoriteHandle.js')}}"></script>
-
     @endpush
 @endonce
