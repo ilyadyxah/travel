@@ -42,11 +42,13 @@ class FavoriteService
     public function getFavoritePlacesId()
     {
         $favoritePlacesId = [];
-        $data = DB::table('favorites')
-            ->where('user_id', Auth::user()->getAuthIdentifier())
-            ->get()->toArray();
-        foreach ($data as $key => $value){
-            $favoritePlacesId[] = $value->place_id;
+        if (Auth::check()){
+            $data = DB::table('favorites')
+                ->where('user_id', Auth::user()->getAuthIdentifier())
+                ->get()->toArray();
+            foreach ($data as $key => $value){
+                $favoritePlacesId[] = $value->place_id;
+            }
         }
         return $favoritePlacesId;
     }

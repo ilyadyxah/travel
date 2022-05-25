@@ -7,10 +7,10 @@ function likeHandle(like) {
         like.firstElementChild.remove();
         LikedPlaceUpdate(result.total, 'like-'+ id);
         if(result.state === 'dislike'){
-            like.innerHTML = '<i class="fa-solid fa-star"></i>';
+            like.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>';
 
         } else{
-            like.innerHTML = '<i class="fa-regular fa-star"></i>';
+            like.innerHTML = '<i class="fa-regular fa-thumbs-up"></i>';
         }
         like.style.pointerEvents='auto';
     })
