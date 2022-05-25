@@ -17,13 +17,13 @@
                     <p>Россия</p>
                 </div>
                 <div class="stats">
-                    <a href="{{ route('account.places', 'liked') }}" class="col-4 text-decoration-none text-light">
+                    <a href="{{ route('account.places', 'liked') }}" class="col-4 text-decoration-none text-light @if(count($likes) === 0) disabled @endif">
                         <h4>{{ count($likes) }}</h4>
                         <p class="fs-3">
                             <i class="fa-solid fa-thumbs-up"></i>
                         </p>
                     </a>
-                    <a href="{{ route('account.places', 'favorite') }}" class="col-4 text-decoration-none text-light">
+                    <a  class="col-4 text-decoration-none text-light @if(count($favorites) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'favorite') }}">
                         <h4>{{ count($favorites) }}</h4>
                         <p class="fs-3">
                             <i class="fa-star fa-solid"></i>

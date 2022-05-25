@@ -34,8 +34,10 @@
 
 </head>
 <body>
-@component('components.header')
-@endcomponent
+<x-header/>
+
+{{--@component('components.header')--}}
+{{--@endcomponent--}}
 
 <main>
 

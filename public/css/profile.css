@@ -4,6 +4,11 @@ body {
     margin: 0;
     font-family: 'Lato', sans-serif;
 }
+a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
 
 .header {
     min-height: 60vh;

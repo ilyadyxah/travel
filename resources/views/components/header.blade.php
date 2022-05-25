@@ -33,10 +33,19 @@
                 </a>
                 <ul class="dropdown-menu text-small shadow text-small dropdown-menu" data-popper-placement="bottom-end" style="position: absolute; inset: 0px 0px auto auto; margin-top: 10px; transform: translate3d(0px, 34px, 0px); z-index: 1021;">
                     <li><a class="dropdown-item" href="{{ route('account.profile') }}">Профиль</a></li>
-                    <li><a class="dropdown-item" href="{{ route('account.places', 'favorite') }}">
+                    <li>
+                        <a class="dropdown-item d-flex justify-content-between align-items-center @if(count($favorites) === 0) disabled @endif" href="{{ route('account.places', 'favorite') }}">
                             Мои избранные места
-                        </a></li>
-                    <li><a class="dropdown-item" href="{{ route('account.places', 'liked') }}">Мои любимые места</a></li>
+                            <span class="badge bg-secondary ms-1">{{ count($favorites) ?  : '' }}</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a class="dropdown-item d-flex justify-content-between align-items-center @if(count($likes) === 0) disabled @endif" href="{{ route('account.places', 'liked') }}">
+                            Мои любимые места
+                            <span class="badge bg-secondary ms-1">{{ count($likes) ?  : '' }}</span>
+
+                        </a>
+                    </li>
                     <li><a class="dropdown-item disabled" href="#">Настройки</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
