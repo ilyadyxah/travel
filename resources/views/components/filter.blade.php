@@ -21,11 +21,10 @@
         </select>
         <select name="complexity" class="find_select">
             <option value="" selected>Выберите сложность</option>
-            @for($i = 1; $i <= 5; $i++)
-                <option value="{{ $i }}">{{ $i }}</option>
+            @for($i = 0; $i <= 10; $i++)
+                <option value="{{ $i*10 }}">{{ $i*10 }}</option>
             @endfor
         </select>
-</div>
 <div class="finder__form_box_inner">
     <div class='finder__input_box'>
         <label for="minCost">

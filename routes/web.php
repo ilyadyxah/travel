@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomepageController;
@@ -24,11 +25,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+//place
+
+
  Route::get('/', [HomepageController::class, 'index'])
      ->name('app::home');
 
  Route::match(['get', 'post'], '/journeys', [JourneyController::class, 'getJourneysWithFilters'])
      ->name('app::journeys');
+Route::get('/places/{place}', [JourneyController::class, 'show'])
+    ->where('place', '\d+')
+    ->name('places.show');
 
 //likes
 Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
@@ -37,6 +44,22 @@ Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
 Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
     ->where('place', '\d+')
     ->name('like');
+
+//account
+Route::group(['middleware' => ['auth']], function (){
+    Route::group(['as' => 'account.', 'prefix' => 'my'], function (){
+        Route::get('/profile', [AccountController::class, 'index'])
+//            ->middleware('verified')
+            ->name('profile');
+        Route::get('/{title}/places', [AccountController::class, 'myPlaces'])
+//            ->middleware('verified')
+//            ->where('title', '\W+')
+            ->name('places');
+//        Route::get('/products', [AccountController::class, 'showFavoriteProducts'])
+//            ->middleware('verified')
+//            ->name('products');
+    });
+});
 
 //favorites
 Route::get('/favorite/{place}', [FavoriteController::class, 'favoriteHandling'])

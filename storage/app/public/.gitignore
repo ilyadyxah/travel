@@ -1,5 +1,7 @@
 *
 !images
 !images/*.*
+!images/users/
+!images/users/*.*
 !.gitignore
 

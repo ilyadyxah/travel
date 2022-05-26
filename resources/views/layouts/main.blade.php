@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/swiper-bundle.min.css') }}" rel="stylesheet">
+
+
     <title>Travel</title>
     <style>
         .bd-placeholder-img {
@@ -32,8 +36,10 @@
 
 </head>
 <body>
-@component('components.header')
-@endcomponent
+<x-header/>
+
+{{--@component('components.header')--}}
+{{--@endcomponent--}}
 
 <main>
 
