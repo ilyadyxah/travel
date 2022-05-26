@@ -55,9 +55,10 @@ Route::group(['middleware' => ['auth']], function (){
 //            ->middleware('verified')
 //            ->where('title', '\W+')
             ->name('places');
-//        Route::get('/products', [AccountController::class, 'showFavoriteProducts'])
+        Route::get('/info/{data}', [AccountController::class, 'getInfo'])
 //            ->middleware('verified')
-//            ->name('products');
+            ->name('info');
+
     });
 });
 

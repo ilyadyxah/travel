@@ -4,7 +4,8 @@ function favoriteHandle(favorite) {
     favorite.firstElementChild.remove();
     favorite.innerHTML = '<i class="fa-regular fa-clock"></i>';
     placeLikeSend('/favorite/' + id).then((result) => {
-        console.log(result);
+        userInfoUpdate('favorites');
+
         favorite.firstElementChild.remove();
         if(result.state === 'true'){
             favorite.innerHTML = '<i class="fa-solid fa-star"></i>';
