@@ -1,8 +1,10 @@
-<nav class="navbar container">
-    <a href="{{ route('app::home') }}">
-        <img src={{asset('images/logo.png')}} alt="Logo" class='logo_nav' />
+<nav class="navbar container d-flex align-items-center">
+    <a class="text-decoration-none fs-1" href="{{ route('app::home') }}">
+        <i class="fa-solid fa-suitcase"></i>
+        <span>{{ config('app.name', 'Laravel') }}</span>
+{{--        <img src={{asset('images/logo.png')}} alt="Logo" class='logo_nav' />--}}
     </a>
-    <ul class='navbar__inner'>
+    <ul class='navbar__inner mb-0'>
         <li >
             <a href="{{ route('app::home') }}" class='nav_link'>Домой</a>
         </li>

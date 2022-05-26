@@ -8,8 +8,10 @@ use App\Models\Image;
 use App\Models\Like;
 use App\Models\Place;
 use App\Models\Transport;
+use App\Services\FavoriteService;
 use App\Services\LikeService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Request;
 
 class JourneyController extends Controller
@@ -45,6 +47,17 @@ class JourneyController extends Controller
             }),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'message' => $places->count() == 0 ? 'Путешествий не найдено' : ''
+        ]);
+    }
+
+    public function show(Place $place)
+    {
+        return view('place', [
+            'place' => $place,
+            'likes' => app(LikeService::class)->getLikedPlacesId(),
+            'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
+            'pageTitle' => Str::ucfirst($place->title)
+
         ]);
     }
 

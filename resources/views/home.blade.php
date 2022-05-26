@@ -22,7 +22,7 @@
 
         @foreach($places as $place)
             <div class="col-4">
-                <a class="card bg-dark text-white">
+                <a href="{{ route('places.show', $place) }}" class="card bg-dark text-white">
                     <img class='card-img' src="{{ $images->find($place->main_picture_id)->url }}" alt="{{ $place->title }}"/>
                     <div class="card-img-overlay overflow-hidden">
                         <h5 class="card-title">{{Str::ucfirst($place->title)}}</h5>
