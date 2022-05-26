@@ -25,11 +25,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+//place
+
+
  Route::get('/', [HomepageController::class, 'index'])
      ->name('app::home');
 
  Route::match(['get', 'post'], '/journeys', [JourneyController::class, 'getJourneysWithFilters'])
      ->name('app::journeys');
+Route::get('/places/{place}', [JourneyController::class, 'show'])
+    ->where('place', '\d+')
+    ->name('places.show');
 
 //likes
 Route::get('/like/{place}', [LikeController::class, 'likeHandling'])
