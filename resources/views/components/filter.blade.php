@@ -47,7 +47,8 @@
         </label>
     </div>
 </div>
-</div>
 <p><input class='btn finder_btn' type="submit" value="Найти путешествие"/></p>
+</div>
+
 </form>
 </div>

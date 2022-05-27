@@ -23,7 +23,7 @@
     flex-direction: column;
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-start;
+    align-items: center;
     padding: 18px;
 }
 
@@ -43,6 +43,11 @@
 // .finder__form_box_inner_switch {
 //     display: flex;
 //     flex-direction: row;
+// }
+
+// .finder_btn {
+//     max-width: 100%;
+//     background-color: chocolate;
 // }
 
 .finder__form_box_inner {

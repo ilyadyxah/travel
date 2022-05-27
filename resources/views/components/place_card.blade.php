@@ -1,17 +1,15 @@
 @foreach($journeys as $place)
-    <div class="col-4">
+    <div class="col-4 card card_body">
         <a href="{{ route('places.show', $place) }}" class="bg-dark">
             <img class='card-img' src="{{ $images->find($place->main_picture_id)->url }}"
                  alt="{{ $place->title }}"/>
         </a>
-        <div>
+        <div class="card_bottom">
             <a class="card-title" href="{{ route('places.show', $place) }}">
                 <h5>{{Str::ucfirst($place->title)}}</h5>
-            </a>
-            <p class="card-text">{{ mb_substr($place->description, 0, 100) . '...'}}</p>
-            <p class="card-text"> - расстояние от города {{ $place->distance }} км</p>
-        </div>
-        <span like="{{$place->id}}" onclick="likeHandle(this)">
+            </a> 
+            <div class="card_like_container">
+<span like="{{$place->id}}" onclick="likeHandle(this)">
             @if(in_array($place->id, $likes))
                 <i class="fa-solid fa-thumbs-up"></i>
             @else
@@ -33,5 +31,10 @@
                 @endif
             </span>
         @endauth
+            </div>
+             
+        </div>
+        <p class="card-text">{{ mb_substr($place->description, 0, 100) . '...'}}</p>
+            <p class="card-text"> - расстояние от города {{ $place->distance }} км</p>
     </div>
 @endforeach

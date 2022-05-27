@@ -65,11 +65,6 @@
         @endauth
     </ul>
 </nav>
-<<<<<<< HEAD
-</div>
-
-=======
 @push('js')
     <script src="{{asset('js/user-info-update.js')}}"></script>
 @endpush
->>>>>>> version_2
