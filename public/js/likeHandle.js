@@ -6,6 +6,7 @@ function likeHandle(like) {
     placeLikeSend('/like/' + id).then((result) => {
         like.firstElementChild.remove();
         LikedPlaceUpdate(result.total, 'like-'+ id);
+        userInfoUpdate('likes');
         if(result.state === 'dislike'){
             like.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>';
 

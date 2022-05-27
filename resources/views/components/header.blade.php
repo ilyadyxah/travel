@@ -5,9 +5,9 @@
 {{--        <img src={{asset('images/logo.png')}} alt="Logo" class='logo_nav' />--}}
     </a>
     <ul class='navbar__inner mb-0'>
-        <li >
-            <a href="{{ route('app::home') }}" class='nav_link'>Домой</a>
-        </li>
+{{--        <li >--}}
+{{--            <a href="{{ route('app::home') }}" class='nav_link'>Домой</a>--}}
+{{--        </li>--}}
         <li >
             <a href="{{ route('app::journeys') }}" class='nav_link'>Путешествия</a>
         </li>
@@ -38,13 +38,13 @@
                     <li>
                         <a class="dropdown-item d-flex justify-content-between align-items-center @if(count($favorites) === 0) disabled @endif" href="{{ route('account.places', 'favorite') }}">
                             Мои избранные места
-                            <span class="badge bg-secondary ms-1">{{ count($favorites) ?  : '' }}</span>
+                            <span id="favorites-btn" class="badge bg-secondary ms-1">{{ count($favorites) ?  : '' }}</span>
                         </a>
                     </li>
                     <li >
                         <a class="dropdown-item d-flex justify-content-between align-items-center @if(count($likes) === 0) disabled @endif" href="{{ route('account.places', 'liked') }}">
                             Мои любимые места
-                            <span class="badge bg-secondary ms-1">{{ count($likes) ?  : '' }}</span>
+                            <span id="likes-btn" class="badge bg-secondary ms-1">{{ count($likes) ?  : '' }}</span>
 
                         </a>
                     </li>
@@ -64,3 +64,6 @@
         @endauth
     </ul>
 </nav>
+@push('js')
+    <script src="{{asset('js/user-info-update.js')}}"></script>
+@endpush

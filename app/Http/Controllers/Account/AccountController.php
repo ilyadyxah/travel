@@ -38,9 +38,6 @@ class AccountController extends Controller
                     ->get('places.*');
                 $type = 'избранные';
                 break;
-            case 2:
-                echo "i equals 2";
-                break;
         }
         return view('account.places', [
             'places' => $places,
@@ -49,5 +46,26 @@ class AccountController extends Controller
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
             'title' => $type
         ]);
+    }
+
+    public function getInfo($data)
+    {
+        try {
+            switch ($data) {
+                case 'likes':
+                    $response = app(LikeService::class)->getLikedPlacesId();
+                    break;
+                case 'favorites':
+                    $response = app(FavoriteService::class)->getFavoritePlacesId();
+                    break;
+                default:
+                    $response['likes'] = app(LikeService::class)->getLikedPlacesId();
+                    $response['favorites'] = app(FavoriteService::class)->getFavoritePlacesId();
+            }
+            return response()->json($response);
+
+        } catch(\Exception $e){
+            return response()->json('error', 400);
+        }
     }
 }
