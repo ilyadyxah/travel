@@ -30,9 +30,9 @@
         <label for="minCost">
             <div class="label">Цена</div> 
         
-            <input name="minCost" class='find_input' type='number' value="0">
+            <input name="minCost" class='find_input' type='number' >
             -
-            <input name="maxCost" class='find_input' type='number' value="1000">
+            <input name="maxCost" class='find_input' type='number' >
         </label>
     </div>
 </div>
@@ -41,9 +41,9 @@
         <label for="minDistance">
             <div class="label">Удаленность</div>
             
-            <input name="minDistance" class='find_input' type='number' value="0" >
+            <input name="minDistance" class='find_input' type='number'  >
             -
-            <input name="maxDistance" class='find_input' type='number' value="1000">
+            <input name="maxDistance" class='find_input' type='number' >
         </label>
     </div>
 </div>
