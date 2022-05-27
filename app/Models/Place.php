@@ -126,5 +126,4 @@ class Place extends Model
             self::getWithFilters($filters)
                 ->slice(($page - 1) * $itemsPerPage, $itemsPerPage);
     }
-
 }

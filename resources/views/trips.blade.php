@@ -6,27 +6,27 @@
 
 @endsection
 @section('content')
-    @include('components.filter')
+    <div class='intro'>
+        <div class="row container">
+            <div class='intro__inner col'>
+                @include('components.filter')
+            </div>
+        </div>
+    </div>
     <div class="row g-4">
         @if ($journeys->count())
             <h3> Найдено {{ $journeys->count() }} путешествий </h3>
-            @foreach($journeys as $journey)
-                <div class="col-4">
-                    <a class="card bg-dark text-white">
-                        <img class='card-img' src="{{ $images->find($journey->main_picture_id)->url }}" alt="{{ $journey->title }}"/>
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">{{Str::ucfirst($journey->title)}}</h5>
-                            <p class="card-text">{{ $journey->description }}</p>
-                            <p class="card-text"> расстояние от города {{ $journey->distance }}</p>
-                        </div>
-                        <p class='card__like'>
-                            {{--            <LikeBtn travel={travel} />--}}
-                        </p>
-                    </a>
-                </div>
-            @endforeach
+            <div class="row g-4 container">
+                @include('components/place_card')
+            </div>
         @else
             <h3>{{ $message }}</h3>
         @endif
     </div>
 @endsection
+@once
+    @push('js')
+        <script src="{{ asset('js/likeHandle.js')}}"></script>
+        <script src="{{ asset('js/favoriteHandle.js')}}"></script>
+    @endpush
+@endonce

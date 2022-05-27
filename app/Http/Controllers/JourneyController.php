@@ -46,7 +46,8 @@ class JourneyController extends Controller
                 return $transport->places->count() === 0;
             }),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
-            'message' => $places->count() == 0 ? 'Путешествий не найдено' : ''
+            'message' => $places->count() == 0 ? 'Путешествий не найдено' : '',
+            'favorites' => app(FavoriteService::class)->getFavoritePlacesId()
         ]);
     }
 

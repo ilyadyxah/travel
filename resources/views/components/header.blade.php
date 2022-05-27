@@ -31,7 +31,7 @@
         @auth
             <div class="dropdown">
                 <a href="{{ route('account.profile') }}" class="d-block link-dark text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
-                    <img src="@if(Auth::user()->avatar){!!Auth::user()->avatar!!}@else{!!Storage::disk('public')->url('images/users/default.png')!!}@endif" width="38" height="38" class="rounded-circle">
+                    <img src="@if(Auth::user()->avatar){!!Auth::user()->avatar!!}@else{!! asset('images/default_avatar.png') !!}@endif" width="38" height="38" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small shadow text-small dropdown-menu" data-popper-placement="bottom-end" style="position: absolute; inset: 0px 0px auto auto; margin-top: 10px; transform: translate3d(0px, 34px, 0px); z-index: 1021;">
                     <li><a class="dropdown-item" href="{{ route('account.profile') }}">Профиль</a></li>
