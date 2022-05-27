@@ -6,6 +6,19 @@
 
 @endsection
 @section('content')
+<<<<<<< HEAD
+    <div class="container">
+        <div class='intro '>
+                <div class="row ">
+                    <div class='intro__inner col'>
+                        <h1>Исследуй и путешествуй</h1>
+                        @include('components.filter')
+                    </div>
+                    <div class='intro_img_box col'>
+                        <img class='intro_img' src="{{ asset('images/thousand-01.png') }}" alt="img" />
+                    </div>
+                </div>
+=======
     <div class='intro'>
         <div class="row container">
             <div class='intro__inner col'>
@@ -15,8 +28,8 @@
             <div class='intro_img_box col'>
                 <img class='intro_img' src="{{ asset('images/thousand-01.png') }}" alt="img"/>
             </div>
-        </div>
     </div>
+   
 
     <div class="row g-4 container">
         @include('components/place_card')

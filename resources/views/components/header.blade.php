@@ -1,4 +1,5 @@
-<nav class="navbar container d-flex align-items-center">
+<div class="container">
+<nav class="navbar  d-flex align-items-center">
     <a class="text-decoration-none fs-1" href="{{ route('app::home') }}">
         <i class="fa-solid fa-suitcase"></i>
         <span>{{ config('app.name', 'Laravel') }}</span>
@@ -64,6 +65,11 @@
         @endauth
     </ul>
 </nav>
+<<<<<<< HEAD
+</div>
+
+=======
 @push('js')
     <script src="{{asset('js/user-info-update.js')}}"></script>
 @endpush
+>>>>>>> version_2
