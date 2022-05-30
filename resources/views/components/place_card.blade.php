@@ -7,34 +7,34 @@
         <div class="card_bottom">
             <a class="card-title" href="{{ route('places.show', $place) }}">
                 <h5>{{Str::ucfirst($place->title)}}</h5>
-            </a> 
+            </a>
             <div class="card_like_container">
 <span like="{{$place->id}}" onclick="likeHandle(this)">
             @if(in_array($place->id, $likes))
-                <i class="fa-solid fa-thumbs-up"></i>
-            @else
-                <i class="fa-regular fa-thumbs-up"></i>
-            @endif
+        <i class="fa-solid fa-thumbs-up"></i>
+    @else
+        <i class="fa-regular fa-thumbs-up"></i>
+    @endif
         </span>
 
-        <span id="like-{{$place->id}}"
-              class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}
+                <span id="like-{{$place->id}}"
+                      class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}
         </span>
-        @auth
-            <span favorite="{{$place->id}}"
-                  id="favorite-{{ $place->id }}"
-                  onclick="favoriteHandle(this)">
+                @auth
+                    <span favorite="{{$place->id}}"
+                          id="favorite-{{ $place->id }}"
+                          onclick="favoriteHandle(this)">
                 @if(in_array($place->id, $favorites))
-                    <i class="fa-star fa-solid"></i>
-                @else
-                    <i class="fa-star fa-regular"></i>
-                @endif
+                            <i class="fa-star fa-solid"></i>
+                        @else
+                            <i class="fa-star fa-regular"></i>
+                        @endif
             </span>
-        @endauth
+                @endauth
             </div>
-             
+
         </div>
         <p class="card-text">{{ mb_substr($place->description, 0, 100) . '...'}}</p>
-            <p class="card-text"> - расстояние от города {{ $place->distance }} км</p>
+        <p class="card-text"> - расстояние от города {{ $place->distance }} км</p>
     </div>
 @endforeach

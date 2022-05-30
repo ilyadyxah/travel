@@ -114,7 +114,7 @@
         <div class="col-4 h-100">
             <div class="bg-light me-md-3 pt-1 px-1 pt-md-1 px-md-1 text-center">
                 <div class=" p-3">
-                    <h2 class="display-5">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</h2>
+                    <h2 class="display-5" data-id="city_name">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</h2>
                     <p class="lead">{{ $place->description }}</p>
                     <p class="lead"><span class="">Расстояние от города: </span>{{ $place->distance }} км</p>
                     <p class="lead"><span>Сложность: </span>{{ $place->complexity }} из 100</p>
@@ -127,6 +127,7 @@
                             <i class="fa-regular fa-thumbs-up"></i>
                         @endif
                 </span>
+                    <div id="map" style="width: 600px; height: 400px"></div>
 
                     <span id="like-{{$place->id}}" class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}</span>
                     @auth
