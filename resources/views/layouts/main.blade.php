@@ -13,6 +13,7 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey=e9930eee-b41e-4fab-89fa-e7a068bc79bf&lang=ru_RU" type="text/javascript">
     </script>
+
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
@@ -54,7 +55,7 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/all.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('js/yandex_map.js') }}"></script>
+<script src="{{ asset('js/yandex_map.js') }}"  type="text/javascript"></script>
 
 @stack('js')
 </body>
