@@ -191,8 +191,6 @@
             },
         });
     </script>
-
-
 @endsection
 @once
     @push('js')

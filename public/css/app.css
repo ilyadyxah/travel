@@ -11422,6 +11422,7 @@ textarea.form-control-lg {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  visibility: hidden;
 }
 
 .swiper {
@@ -11538,6 +11539,12 @@ textarea.form-control-lg {
 .card_bottom {
   display: flex;
   justify-content: space-between;
+}
+
+.rewiew_card {
+  width: 400px;
+  height: 350px;
+  background-color: cadetblue;
 }
 
 .container {

@@ -10,10 +10,11 @@
     box-shadow: 0 10 5px rgba(85, 51, 238, 0.2);
 }
 
-.route_coordinates {    
+.route_coordinates {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    visibility: hidden;
 }
 
 .swiper {

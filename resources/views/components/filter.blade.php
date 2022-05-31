@@ -28,7 +28,7 @@
 <div class="finder__form_box_inner">
     <div class='finder__input_box'>
         <label for="minCost">
-            <div class="label">Цена</div> 
+            <div class="label">Расходы</div> 
         
             <input name="minCost" class='find_input' type='number' >
             -
