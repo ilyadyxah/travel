@@ -1,27 +1,39 @@
+
+
+
 ymaps.ready(function () {
+    //Получаем координаты из компонента по id
+    let startLatitude = document.getElementById("start_latitude").innerHTML
+    let startLongitude = document.getElementById("start_longitude").innerHTML
+    let endLatitude = document.getElementById("end_latitude").innerHTML
+    let endLongitude = document.getElementById("end_longitude").innerHTML
+
+    // Пролучение элемента для вывода деталей маршрута(продолжительность и расстояние)
+    let routeDescription = document.getElementById("route_description")
+
     var myMap = new ymaps.Map('map', {
-        center: [55.753994, 37.622093],
+        center: [+startLatitude, +startLongitude],
         zoom: 9,
         // Добавление панели маршрутизации на карту.
-        controls: ['routePanelControl']
+        controls: ['routePanelControl'],
     });
+
 
     // Получение ссылки на панель.
     var control = myMap.controls.get('routePanelControl');
 
     control.routePanel.state.set({
         // Адрес начальной точки.
-        from: $('[data-id=city_name]').text(),
-        // from: userTextLocation
+        from: [+startLatitude, +startLongitude],
         // Адрес конечной точки.
-        to: '55.753994, 37.622093'
+        to: [+endLatitude, +endLongitude]
     });
 
     // Получение объекта, описывающего построенные маршруты.
     var multiRoutePromise = control.routePanel.getRouteAsync();
-    multiRoutePromise.then(function(multiRoute) {
+    multiRoutePromise.then(function (multiRoute) {
         //  Подписка на событие получения данных маршрута от сервера.
-        multiRoute.model.events.add('requestsuccess', function() {
+        multiRoute.model.events.add('requestsuccess', function () {
             // Ссылка на активный маршрут.
             var activeRoute = multiRoute.getActiveRoute();
             if (activeRoute) {
@@ -31,6 +43,8 @@ ymaps.ready(function () {
                 };
                 // Вывод информации об активном маршруте.
                 console.log(routeData);
+                routeDescription.innerHTML = `<p class="text_description">Дистанция маршрута: ${routeData.distance} </p>
+                <p class="text_description">Продолжительность маршрута: ${routeData.duration} </p> `
             }
         });
         multiRoute.options.set({

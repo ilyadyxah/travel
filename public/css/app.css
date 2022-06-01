@@ -11406,34 +11406,110 @@ textarea.form-control-lg {
   padding: 10px;
 }
 
-.travel__head_box {
+.place_card {
+  box-shadow: 0 0 5px rgba(85, 51, 238, 0.2);
+}
+
+.image_slider {
+  padding: 10px;
+}
+
+.place_card:hover {
+  box-shadow: 0 10 5px rgba(85, 51, 238, 0.2);
+}
+
+.route_coordinates {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  visibility: hidden;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.place_description {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 35px;
+}
+
+.text_description {
+  text-align: start;
+  font-size: 1rem;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  height: 80%;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.place_box {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
-.travel__head_box-text {
-  margin: 25px;
-  padding: 15px;
-  color: #000;
-}
-
-.travel__head-text {
-  font-size: 18px;
-  line-height: 28px;
-  padding: 15px;
-}
-
-.travel__img {
-  max-width: 800px;
-  max-height: 600px;
-}
-
-.travel__head {
-  font-size: 32px;
-}
-
-.travel__head_lower {
-  font-style: 27px;
+.like_box {
+  font-size: 28px;
 }
 
 .card_body {
@@ -11452,6 +11528,8 @@ textarea.form-control-lg {
 
 .card-title {
   text-decoration: none;
+  background-color: aliceblue;
+  border: 1px solid aliceblue bs;
 }
 
 .card-title:hover {
@@ -11461,6 +11539,12 @@ textarea.form-control-lg {
 .card_bottom {
   display: flex;
   justify-content: space-between;
+}
+
+.rewiew_card {
+  width: 400px;
+  height: 350px;
+  background-color: cadetblue;
 }
 
 .container {
@@ -11544,7 +11628,7 @@ textarea.form-control-lg {
 }
 
 .intro_img_box {
-  max-width: 100%;
+  max-height: 50%;
 }
 
 .intro_img {
