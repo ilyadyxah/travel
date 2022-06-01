@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Place;
+use App\Services\CreatedPlaceService;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class AccountController extends Controller
     {
         return view('account.profile', [
             'likes' => app(LikeService::class)->getLikedPlacesId(),
-            'favorites' => app(FavoriteService::class)->getFavoritePlacesId()
+            'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
+            'created' => app(CreatedPlaceService::class)->getCreatedPlacesIds()
         ]);
     }
 
@@ -38,9 +40,16 @@ class AccountController extends Controller
                     ->get('places.*');
                 $type = 'избранные';
                 break;
+            case 'created':
+                $places = Place::query()
+                    ->where('created_by_user_id', Auth::user()->getAuthIdentifier())
+                    ->get();
+                $type = 'созданные';
+                break;
         }
         return view('account.places', [
             'places' => $places,
+            'journeys'=> $places,
             'images' => Image::all(),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),

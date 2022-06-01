@@ -18,7 +18,35 @@ class Place extends Model
         'title',
         'description',
         'coordinates',
+        'main_picture_id',
+        'complexity',
+        'distance',
+        'latitude',
+        'longitude',
+        'created_by_user_id',
     ];
+
+    public static function getFieldsToCreate(): array
+    {
+        return [
+            'title' => 'название',
+            'description' => 'описание',
+            'latitude' => 'широта',
+            'longitude' => 'долгота',
+//            'distance' => 'расстояние от города',
+            'complexity' => 'сложность',
+            'cost' => 'стоимость',
+        ];
+    }
+
+    public static function getLinkedFields(): array
+    {
+        return [
+            'cities' => 'город',
+            'transports' => 'транспорт',
+            'images' => 'фото',
+        ];
+    }
 
     public function cities(): BelongsToMany
     {

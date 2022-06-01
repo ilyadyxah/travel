@@ -49,6 +49,8 @@
 
                         </a>
                     </li>
+                    <li><a class="dropdown-item" href="{{ route('account.place.create') }}">Новое место</a></li>
+
                     <li><a class="dropdown-item disabled" href="#">Настройки</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>

@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
-            $table->id();
-            $table->char('title', 255)->unique();
-            $table->point('coordinates')->nullable();
-            $table->string('slug',255);
-            $table->timestamps();
+        Schema::table('places', function (Blueprint $table) {
+            $table->float('latitude', 8, 6)->default(56.838011);
+            $table->float('longitude', 8, 6)->default(60.597474);
+
         });
     }
 
@@ -29,6 +27,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::table('places', function (Blueprint $table) {
+            $table->dropColumn('latitude');
+            $table->dropColumn('longitude');
+
+
+        });
     }
 };
