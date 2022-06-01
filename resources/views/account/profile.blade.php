@@ -29,8 +29,8 @@
                             <i class="fa-star fa-solid"></i>
                         </p>
                     </a>
-                    <a href="#" class="col-4 dropdown-item-text text-decoration-none text-light disabled" >
-                        <h4>100</h4>
+                    <a  class="col-4 text-decoration-none text-light @if(count($created) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'created') }}">
+                        <h4>{{ count($created) }}</h4>
                         <p class="fs-3">
                             <i class="fa-solid fa-map-location-dot"></i>
                         </p>

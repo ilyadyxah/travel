@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table
-                ->string('avatar')->nullable()->default('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvLlhPSXtc5Vk4H8LnYGua1AotSYEJuvSBPA&usqp=CAU');
+            $table->string('avatar')->nullable()->default('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvLlhPSXtc5Vk4H8LnYGua1AotSYEJuvSBPA&usqp=CAU');
         });
     }
 
@@ -27,8 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table
-                ->dropColumn('string');
+            $table->dropColumn('avatar');
         });
     }
 };

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\PlaceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomepageController;
@@ -46,8 +47,14 @@ Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
     ->name('like');
 
 //account
+
 Route::group(['middleware' => ['auth']], function (){
+
     Route::group(['as' => 'account.', 'prefix' => 'my'], function (){
+
+        Route::resources([
+            '/place' => PlaceController::class,
+        ]);
         Route::get('/profile', [AccountController::class, 'index'])
 //            ->middleware('verified')
             ->name('profile');
@@ -58,6 +65,10 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('/info/{data}', [AccountController::class, 'getInfo'])
 //            ->middleware('verified')
             ->name('info');
+
+
+        Route::get('/place', [PlaceController::class, 'index'])
+            ->name('place');
 
     });
 });
