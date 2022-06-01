@@ -91,7 +91,7 @@
                 <div class="swiper-wrapper">
                     @foreach($place->images as $image)
                         <div class="swiper-slide">
-                            <img src="{{ $image->url }}" />
+                            <img src="@if(str_starts_with($image->url, 'http')){{$image->url}}@else{{Storage::disk('public')->url($image->url)}}@endif" />
                         </div>
                     @endforeach
                 </div>
@@ -102,7 +102,7 @@
                 <div class="swiper-wrapper">
                     @foreach($place->images as $image)
                         <div class="swiper-slide">
-                            <img src="{{ $image->url }}"/>
+                            <img src="@if(str_starts_with($image->url, 'http')){{$image->url}}@else{{Storage::disk('public')->url($image->url)}}@endif"/>
                         </div>
                     @endforeach
                 </div>
