@@ -12,7 +12,8 @@
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "twbs/bootstrap": "5.0.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

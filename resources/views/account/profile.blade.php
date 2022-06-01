@@ -8,7 +8,7 @@
     <section class="profile">
         <header class="header">
             <div class="details m-2">
-                <img src="@if(Auth::user()->avatar){!!Auth::user()->avatar!!}@else{!!Storage::disk('public')->url('images/users/default.png')!!}@endif" class="profile-pic">
+                <img src="@if(Auth::user()->avatar){!!Auth::user()->avatar!!}@else{!! asset('images/default_avatar.png') !!}@endif" class="profile-pic">
                 <p class="heading">{{Auth::user()->name}}</p>
                 <div class="location">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -29,8 +29,8 @@
                             <i class="fa-star fa-solid"></i>
                         </p>
                     </a>
-                    <a href="#" class="col-4 dropdown-item-text text-decoration-none text-light disabled" >
-                        <h4>100</h4>
+                    <a  class="col-4 text-decoration-none text-light @if(count($created) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'created') }}">
+                        <h4>{{ count($created) }}</h4>
                         <p class="fs-3">
                             <i class="fa-solid fa-map-location-dot"></i>
                         </p>

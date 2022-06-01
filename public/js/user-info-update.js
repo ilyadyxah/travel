@@ -20,7 +20,11 @@ function buttonUpdate(total, elementId)
     const badge = document.querySelector('#' + elementId);
     if(total === 0) {
         badge.innerText = '';
+        badge.parentElement.classList.add('disabled')
+
     } else {
         badge.innerText = total;
+        badge.parentElement.classList.remove('disabled')
+
     }
 }

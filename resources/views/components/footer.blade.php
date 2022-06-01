@@ -1,5 +1,4 @@
-<div class="container">
-    <footer class="py-3 my-4">
+    <footer class="py-3 my-4 sticky-bottom">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li >
                 <a href="{{ route('app::home') }}" class='nav_link'>Домой</a>
@@ -19,4 +18,3 @@
         </ul>
         <p class="text-center text-muted">© {{ date('Y') }}  {{ config('app.name', 'Laravel') }} </p>
     </footer>
-</div>

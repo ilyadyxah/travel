@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->char('title', 255);
+            $table->char('title', 255)->unique();
             $table->point('coordinates')->nullable();
             $table->string('slug',255);
             $table->timestamps();

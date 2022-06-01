@@ -67,16 +67,6 @@
       align-content: center;
 }
 
-.finder__form_box_inner_switch {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
 .finder__form_box_inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -89,7 +79,6 @@
 
 .finder__form_box_inner label {
   margin: 10px;
-  width: 229px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -117,16 +106,47 @@
           justify-content: space-evenly;
 }
 
+.find_input:hover {
+  -webkit-box-sizing: 0 0 3px #000;
+          box-sizing: 0 0 3px #000;
+}
+
 .find_select {
   width: 220px;
   height: 45px;
+  margin: 5px;
   font-size: 1.25rem;
+}
+
+.label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 115px;
 }
 
 .find_input {
   width: 100px;
   height: 45px;
   font-size: 1.25rem;
+  border: 1px solid #000;
+  margin: 10px;
+}
+
+.form_custom-style {
+  margin: 10px;
+  width: 50%;
+  height: 45px;
+  font-size: 1.25rem;
+  border: 1px solid #000;
+}
+
+.form_custom-style:hover {
+  -webkit-box-sizing: 0 0 3px #000;
+          box-sizing: 0 0 3px #000;
 }
 
 .travel__head_box {
@@ -163,14 +183,8 @@
   font-style: 27px;
 }
 
-.travel_card {
-  max-width: 32%;
-  inline-size: -webkit-fill-available;
-}
-
-.travel_card_main {
-  max-width: 100%;
-  background-color: #6495ed;
+.card__head {
+  color: #fff;
 }
 
 .container {
@@ -289,6 +303,8 @@
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 10px 10px 20px 35px;
+  -webkit-box-shadow: 0 0 2px #000;
+          box-shadow: 0 0 2px #000;
 }
 
 h1 {

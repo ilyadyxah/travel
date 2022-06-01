@@ -24,7 +24,7 @@ class HomepageController extends Controller
     public function index()
     {
         return view('home', [
-            'places' => Place::all(),
+            'journeys' => Place::all(),
             'images' => Image::all(),
             'cities' => City::all()->reject(function ($city) {
                 return $city->places->count() === 0;
