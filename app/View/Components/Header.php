@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Services\CreatedPlaceService;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
 use Illuminate\View\Component;
@@ -22,6 +23,7 @@ class Header extends Component
 
                 'likes' => app(LikeService::class)->getLikedPlacesId(),
                 'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
+                'created' => app(CreatedPlaceService::class)->getCreatedPlacesIds(),
             ]);
     }
 }

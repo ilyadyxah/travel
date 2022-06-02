@@ -146,6 +146,7 @@
                         <div class="route_coordinates">
                             <p>Координаты начала марштута:
                             <!-- Широта -->
+                            <span id="start_latitude">55.753994</span>,
 {{--                            <span id="start_latitude">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</span>,--}}
                                 <span id="start_latitude">54.611816</span>,
                                 <!-- Долгота -->

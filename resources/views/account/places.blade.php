@@ -8,7 +8,8 @@
     </div>
 @endsection
 @section('content')
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    @include('inc.message')
+    <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-evenly">
         @include('components/place_card')
     </div>
 @endsection
