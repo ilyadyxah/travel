@@ -31,6 +31,7 @@ class CreateRequest extends FormRequest
             'cities' => ['required', 'string'],
             'transports' => ['required', 'array'],
             'images.*' => ['image','max:2048'],
+            'images' => ['required'],
             'latitude' => ['regex:/^([-+]?)([\d]{1,2})(((\.)(\d+)))$/', 'required'],
             'longitude' => ['regex:/^([-+]?)([\d]{1,3})(((\.)(\d+)))$/', 'required']
 
