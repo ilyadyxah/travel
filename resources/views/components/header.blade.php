@@ -49,7 +49,16 @@
 
                         </a>
                     </li>
-                    <li><a class="dropdown-item" href="{{ route('account.place.create') }}">Новое место</a></li>
+                    <li >
+                        <a class="dropdown-item d-flex justify-content-between align-items-center @if(count($created) === 0) disabled @endif" href="{{ route('account.places', 'created') }}">
+                            Мои созданные места
+                            <span id="likes-btn" class="badge bg-secondary ms-1">{{ count($created) ?  : '' }}</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('account.place.create') }}">Создать новое место</a>
+                    </li>
 
                     <li><a class="dropdown-item disabled" href="#">Настройки</a></li>
                     <li><hr class="dropdown-divider"></li>
