@@ -31,6 +31,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
+
         return view('account.places.create', [
             'fieldsToCreate' => Place::getFieldsToCreate(),
             'linkedFields' => Place::getLinkedFields(),
