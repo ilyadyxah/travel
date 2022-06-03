@@ -103,7 +103,7 @@
                             @endforeach
                         </select>
                     @endforeach
-                    <div id="map" style="width: 80%; height: 400px"></div>
+                    <div id="mapCoords" style="width: 80%; height: 400px"></div>
 
             </div>
                 <button type="submit"  class="btn btn-outline-success">{{$button ?? 'Создать'}}</button>

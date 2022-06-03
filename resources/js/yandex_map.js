@@ -1,6 +1,3 @@
-
-
-
 ymaps.ready(function () {
     //Получаем координаты из компонента по id
     let startLatitude = document.getElementById("start_latitude").innerHTML
@@ -12,7 +9,7 @@ ymaps.ready(function () {
     let routeDescription = document.getElementById("route_description")
 
     var myMap = new ymaps.Map('map', {
-        center: [+startLatitude, +startLongitude],
+        center: [+endLatitude, +endLongitude],
         zoom: 9,
         // Добавление панели маршрутизации на карту.
         controls: ['routePanelControl'],
