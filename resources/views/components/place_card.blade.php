@@ -1,25 +1,28 @@
 @forelse($journeys as $place)
     <div class="col-4 card card_body">
-        <a href="{{ route('places.show', $place) }}" class="bg-dark">
-            <img class='card-img' src="@if(str_starts_with($images->find($place->main_picture_id)->url, 'http')){{$images->find($place->main_picture_id)->url}}@else{{Storage::disk('public')->url($images->find($place->main_picture_id)->url)}}@endif"
-                 alt="{{ $place->title }}"/>
+        <a href="{{ route('places.show', $place) }}" class="bg-dark rounded-3">
+            <img class='card-img ' src="@if(str_starts_with($images->find($place->main_picture_id)->url, 'http')){{$images->find($place->main_picture_id)->url}}@else{{Storage::disk('public')->url($images->find($place->main_picture_id)->url)}}@endif"
+                 alt="{{ $place->title }}"
+            style="height: 200px"/>
         </a>
-        <div class="card_bottom">
-            <a class="card-title" href="{{ route('places.show', $place) }}">
-                <h5>{{Str::ucfirst($place->title)}}</h5>
+        <div class="card_bottom flex-column  text-center ">
+            <a class="card-title text-decoration-none p-1 bg-transparent" href="{{ route('places.show', $place) }}">
+                <h5 style="height: 1.5em; word-break: break-all;" class="bg-none">{{Str::ucfirst($place->title)}}</h5>
             </a>
-            <div class="card_like_container">
-<span like="{{$place->id}}" onclick="likeHandle(this)">
-            @if(in_array($place->id, $likes))
-        <i class="fa-solid fa-thumbs-up"></i>
-    @else
-        <i class="fa-regular fa-thumbs-up"></i>
-    @endif
-        </span>
+            <div class="card_like_container d-flex w-100 justify-content-evenly">
+                <div>
+                    <span like="{{$place->id}}" onclick="likeHandle(this)">
+                    @if(in_array($place->id, $likes))
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        @else
+                            <i class="fa-regular fa-thumbs-up"></i>
+                        @endif
+                </span>
+                    <span id="like-{{$place->id}}"
+                          class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}
+                    </span>
+                </div>
 
-                <span id="like-{{$place->id}}"
-                      class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}
-        </span>
                 @auth
                     <span favorite="{{$place->id}}"
                           id="favorite-{{ $place->id }}"
@@ -32,7 +35,7 @@
                     </span>
                     @if($place->created_by_user_id === Auth::user()->id)
                         @if(request()->routeIs('account.place*'))
-                            <div class="d-flex justify-content-evenly">
+                            <div class="d-flex justify-content-evenly gap-3">
                                 <a class="text-secondary text-decoration-none" href="{{ route('account.place.edit', [$place]) }}">
                                     <i class="fa-solid fa-gear"></i>
                                 </a>
@@ -57,9 +60,10 @@
             </div>
 
         </div>
-        <p class="card-text">{{ mb_substr($place->description, 0, 100) . '...'}}</p>
-        <p class="card-text"> - расстояние от города {{ $place->distance }} км</p>
+        <hr class="dropdown-divider">
+        <p style="text-indent: 1.5em; text-align: justify;" class="card-text">{{ Str::ucfirst(mb_substr($place->description, 0, 100)) . '...'}}</p>
+{{--        <p class="card-text"> - расстояние от города {{ $place->distance }} км</p>--}}
     </div>
 @empty
-  <h3 class="text-warning text-center vh-100">Не найдено</h3>
+  <h3 class="text-warning text-center vh-100 col align-self-center">Не найдено</h3>
 @endforelse
