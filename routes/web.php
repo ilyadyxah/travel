@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 
  Route::match(['get', 'post'], '/journeys', [JourneyController::class, 'getJourneysWithFilters'])
      ->name('app::journeys');
+
+
 Route::get('/places/{place}', [JourneyController::class, 'show'])
     ->where('place', '\d+')
     ->name('places.show');

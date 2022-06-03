@@ -58,7 +58,7 @@
 
 @stack('js')
 </body>
-<script>
+<script >
     ymaps.ready(init);
 
     function init() {
@@ -118,11 +118,13 @@
                         balloonContent: firstGeoObject.getAddressLine()
                     });
                 console.log([coords, firstGeoObject.getAddressLine()]);
+                //todo убрать отсюда
+                document.querySelector('input[name=latitude]').value = coords[0];
+                document.querySelector('input[name=longitude]').value = coords[1];
+
             });
         }
     }
-
-
 </script>
 </html>
 
