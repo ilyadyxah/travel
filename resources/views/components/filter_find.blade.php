@@ -1,25 +1,26 @@
+<h3 style="text-align: center">Поиск путешествия</h3>
 <div class='finder'>
-    <form method="post" action="{{ route('app::journeys') }}" class='finder__form'>
+    <form method="post" action="{{ route('app::journeys') }}" class='finderTwo__form'>
         @csrf
-        <h3>Поиск путешествия</h3>
         <input type="text"
                name="search"
                class="form-control form_custom-style"
                placeholder="Найти..."
+               style="width: 90%"
         >
-        <select name="city" class="find_select form_custom-style">
+        <select name="city" class="find_select form_custom-style" style="width: 300px">
             <option value="" selected>Выберите город</option>
             @foreach($cities as $city)
                 <option value="{{ $city->id }}"> {{ $city->title }}</option>
             @endforeach
         </select>
-        <select name="transport" class="find_select form_custom-style">
+        <select name="transport" class="find_select form_custom-style" style="width: 300px">
             <option value="" selected>Выберите транспорт</option>
             @foreach($transports as $transport)
                 <option value="{{ $transport->id }}">{{ $transport->title }}</option>
             @endforeach
         </select>
-        <select name="complexity" class="find_select form_custom-style">
+        <select name="complexity" class="find_select form_custom-style" style="width: 300px">
             <option value="" selected>Выберите сложность</option>
             @for($i = 0; $i <= 10; $i++)
                 <option value="{{ $i*10 }}">{{ $i*10 }}</option>
@@ -48,7 +49,5 @@
             </div>
         </div>
         <p><input class='btn finder_btn' type="submit" value="Найти путешествие"/></p>
-</div>
-
-</form>
+    </form>
 </div>

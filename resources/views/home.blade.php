@@ -13,9 +13,7 @@
                         <h1>Исследуй и путешествуй</h1>
                         @include('components.filter')
                     </div>
-                    <div class='intro_img_box col'>
-                        <img class='intro_img' src="{{ asset('images/thousand-01.png') }}" alt="img" />
-                    </div>
+                    <img class='intro_img' src="{{ asset('images/thousand-01.png') }}" alt="img" />
                 </div>
         <div>
 

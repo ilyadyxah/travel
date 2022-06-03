@@ -48,7 +48,6 @@ class AccountController extends Controller
                 break;
         }
         return view('account.places', [
-            'places' => $places,
             'journeys'=> $places,
             'images' => Image::all(),
             'likes' => app(LikeService::class)->getLikedPlacesId(),

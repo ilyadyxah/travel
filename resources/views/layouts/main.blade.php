@@ -18,6 +18,7 @@
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/ilya_style_mfucker.css') }}">
     <title>Travel</title>
     <style>
         .bd-placeholder-img {

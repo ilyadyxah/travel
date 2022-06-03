@@ -23,7 +23,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  margin: 3% 3% 5% 3%;
+  margin: 0 25px;
   align-items: center;
 }
 
