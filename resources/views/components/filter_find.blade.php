@@ -1,7 +1,7 @@
+<h3>Поиск путешествия</h3>
 <div class='finder'>
-    <form method="post" action="{{ route('app::journeys') }}" class='finder__form'>
+    <form method="post" action="{{ route('app::journeys') }}" class='finderTwo__form'>
         @csrf
-        <h3>Поиск путешествия</h3>
         <input type="text"
                name="search"
                class="form-control form_custom-style"
@@ -48,7 +48,5 @@
             </div>
         </div>
         <p><input class='btn finder_btn' type="submit" value="Найти путешествие"/></p>
-</div>
-
-</form>
+    </form>
 </div>

@@ -19,7 +19,6 @@ class JourneyController extends Controller
     public function getJourneysWithFilters(Request $request, $page = 1)
     {
         // Определяем фильтры из запроса
-
         $filters = [
             'city' => $request->city, // город
             'transport' => $request->transport, // вид транспорта
@@ -31,7 +30,6 @@ class JourneyController extends Controller
             'search' => $request->search,
         ];
 
-        $filters2 = $request->all();
         // Получаем места по 5 штук на заданной странице
         $itemsPerPage = 15;
         $places = Place::getWhithFiltersOnPage($page, $itemsPerPage, $filters);
