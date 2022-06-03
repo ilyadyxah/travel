@@ -1,5 +1,105 @@
-.rewiew_card {
+.rewiew {
     width: 400px;
     height: 350px;
     background-color: cadetblue;
+    //background-color: beige;
+    padding: 21px;
+    border-radius: 30px;
+    margin: 25px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.review_inner {
+    font-style: .5rem;
+}
+
+.review_card_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 15px;
+    border: 15px solid #00bcd44d;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+}
+
+.review_body {
+    border-bottom: 3px solid #9e9e9e;
+}
+
+.review_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+        font-weight: 600;
+        font-style: italic;
+    }
+
+    span {
+        color: gold;
+    }
+}
+
+.review_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+        font-size: 1rem;
+    }
+}
+
+.review_bottom_extra {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 35%;
+
+    svg {
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+    }
+}
+
+.avatar_img_box {
+    background-color: antiquewhite;
+    box-shadow: 3px -3px 10px 3px #9e9e9e;
+    border-radius: 1em;
+    margin: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
+}
+
+.avatar_img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.ymaps-2-1-79-inner-panes {
+    border-radius: 15px;
+    border: 8px solid #00bcd44d;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
 }

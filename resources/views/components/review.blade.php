@@ -1,6 +1,6 @@
 <!-- Карточка отзыва -->
 <section class='review_card'>
-    <div class="outer">
+    <div class="review_card_box">
         <div class="review_inner">
             <div class="review_body">
                 <div class="review_head">
@@ -67,7 +67,7 @@ fill="#009688" stroke="none">
                 </div>
             </div>
         </div>
-        <div class="avatar"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+        <div class="avatar_img_box"><svg class='avatar_img' version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="973.000000pt" height="1280.000000pt" viewBox="0 0 973.000000 1280.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
