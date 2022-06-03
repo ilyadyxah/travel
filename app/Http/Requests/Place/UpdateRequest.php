@@ -34,7 +34,7 @@ class UpdateRequest extends FormRequest
             'transports' => ['required', 'array'],
             'images.*' => ['image','max:2048'],
             'images' => ['nullable'],
-            'oldImages' => ['nullable'],
+            'deletedImages' => ['nullable'],
             'latitude' => ['regex:/^([-+]?)([\d]{1,2})(((\.)(\d+)))$/', 'required'],
             'longitude' => ['regex:/^([-+]?)([\d]{1,3})(((\.)(\d+)))$/', 'required']
 

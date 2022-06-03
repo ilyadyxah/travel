@@ -139,28 +139,29 @@ class PlaceController extends Controller
         $data = $request->validated();
 
 // сохраняю картинки
-        foreach($request->images as $image){
-            $ImageData['url'] = app(UploadService::class)
-                ->saveFile($image, 'images');
-            $picture = Image::create($ImageData);
-            // создаю массив с идентификаторами
-            $imagesIds[] = $picture->id;
-            // в качестве главной картинки выбираю в произвольном порядке из загруженных
-            $data['main_picture_id'] = $imagesIds[array_rand($imagesIds, 1)];
-        };
+        if ($request->images){
+            foreach($request->images as $image){
+                $ImageData['url'] = app(UploadService::class)
+                    ->saveFile($image, 'images');
+                $picture = Image::create($ImageData);
+                // создаю массив с идентификаторами
+                $imagesIds[] = $picture->id;
+                // в качестве главной картинки выбираю в произвольном порядке из загруженных
+                $data['main_picture_id'] = $imagesIds[array_rand($imagesIds, 1)];
+            };
+        }
         // удаляю не нужные картинки
         foreach ($place->images as $image){
-
-            if(!in_array($image->id, explode(',', $data['oldImages']))
-                && !str_starts_with($image->url, 'http') ){
+            if (in_array($image->id, explode(',', $data['deletedImages']))
+                && !str_starts_with($image->url, 'http')){
                 app(UploadService::class)
                     ->deleteFile($image->url);
-
             }else{
-                // заполняю массив с идентификаторами
                 $imagesIds[] = $image->id;
+
             }
         }
+
         $request->images = $imagesIds;
         // если такой город есть, присваиваю идентификатор, если нет создаю новый город
         $request->cities = City::query()->where('title', $data['cities'])
