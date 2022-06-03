@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\FilterController;
-use App\Http\Controllers\JourneyController;
-use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MapRenderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/mapData', [MapRenderController::class, 'getData'])
+    ->name('app::api::getData');

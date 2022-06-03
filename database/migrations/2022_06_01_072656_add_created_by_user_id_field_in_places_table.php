@@ -31,8 +31,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('places', function (Blueprint $table) {
+            $table->dropForeign('places_created_by_user_id_foreign');
             $table->dropColumn('created_by_user_id');
-
         });
     }
 };

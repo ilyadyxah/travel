@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,8 @@ class PlaceSeeder extends Seeder
 
     private function getData()
     {
+        $faker = Factory::create();
+
         $data = [
             [
                 'title' => 'Старый демидовский завод',
@@ -133,6 +136,11 @@ class PlaceSeeder extends Seeder
         ];
         for ($i = 0; $i < count($data); $i++){
             $data[$i]['slug'] = Str::slug($data[$i]['title']);
+        }
+
+        for ($i = 0; $i < count($data); $i++){
+            $data[$i]['longitude'] = $faker->randomFloat(5,56.0, 55.5);
+            $data[$i]['latitude'] = $faker->randomFloat(5, 37.9, 37.4);
         }
         return $data;
     }

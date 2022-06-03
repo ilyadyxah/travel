@@ -18,12 +18,13 @@
                 <h3>{{ $message }}</h3>
             @endif
         </div>
-        @endsection
-        @once
-            @push('js')
-                <script src="{{ asset('js/likeHandle.js')}}"></script>
-                <script src="{{ asset('js/favoriteHandle.js')}}"></script>
-            @endpush
-        @endonce
     </div>
+@endsection
+@once
+    @push('js')
+        <script src="{{ asset('js/likeHandle.js')}}"></script>
+        <script src="{{ asset('js/favoriteHandle.js')}}"></script>
+    @endpush
+@endonce
+
 
