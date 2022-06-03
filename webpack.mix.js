@@ -12,6 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/yandex_map.js', 'public/js')
+    .js('resources/js/yandex_map_route_to_place.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps();

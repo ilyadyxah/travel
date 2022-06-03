@@ -7,6 +7,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MapRenderController;
 use App\Http\Controllers\ParseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -79,4 +80,8 @@ Route::get('/logout', [LoginController::class, 'logout'])
 
 //parsing
 Route::get('/admin/parse', [ParseController::class, 'parse'])
-    ->name('parse');
+    ->name('app::parse');
+
+//map
+Route::get('/map', [MapRenderController::class, 'render'])
+    ->name('app::map');

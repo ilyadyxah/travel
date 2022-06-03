@@ -36,7 +36,7 @@
                         </p>
                     </a>
                 </div>
-                <a href="{{ route('parse', ['count' => 10]) }}">Спарсить</a>
+                <a href="{{ route('app::parse', ['count' => 10]) }}">Спарсить</a>
             </div>
         </header>
     </section>
