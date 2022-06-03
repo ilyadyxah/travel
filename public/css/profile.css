@@ -13,7 +13,7 @@ a.disabled {
 .header {
     min-height: 60vh;
     background: #009FFF;
-    background: linear-gradient(to bottom, #ffffff, #78c9f6);
+    background: linear-gradient(to bottom, #f8fafc, #78c9f6);
     color: white;
     clip-path: ellipse(100vw 60vh at 50% 50%);
     display: flex;
@@ -28,7 +28,7 @@ a.disabled {
 .profile-pic {
     height: 6rem;
     width: 6rem;
-    object-fit: center;
+    object-fit: cover;
     border-radius: 50%;
     border: 2px solid #fff;
 }

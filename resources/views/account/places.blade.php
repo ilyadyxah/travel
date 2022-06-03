@@ -9,8 +9,10 @@
 @endsection
 @section('content')
     @include('inc.message')
-    <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-evenly">
-        @include('components/place_card')
+    <div class="container">
+        <div class="row g-4">
+            @include('components/place_card')
+        </div>
     </div>
 @endsection
 @once

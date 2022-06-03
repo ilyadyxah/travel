@@ -24,6 +24,7 @@ class Place extends Model
         'latitude',
         'longitude',
         'created_by_user_id',
+        'cost',
     ];
 
     public static function getFieldsToCreate(): array

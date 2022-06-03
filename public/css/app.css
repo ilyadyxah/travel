@@ -11608,14 +11608,14 @@ textarea.form-control-lg {
 }
 
 .nav_link:hover {
-  font-weight: 500;
+  /*font-weight: 500;*/
   color: #000;
 }
 
 .btn:hover {
   background: #fff;
   color: #4285f4;
-  border: 1px solid #4285f4;
+  outline: 1px solid #4285f4;
   box-shadow: #3C587F;
 }
 
