@@ -10,7 +10,6 @@ use App\Models\Place;
 use App\Models\Transport;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Request;
 
