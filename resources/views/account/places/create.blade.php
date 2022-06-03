@@ -28,10 +28,19 @@
 
                         @continue
                     @endif
-{{--                    @if($field === 'coordinates')--}}
-{{--                        <input name="{{ $field }}" type="text" class="form-control" id="{{ $field }}" placeholder="{{ $cyrillicName }}" value="@if(isset($place)){{$place->$field}}@else{{old($field)}}@endif">--}}
-{{--                        @continue--}}
-{{--                    @endif--}}
+                    @if($field === 'longitude')
+                        <input name="{{ $field }}" type="text" class="form-control" id="{{ $field }}" placeholder="{{ $cyrillicName }}" value="@if(isset($place)){{$place->$field}}@else{{old($field)}}@endif">
+                        <a class="btn btn-sm btn-outline-secondary small p-2 align-self-center" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Отметить на карте
+                        </a>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <div id="mapCoords" style="width: 100%; height: 400px"></div>
+                            </div>
+                        </div>
+
+                        @continue
+                    @endif
                     @if($field === 'complexity')
                         <select id="{{ $field }}" name="{{ $field }}" class="form-select m-0" aria-label="Default select example">
                             @for($i = 1; $i <= 10; $i++)
@@ -63,15 +72,15 @@
                                 </div>
                             @enderror
                             <input multiple name="{{ $field }}[]" class="form-control" type="file" id="{{ $field }}">
-                            <input multiple name="oldImages" class="form-control" id="oldImages" hidden>
+                            <input multiple name="deletedImages" class="form-control" id="deletedImages" hidden>
 
                         @if(isset($place))
                                 <p class="text-center">Изображения места</p>
                             <div class="d-flex align-items-center justify-content-around g-1">
                                 @forelse($place->$field as $image)
                                     <div class="position-relative">
-                                        <input name="{{ $image->id }}" class="form-check-input position-absolute" type="checkbox" id="{{ $image->id }}" checked onclick="checkboxToArray()">
-                                        <label class="form-check-label" for="{{ $image->id }}">
+                                        <input name="{{ $image->id }}" class="form-check-input position-absolute" type="checkbox" id="{{ $image->id }}" checked onclick="imagesToDelete(this)">
+                                        <label  class="form-check-label" for="{{ $image->id }}">
                                             <img width="150" src="@if(str_starts_with($image->url, 'http')){{ $image->url }}@else{{Storage::disk('public')->url($image->url)}}@endif" class="img-thumbnail" alt="{{ $place->title }}">
                                         </label>
                                     </div>
@@ -103,7 +112,6 @@
                             @endforeach
                         </select>
                     @endforeach
-                    <div id="map" style="width: 80%; height: 400px"></div>
 
             </div>
                 <button type="submit"  class="btn btn-outline-success">{{$button ?? 'Создать'}}</button>
@@ -113,15 +121,17 @@
 @endsection
 
 <script>
-    function checkboxToArray()
+    const deletedImages = [];
+    function imagesToDelete(el)
     {
-        var array = []
-        var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
-
-        for (var i = 0; i < checkboxes.length; i++) {
-            array.push(checkboxes[i].getAttribute('id'))
+        if (deletedImages.includes(el.id)){
+            deletedImages.splice(deletedImages.indexOf(el.id), 1)
+        } else {
+            deletedImages.push(el.id);
         }
-        document.getElementById('oldImages').value = array
+
+        document.getElementById('deletedImages').value = deletedImages
+
     }
 
 </script>

@@ -159,10 +159,8 @@
                             <span id="end_longitude">37.686690</span>
                             </p>
                         </div>
-                         <div id="map"  style="width: 100%; height: 800px"></div>
-                        </div>
-
-
+                        <div id="map"  style="width: 100%; height: 800px"></div>
+                    </div>
                 </div>
             </div>
         </div>
