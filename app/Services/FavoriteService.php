@@ -39,7 +39,7 @@ class FavoriteService
 
     }
 
-    public function getFavoritePlacesId()
+    public function getFavoritePlacesId(): array
     {
         $favoritePlacesId = [];
         if (Auth::check()){

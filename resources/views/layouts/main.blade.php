@@ -14,12 +14,8 @@
     <script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=e9930eee-b41e-4fab-89fa-e7a068bc79bf&lang=ru_RU" type="text/javascript"></script>
 
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/ilya_style_mfucker.css') }}">
+
     <title>Travel</title>
     <style>
         .bd-placeholder-img {
@@ -39,27 +35,14 @@
 
 </head>
 <body>
-<x-header/>
-
-{{--@component('components.header')--}}
-{{--@endcomponent--}}
-
+@component('components.header')
+@endcomponent
 <main>
-
-    @yield('header')
-
     @yield('content')
-
 </main>
 @component('components.footer')
 @endcomponent
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/all.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('js/yandex_map_route_to_place.js') }}"  type="text/javascript"></script>
-<script src="{{ asset('js/yandex_map_create_place.js') }}"  type="text/javascript"></script>
-<script src="{{ asset('js/yandex_map_show_all_places.js') }}"  type="text/javascript"></script>
-@stack('js')
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
 

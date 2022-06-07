@@ -1,7 +1,8 @@
 @forelse($journeys as $place)
     <div class="col-4 card card_body">
         <a href="{{ route('places.show', $place) }}" class="bg-dark">
-            <img class='card-img' src="@if(str_starts_with($images->find($place->main_picture_id)->url, 'http')){{$images->find($place->main_picture_id)->url}}@else{{Storage::disk('public')->url($images->find($place->main_picture_id)->url)}}@endif"
+            <img class='card-img'
+                 src="@if(str_starts_with($images->find($place->main_picture_id)->url, 'http')){{$images->find($place->main_picture_id)->url}}@else{{Storage::disk('public')->url($images->find($place->main_picture_id)->url)}}@endif"
                  alt="{{ $place->title }}"/>
         </a>
         <div class="card_bottom">
@@ -33,20 +34,23 @@
                     @if($place->created_by_user_id === Auth::user()->id)
                         @if(request()->routeIs('account.place*'))
                             <div class="d-flex justify-content-evenly">
-                                <a class="text-secondary text-decoration-none" href="{{ route('account.place.edit', [$place]) }}">
+                                <a class="text-secondary text-decoration-none"
+                                   href="{{ route('account.place.edit', [$place]) }}">
                                     <i class="fa-solid fa-gear"></i>
                                 </a>
                                 <form method="post" action="{{ route('account.place.destroy', $place) }}">
                                     @csrf
                                     @method('delete')
-                                    <button class="text-danger text-decoration-none border-0 bg-transparent" type="submit">
+                                    <button class="text-danger text-decoration-none border-0 bg-transparent"
+                                            type="submit">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                 </form>
                             </div>
 
                         @else
-                            <a class="text-secondary text-decoration-none" href="{{ route('account.places', 'created') }}">
+                            <a class="text-secondary text-decoration-none"
+                               href="{{ route('account.places', 'created') }}">
                                 <i class="fa-solid fa-list-check"></i>
                             </a>
                         @endif
@@ -61,5 +65,5 @@
         <p class="card-text"> - расстояние от города {{ $place->distance }} км</p>
     </div>
 @empty
-  <h3 class="text-warning text-center vh-100">Не найдено</h3>
+    <h3 class="text-warning text-center vh-100">Не найдено</h3>
 @endforelse

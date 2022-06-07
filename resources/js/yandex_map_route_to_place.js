@@ -1,7 +1,5 @@
 ymaps.ready(function () {
     //Получаем координаты из компонента по id
-    let startLatitude = document.getElementById("start_latitude").innerHTML
-    let startLongitude = document.getElementById("start_longitude").innerHTML
     let endLatitude = document.getElementById("end_latitude").innerHTML
     let endLongitude = document.getElementById("end_longitude").innerHTML
 
@@ -19,9 +17,9 @@ ymaps.ready(function () {
     // Получение ссылки на панель.
     var control = myMap.controls.get('routePanelControl');
 
+    // Определение местоположения по геолокации
+    control.routePanel.geolocate('from');
     control.routePanel.state.set({
-        // Адрес начальной точки.
-        from: [+startLatitude, +startLongitude],
         // Адрес конечной точки.
         to: [+endLatitude, +endLongitude]
     });

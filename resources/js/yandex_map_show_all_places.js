@@ -37,4 +37,5 @@ function init() {
         console.log(textStatus);
         objectManager.add(data);
     });
+
 }

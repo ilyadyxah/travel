@@ -1,11 +1,8 @@
-// Fonts
+@import 'index.scss';
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
-
-//My styles
-@import '../styles/index.scss'
+@import '../../node_modules/bootstrap/scss/bootstrap';
+//@import '../styles/all.min.css';
+@import '../styles/swiper-bundle.min.css';
+@import '../styles/bootstrap.min.css';
+@import '../styles/travelPage.css';
+@import '../styles/profile.css';
