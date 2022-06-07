@@ -18,9 +18,9 @@ class PlacesLikesSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@mail.ru',
-            'password' => Hash::make('password'),
+            'name' => 'Test',
+            'email' => 'test@mail.ru',
+            'password' => Hash::make('12345678'),
         ]);
         DB::table('likes')->insert($this->getData());
     }

@@ -25,6 +25,8 @@ class Place extends Model
         'longitude',
         'created_by_user_id',
         'cost',
+        'district',
+        'region'
     ];
 
     public static function getFieldsToCreate(): array
@@ -84,6 +86,22 @@ class Place extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function groups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'places_groups',
+            'place_id', 'group_id',
+            'id', 'id'
+        );
+    }
+
+    public function types(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'places_types',
+            'place_id', 'type_id',
+            'id', 'id'
+        );
     }
 
     public function sluggable(): array

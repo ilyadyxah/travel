@@ -13,7 +13,7 @@
             <a href="{{ route('app::journeys') }}" class='nav_link'>Путешествия</a>
         </li>
         <li >
-            <a href="#" class='nav_link'>Map</a>
+            <a href="{{ route('app::map') }}" class='nav_link'>Map</a>
         </li>
         <li>
             <a href="#" class='nav_link'>Media</a>
