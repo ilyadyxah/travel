@@ -14,10 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('places', function (Blueprint $table) {
-            $table->unsignedBigInteger('main_picture_id');
-            $table->foreign('main_picture_id')
-                ->references('id')
-                ->on('images')
+//            $table->unsignedBigInteger('main_picture_id');
+//            $table->foreign('main_picture_id')
+//                ->references('id')
+//                ->on('images')
+//                ->cascadeOnDelete()
+//                ->cascadeOnUpdate();
+            $table->foreignId('main_picture_id')
+                ->nullable()
+                ->constrained('images')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
