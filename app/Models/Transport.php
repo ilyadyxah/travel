@@ -10,6 +10,9 @@ class Transport extends Model
 {
     use HasFactory;
     protected  $table = 'transports';
+    protected $fillable = [
+        'title'
+    ];
 
     public function places(): BelongsToMany
     {

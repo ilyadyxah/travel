@@ -19,8 +19,8 @@ class Image extends Model
     /**
      * @return HasMany
      */
-    public function places()
-    {
-        return $this->hasMany(Place::class);
-    }
+//    public function places()
+//    {
+//        return $this->hasMany(Place::class);
+//    }
 }

@@ -6,6 +6,7 @@
 @endsection
 @section('content')
     <section class="profile">
+        @include('inc.message')
         <header class="header">
             <div class="details m-2">
                 <img src="@if(Auth::user()->avatar){!!Auth::user()->avatar!!}@else{!! asset('images/default_avatar.png') !!}@endif" class="profile-pic" height="150" width="150">

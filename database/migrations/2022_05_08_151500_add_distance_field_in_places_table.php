@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('places', function (Blueprint $table) {
             $table->unsignedSmallInteger('distance')->nullable();
-            $table->unsignedTinyInteger('complexity')->default(50);
+            $table->unsignedTinyInteger('complexity')->default(5);
             $table->unsignedInteger('cost')->nullable();
 
         });
