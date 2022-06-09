@@ -2,7 +2,11 @@
 <div class="col-4 card card_body">
     <a href="{{ route('places.show', $place) }}" class="bg-dark">
         <img class='card-img'
-            src="@if(str_starts_with($images->find($place->main_picture_id)->url, 'http')){{$images->find($place->main_picture_id)->url}}@else{{Storage::disk('public')->url($images->find($place->main_picture_id)->url)}}@endif"
+            src="
+                @if(str_starts_with($images->find($place->main_picture_id)->url, 'http'))
+                    {{$images->find($place->main_picture_id)->url}}
+                @else{{Storage::disk('public')->url($images->find($place->main_picture_id)->url)}}
+                @endif"
             alt="{{ $place->title }}" />
     </a>
     <div class="card_bottom">
