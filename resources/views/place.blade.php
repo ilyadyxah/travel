@@ -85,8 +85,8 @@
 
     <!-- Swiper -->
 
-    <div class="mx-0  row place_card">
-        <div class="col-6 image_slider">
+    <div class="row place_card container align-items-start">
+        <div class="col-6 image_slider h-100">
             <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                 <div class="swiper-wrapper">
                     @foreach($place->images as $image)
@@ -109,9 +109,8 @@
             </div>
         </div>
         <div class="col-6 h-100">
-            <div class="bg-light me-md-3 pt-1 px-1 pt-md-1 px-md-1 text-center">
-                <div class=" p-3">
-                    <div class="place_content">
+            <div class="bg-light pt-1 px-1 pt-md-1 px-md-1 text-center" >
+                    <div class="place_content overflow-scroll" style="height: 300px;">
                             <div class="place_box">
                             <h2 class="display-5" data-id="city_name">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</h2>
                             <div class="like_box">
@@ -144,30 +143,31 @@
 
                         </div>
                     </div>
-                    <div class="route">
-                        <div class="route_coordinates">
-                            <p>Координаты начала марштута:
-                            <!-- Широта -->
-                            <span id="start_latitude">55.753994</span>,
-{{--                            <span id="start_latitude">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</span>,--}}
-                                <span id="start_latitude">54.611816</span>,
-                                <!-- Долгота -->
-                            <span id="start_longitude">37.622093</span>
-                            </p>
-                            <p>Координаты окончания маршрута:
-                                <!-- Широта -->
-                            <span id="end_latitude">55.611816</span>,
-                                <!-- Долгота -->
-                            <span id="end_longitude">37.686690</span>
-                            </p>
-                        </div>
-                        <div id="map"  style="width: 100%; height: 800px"></div>
-                    </div>
-                </div>
+
             </div>
+            <div class="route ">
+                <div class="route_coordinates visually-hidden">
+                    <p>Координаты начала марштута:
+                        <!-- Широта -->
+                        <span id="start_latitude">55.753994</span>,
+                        {{--                            <span id="start_latitude">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</span>,--}}
+                        <span id="start_latitude">54.611816</span>,
+                        <!-- Долгота -->
+                        <span id="start_longitude">37.622093</span>
+                    </p>
+                    <p>Координаты окончания маршрута:
+                        <!-- Широта -->
+                        <span id="end_latitude">55.611816</span>,
+                        <!-- Долгота -->
+                        <span id="end_longitude">37.686690</span>
+                    </p>
+                </div>
+                <div id="map"  class="w-auto" style="height: 350px;"></div>
+            </div>
+
         </div>
     </div>
-    
+
     <div class="row row-cols-1 row-cols-md-2 g-4">
         @include('components/review')
         @include('components/review')
