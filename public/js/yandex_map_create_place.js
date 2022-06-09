@@ -1,6 +1,7 @@
 ymaps.ready(init);
 
 function init() {
+
     var myPlacemark,
         myMap = new ymaps.Map('mapCoords', {
             center: [55.753994, 37.622093],
@@ -8,6 +9,7 @@ function init() {
         }, {
             searchControlProvider: 'yandex#search'
         });
+
 
     // Слушаем клик на карте.
     myMap.events.add('click', function (e) {
