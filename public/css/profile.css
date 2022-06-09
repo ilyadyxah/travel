@@ -15,7 +15,7 @@ a.disabled {
     background: #009FFF;
     background: linear-gradient(to bottom, #f8fafc, #78c9f6);
     color: white;
-    clip-path: ellipse(100vw 60vh at 50% 50%);
+    clip-path: ellipse(100vw 70vh at 50% 50%);
     display: flex;
     align-items: center;
     justify-content: center;
