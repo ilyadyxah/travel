@@ -28,7 +28,7 @@ class MapRenderController extends Controller
                 [
                 "type" => "Feature",
                 "id" => $place->id,
-                "geometry" => ["type" => "Point", "coordinates" => [$place->longitude, $place->latitude]],
+                "geometry" => ["type" => "Point", "coordinates" => [$place->latitude, $place->longitude]],
                 "properties" => [
                 "balloonContentHeader" => sprintf("<span style=\"font-size: small; \"><b><a target='_blank' href=%s> $place->title </a></b></span>", route('places.show', ['place' => $place->id]))
                 ]

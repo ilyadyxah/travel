@@ -33,8 +33,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 150,
                 'complexity' => 1,
                 'cost' => 1000,
-                'longitude' => 57.906428,
-                'latitude' => 59.945738,
+                'longitude' => 59.945738,
+                'latitude' => 57.906428,
 
             ],
             [
@@ -45,8 +45,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 50,
                 'complexity' => 2,
                 'cost' => null,
-                'longitude' => 56.624855,
-                'latitude' => 62.092501,
+                'longitude' => 62.092501,
+                'latitude' => 56.624855,
 
 
             ],
@@ -58,8 +58,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 20,
                 'complexity' => 3,
                 'cost' => null,
-                'longitude' => 56.893161,
-                'latitude' => 60.572349,
+                'longitude' => 60.572349,
+                'latitude' => 56.893161,
 
 
             ],
@@ -71,8 +71,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 250,
                 'complexity' => 4,
                 'cost' => 1000,
-                'longitude' => 55.224687,
-                'latitude' => 59.737056,
+                'longitude' => 59.737056,
+                'latitude' => 55.224687,
 
             ],
             [
@@ -83,8 +83,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 100,
                 'complexity' => 5,
                 'cost' => null,
-                'longitude' => 59.180581,
-                'latitude' => 57.495884,
+                'longitude' => 57.495884,
+                'latitude' => 59.180581,
 
 
 
@@ -97,8 +97,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 100,
                 'complexity' => 1,
                 'cost' => null,
-                'longitude' => 54.363281,
-                'latitude' => 60.808408,
+                'longitude' => 60.808408,
+                'latitude' => 54.363281,
 
 
 
@@ -111,8 +111,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 150,
                 'complexity' => 2,
                 'cost' => 500,
-                'longitude' => 58.124986,
-                'latitude' => 68.589356,
+                'longitude' => 68.589356,
+                'latitude' => 58.124986,
 
             ],
             [
@@ -123,8 +123,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 300,
                 'complexity' => 3,
                 'cost' => 1000,
-                'longitude' => 57.849173,
-                'latitude' => 61.671644,
+                'longitude' => 61.671644,
+                'latitude' => 57.849173,
 
             ],
             [
@@ -135,8 +135,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 200,
                 'complexity' => 4,
                 'cost' => null,
-                'longitude' => 56.458567,
-                'latitude' => 59.263057,
+                'longitude' => 59.263057,
+                'latitude' => 56.458567,
 
 
             ],
@@ -148,8 +148,8 @@ class PlaceSeeder extends Seeder
                 'distance' => 100,
                 'complexity' => 5,
                 'cost' => null,
-                'longitude' => 56.029786,
-                'latitude' => 59.249267,
+                'longitude' => 59.249267,
+                'latitude' => 56.029786,
 
 
             ],
