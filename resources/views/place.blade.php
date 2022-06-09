@@ -145,24 +145,16 @@
                     </div>
 
             </div>
-            <div class="route ">
-                <div class="route_coordinates visually-hidden">
-                    <p>Координаты начала марштута:
-                        <!-- Широта -->
-                        <span id="start_latitude">55.753994</span>,
-                        {{--                            <span id="start_latitude">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</span>,--}}
-                        <span id="start_latitude">54.611816</span>,
-                        <!-- Долгота -->
-                        <span id="start_longitude">37.622093</span>
-                    </p>
+            <div class="route">
+                <div class="route_coordinates">
                     <p>Координаты окончания маршрута:
                         <!-- Широта -->
-                        <span id="end_latitude">55.611816</span>,
+                        <span id="end_latitude">{{ $place->latitude }}</span>,
                         <!-- Долгота -->
-                        <span id="end_longitude">37.686690</span>
+                        <span id="end_longitude">{{ $place->longitude }}</span>
                     </p>
                 </div>
-                <div id="map"  class="w-auto" style="height: 350px;"></div>
+                <div id="map"  style="width: 100%; height: 800px"></div>
             </div>
 
         </div>
