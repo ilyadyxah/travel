@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             CommentsSeeder::class,
             TransportsSeeder::class,
             PlacesTransportsSeeder::class,
+            SourceSeeder::class,
 
         ]);
     }

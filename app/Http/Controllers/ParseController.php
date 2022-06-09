@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Source\CreateRequest;
 use App\Models\City;
 use App\Models\Group;
 use App\Models\Image;
 use App\Models\Place;
+use App\Models\Source;
 use App\Models\Transport;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
@@ -15,15 +17,21 @@ use function PHPUnit\Framework\isEmpty;
 
 class ParseController extends \Illuminate\Routing\Controller
 {
-    public function parse(Request $request)
+    /**
+     * @param CreateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function parse(CreateRequest $request)
     {
-
+        $inputData = $request->validated();
         $data = [];
         $linkedData = [];
-        $startId = 284235;
+        $source = Source::find($inputData['source-id']);
+
+        $startId = $source->last_parsed_item_id ?? 284235;
 
 
-        for ($i = 0; count($data) < $request->get('count'); $i++) {
+        for ($i = 0; count($data) < $inputData['count']; $i++) {
             $id = $startId + $i;
             $parseData = file_get_contents($this->getUrl($id));
 //получаю все данные
@@ -95,6 +103,11 @@ class ParseController extends \Illuminate\Routing\Controller
                 }
             }
         }
+        //сохраняю в бд
+        $source->fill([
+                'last_parsed_item_id' => array_key_last($data),
+                'total_parsed_items' => $source->total_parsed_items + count($data)
+        ])->save();
 
         return redirect()->route('account.profile' )->with([
             'success'=> __('messages.account.places.parsed.success'),
