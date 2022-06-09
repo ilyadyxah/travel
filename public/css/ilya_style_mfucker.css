@@ -1,33 +1,22 @@
-.navbar {
+/* .navbar {
     margin: 0 45px;
-}
+} */
 
-.container {
+/* .container {
     padding: 25px;
-}
+} */
 
-.finder {
-    margin-bottom: 0px;
-    max-width: 100%;
-}
 
-.finderTwo__form {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 18px;
-    flex-flow: row wrap;
-}
 
-.intro_img {
+/* .intro_img {
     z-index: -1;
     width: auto;
     height: auto;
     position: absolute;
     right: 80px;
     top: 0;
-}
+} */
 
-h1 {
+/* h1 {
     margin-bottom: 30px;
-}
+} */

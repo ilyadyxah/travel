@@ -1,8 +1,16 @@
 .card_body {
-    box-shadow: 0px 0px 10px 2px #86b7fe;
     width: 31%;
-    margin: 10px;
     padding: 15px;
+    transition: all .4s ease-in;
+}
+
+.card_body:hover {
+    box-shadow: 0px 0px 10px 2px #86b7fe;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 
 .card_like_container {
@@ -23,4 +31,10 @@
 .card_bottom {
     display: flex;
     justify-content: space-between;
+}
+
+.row {
+    justify-content: space-evenly;
+    margin: 15px 0 25px 0;
+    width: 100%;
 }
