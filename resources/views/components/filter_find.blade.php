@@ -11,7 +11,7 @@
         <select name="city" class="find_select form_custom-style" style="width: 300px">
             <option value="" selected>Выберите город</option>
             @foreach($cities as $city)
-                <option value="{{ $city->id }}"> {{ $city->title }}</option>
+                <option value="{{ $city->id }}">{{ $city->title }}</option>
             @endforeach
         </select>
         <select name="transport" class="find_select form_custom-style" style="width: 300px">
