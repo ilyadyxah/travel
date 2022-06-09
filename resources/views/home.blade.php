@@ -19,7 +19,9 @@
     </div>
 
             @include('components/place_card')
-
+            <div class="row justify-content-center">
+                {{$journeys->links()}}
+            </div>
 
 @endsection
 @once

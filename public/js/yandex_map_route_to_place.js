@@ -1,7 +1,5 @@
 ymaps.ready(function () {
     //Получаем координаты из компонента по id
-    let startLatitude = document.getElementById("start_latitude").innerHTML
-    let startLongitude = document.getElementById("start_longitude").innerHTML
     let endLatitude = document.getElementById("end_latitude").innerHTML
     let endLongitude = document.getElementById("end_longitude").innerHTML
 
@@ -19,9 +17,9 @@ ymaps.ready(function () {
     // Получение ссылки на панель.
     var control = myMap.controls.get('routePanelControl');
 
+    // Определение местоположения по геолокации
+    control.routePanel.geolocate('from');
     control.routePanel.state.set({
-        // Адрес начальной точки.
-        from: [+startLatitude, +startLongitude],
         // Адрес конечной точки.
         to: [+endLatitude, +endLongitude]
     });
@@ -36,12 +34,35 @@ ymaps.ready(function () {
             if (activeRoute) {
                 var routeData = {
                     'distance': activeRoute.properties.get("distance").text,
-                    'duration': activeRoute.properties.get("duration").text
+                    'duration': activeRoute.properties.get("duration").text,
+                    'transport': activeRoute.properties.get("type")
                 };
                 // Вывод информации об активном маршруте.
-                console.log(routeData);
-                routeDescription.innerHTML = `<p class="text_description">Дистанция маршрута: ${routeData.distance} </p>
-                <p class="text_description">Продолжительность маршрута: ${routeData.duration} </p> `
+                if (routeData.transport) {
+                    var transport = routeData.transport;
+                    switch (transport) {
+                        case 'driving':
+                            transport = 'Автомобиль';
+                            break;
+                        case 'masstransit':
+                            transport = 'Автобус';
+                            break;
+                        case 'pedestrian':
+                            transport = 'Пешком';
+                            break;
+                        case 'bicycle':
+                            transport = 'Велосипед';
+                            break;
+                    }
+                }
+                routeDescription.innerHTML =
+                    `    <br>
+                        <p class="text_description">Информация о выбранном маршруте: </p>
+                        <p class="text_description">
+                        Транспорт: ${transport} </p>
+                        <p class="text_description">Дистанция маршрута: ${routeData.distance} </p>
+                        <p class="text_description">Продолжительность маршрута: ${routeData.duration} </p>
+                    `
             }
         });
         multiRoute.options.set({

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Place extends Model
 {
@@ -167,10 +168,16 @@ class Place extends Model
         return $places;
     }
 
-    public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): Collection|array
+    public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): LengthAwarePaginator
     {
+        $places = self::getWithFilters($filters);
+
         return
-            self::getWithFilters($filters)
-                ->slice(($page - 1) * $itemsPerPage, $itemsPerPage);
+            new LengthAwarePaginator(
+                $places->forPage($page, $itemsPerPage),
+                $places->count(),
+                $itemsPerPage,
+                []
+        );
     }
 }

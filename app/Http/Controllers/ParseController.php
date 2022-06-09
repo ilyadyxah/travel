@@ -32,9 +32,9 @@ class ParseController extends \Illuminate\Routing\Controller
                 $data[$id]['region'] = $parseData->region->name;
                 $data[$id]['title'] = $parseData->title;
                 $data[$id]['description'] = strip_tags($parseData->desc);
-//                todo разобраться почему широта и долгота отображаются не корректно 
-                $data[$id]['longitude'] = $parseData->geo->lat;
-                $data[$id]['latitude'] = $parseData->geo->lon;
+//                todo разобраться почему широта и долгота отображаются не корректно
+                $data[$id]['longitude'] = $parseData->geo->lon;
+                $data[$id]['latitude'] = $parseData->geo->lat;
 
                 $linkedData[$id]['types'] = $parseData->type[0]->name;
                 $linkedData[$id]['groups'] = $parseData->group[0]->name;

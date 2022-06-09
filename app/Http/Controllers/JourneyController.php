@@ -10,6 +10,7 @@ use App\Models\Place;
 use App\Models\Transport;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -29,9 +30,10 @@ class JourneyController extends Controller
             'search' => $request->search,
         ];
 
-        // Получаем места по 5 штук на заданной странице
-        $itemsPerPage = 15;
-        $places = Place::getWhithFiltersOnPage($page, $itemsPerPage, $filters);
+        // Получаем места по 15 штук на заданной странице
+        $page = Paginator::resolveCurrentPage() ?: 1;
+        $itemsPerPage = 9;
+        $places = Place::getWhithFiltersOnPage($page, $itemsPerPage, $filters)->withPath('/journeys');
 
         return view('trips', [
             'images' => Image::all(),

@@ -15,8 +15,12 @@
             @else
                 <h3>{{ $message }}</h3>
             @endif
+                <div class="row justify-content-center">
+                    {{$journeys->links()}}
+                </div>
         </div>
     </div>
+
 @endsection
 @once
     @push('js')
