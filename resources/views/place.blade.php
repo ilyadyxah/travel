@@ -110,7 +110,7 @@
         </div>
         <div class="col-6 h-100">
             <div class="bg-light pt-1 px-1 pt-md-1 px-md-1 text-center" >
-                    <div class="place_content overflow-scroll" style="height: 300px;">
+                    <div class="place_content overflow-scroll" style="height: 500px;">
                             <div class="place_box">
                             <h2 class="display-5" data-id="city_name">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</h2>
                             <div class="like_box">
