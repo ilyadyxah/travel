@@ -146,8 +146,7 @@ class PlaceController extends Controller
                 $picture = Image::create($ImageData);
                 // создаю массив с идентификаторами
                 $imagesIds[] = $picture->id;
-                // в качестве главной картинки выбираю в произвольном порядке из загруженных
-                $data['main_picture_id'] = $imagesIds[array_rand($imagesIds, 1)];
+
             };
         }
         // удаляю не нужные картинки
@@ -161,6 +160,8 @@ class PlaceController extends Controller
 
             }
         }
+        // в качестве главной картинки выбираю в произвольном порядке из загруженных
+        $data['main_picture_id'] = $imagesIds[array_rand($imagesIds, 1)];
 
         $request->images = $imagesIds;
         // если такой город есть, присваиваю идентификатор, если нет создаю новый город
