@@ -1,8 +1,15 @@
 .card_body {
-    box-shadow: 0px 0px 10px 2px #86b7fe;
-    width: 31%;
-    margin: 10px;
+    width: 31% !important;
     padding: 15px;
+    transition: all .4s ease-in;
+    -webkit-transition: all .4s ease-in;
+    -moz-transition: all .4s ease-in;
+    -ms-transition: all .4s ease-in;
+    -o-transition: all .4s ease-in;
+}
+
+.card_body:hover {
+    box-shadow: 0px 0px 10px 2px #86b7fe;
 }
 
 .card_like_container {
@@ -12,8 +19,6 @@
 
 .card-title {
     text-decoration: none;
-    background-color: aliceblue;
-    border: 1px solid aliceblue bs
 }
 
 .card-title:hover {
@@ -23,4 +28,8 @@
 .card_bottom {
     display: flex;
     justify-content: space-between;
+}
+
+.row {
+    justify-content: space-evenly;
 }

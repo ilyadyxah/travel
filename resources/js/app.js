@@ -11,3 +11,4 @@ import "../js/bootstrap.bundle.min";
 import "../js/jquery.min";
 import "../js/swiper-bundle.min";
 
+import likeHandle from "../js/likeHandle";

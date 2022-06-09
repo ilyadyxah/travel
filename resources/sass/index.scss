@@ -18,14 +18,15 @@
 
 .container {
     max-width: 100%;
-    padding: 35px;
+    padding: 0 35px 0;
     align-items: center;
+    margin: 0;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
-    margin: 3% 3% 5% 3%;
+    margin: 0 3% 0 3%;
     align-items: center;
 }
 
@@ -45,7 +46,6 @@
     max-height: 40px;
 }
 
-
 .nav_link {
     margin: 0 15px;
     font-family: 'Inter';
@@ -58,6 +58,14 @@
     text-decoration: none;
 }
 
+// main {
+//     background-image: url('../img/thousand-01.png');
+//     background-repeat: no-repeat;
+//     background-attachment: fixed;
+//     background-size: auto;
+//     background-position: center;
+// }
+
 .btn {
     width: max-content;
     height: auto;
@@ -69,24 +77,28 @@
     line-height: 40px;
     display: flex;
     align-items: center;
-    color: #FFFFFF;
-    background: #4285f4;
-    border: #4285f4;
+    color: #FFFFFF !important;
+    background-color: #3578e4 !important;
+    border: 1px solid #4285f4;
     padding: 12px 36px;
+    transition: all .3s ease-out;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
 }
 
 
 .nav_link:hover {
-    font-weight: 500;
     color: #000;
+
 }
 
 .btn:hover {
-    background: #fff;
-    color: #4285f4;
-    // border-radius: 8px;
-    border: 1px solid #4285f4;
-    box-shadow: #3C587F;
+    background: #fff !important;
+    color: #327aee !important;
+    border: 1px solid #040a14;
+    box-shadow: #526c91;
 }
 
 .intro {
@@ -96,6 +108,11 @@
     margin-bottom: 32px;
     max-width: 100%;
     align-items: center;
+    background-image: url('../img/thousand-01.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+    background-position: center;
 }
 
 .intro_img_box {
@@ -381,11 +398,21 @@ select {
 }
 
 .footer {
-    height: 32px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #3C587F;
+    justify-content: space-evenly;
+    padding-top: 30px;
+    background-color: rgba(255, 255, 255, 0);
+
+    // .nav {
+    //     margin-bottom: 0;
+    //     padding-bottom: 0;
+    // }
+
+    hr {
+        margin: 0;
+    }
 }
 
 @import "../styles/ilya_style_mfucker.css";
@@ -422,9 +449,9 @@ select {
 // }
 
 @media (max-width:970px) {
-    .navbar__inner {
-        visibility: hidden;
-    }
+    // .navbar__inner {
+    //     visibility: hidden;
+    // }
 
     .intro {
         flex-direction: column;

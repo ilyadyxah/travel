@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
 
@@ -12,37 +13,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;800&display=swap" rel="stylesheet">
 
     <script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=e9930eee-b41e-4fab-89fa-e7a068bc79bf&lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=e9930eee-b41e-4fab-89fa-e7a068bc79bf&lang=ru_RU"
+        type="text/javascript"></script>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 
     <title>Travel</title>
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
         }
+    }
     </style>
 
 </head>
-<body>
-@component('components.header')
-@endcomponent
-<main>
-    @yield('content')
-</main>
-@component('components.footer')
-@endcomponent
-<script src="{{ asset('js/app.js') }}"></script>
-</body>
-</html>
 
+<body>
+    @component('components.header')
+    @endcomponent
+    <main>
+        @yield('content')
+    </main>
+    @component('components.footer')
+    @endcomponent
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
+
+</html>
