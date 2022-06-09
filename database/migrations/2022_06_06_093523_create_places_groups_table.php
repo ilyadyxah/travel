@@ -39,7 +39,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('places_groups', function (Blueprint $table) {
-            $table->dropForeign(['group_id', 'place_id']);
+//            $table->dropForeign(['group_id', 'place_id']);
             $table->dropIfExists('places_groups');
         });
 
