@@ -24,7 +24,7 @@ class HomepageController extends Controller
     public function index()
     {
         return view('home', [
-            'journeys' => Place::orderBy('updated_at', 'desc')->paginate(10),
+            'journeys' => Place::orderBy('updated_at', 'desc')->paginate(6),
             'images' => Image::all(),
             'cities' => City::all()->reject(function ($city) {
                 return $city->places->count() === 0;

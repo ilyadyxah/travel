@@ -17,6 +17,9 @@
             @endif
         </div>
     </div>
+    <div class="row justify-content-center">
+        {{$journeys->links()}}
+    </div>
 @endsection
 @once
     @push('js')
