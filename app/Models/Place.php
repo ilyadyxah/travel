@@ -167,10 +167,10 @@ class Place extends Model
         return $places;
     }
 
-    public static function getWhithFiltersOnPage(int $page, int $itemsPerPage, array $filters): Collection|array
+    public static function getWhithFiltersOnPage(int $itemsPerPage, array $filters): Collection|array
     {
         return
             self::getWithFilters($filters)
-                ->slice(($page - 1) * $itemsPerPage, $itemsPerPage);
+                ->forPage(1, $itemsPerPage);
     }
 }

@@ -29,9 +29,9 @@ class JourneyController extends Controller
             'search' => $request->search,
         ];
 
-        // Получаем места по 5 штук на заданной странице
+        // Получаем места по 15 штук на заданной странице
         $itemsPerPage = 15;
-        $places = Place::getWhithFiltersOnPage($page, $itemsPerPage, $filters);
+        $places = Place::getWhithFiltersOnPage($itemsPerPage, $filters);
 
         return view('trips', [
             'images' => Image::all(),
