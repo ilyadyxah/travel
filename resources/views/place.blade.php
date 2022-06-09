@@ -135,9 +135,8 @@
                         </div>
                         <div class="place_description">
                             <p class="text_description">{{ $place->description }}</p>
-                            <p class="text_description"><span class="">Расстояние от города: </span>{{ $place->distance }} км</p>
                             <p class="text_description"><span>Сложность: </span>{{ $place->complexity }} из 100</p>
-                            <p class="text_description"><span>Как добраться: </span>@foreach($place->transports as $transport){{ Str::ucfirst($transport->title) }} @endforeach</p>
+                            <p class="text_description"><span>На чём можно добраться из города: </span>@foreach($place->transports as $transport){{ Str::ucfirst($transport->title) . ', ' }} @endforeach</p>
                             <p class="text_description"><span>Сколько стоит: </span>{{ $place->cost ? $place->cost . 'руб' : 'бесплатно'}} </p>
                             <p id="route_description"></p>
 
