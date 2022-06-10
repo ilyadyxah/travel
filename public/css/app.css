@@ -11768,6 +11768,8 @@ textarea.form-control-lg {
 .btn:hover {
   background: #fff;
   color: #4285f4;
+  outline: 1px solid #4285f4;
+  box-shadow: #3C587F;
   border: #4285f4;
 }
 

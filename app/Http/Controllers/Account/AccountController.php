@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Place;
+use App\Models\Source;
 use App\Services\CreatedPlaceService;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
@@ -19,7 +20,8 @@ class AccountController extends Controller
         return view('account.profile', [
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
-            'created' => app(CreatedPlaceService::class)->getCreatedPlacesIds()
+            'created' => app(CreatedPlaceService::class)->getCreatedPlacesIds(),
+            'sources' => Source::all(),
         ]);
     }
 

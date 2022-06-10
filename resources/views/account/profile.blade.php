@@ -37,7 +37,20 @@
                         </p>
                     </a>
                 </div>
-                <a href="{{ route('app::parse', ['count' => 10]) }}">Спарсить</a>
+                <form class="d-flex align-items-center flex-column" method="get" action="{{ route('app::parse', ['count' => 10]) }}">
+                    @csrf
+                    <div class="d-inline-flex gap-1 align-items-center justify-content-evenly">
+                        <select name="source-id" class="form-select flex-fill h-auto">
+                            @foreach($sources as $source)
+                                    <option value="{{ $source->id }}">{{ $source->title . ': уже получено - ' .  $source->total_parsed_items}}</option>
+                            @endforeach
+                        </select>
+                        <input name="count" type="text" class="form-control h-auto"  placeholder="введите количество" value="{{ old('count') }}">
+
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-outline-success h-100">Спарсить</button>
+
+                </form>
             </div>
         </header>
     </section>
