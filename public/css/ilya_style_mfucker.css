@@ -1,22 +1,27 @@
-/* .navbar {
-    margin: 0 45px;
-} */
+.base_bg {
+  background-color: rgba(8, 226, 226, 0.349);
+  -webkit-box-shadow: 2px 2px 5px #97b7f1;
+          box-shadow: 2px 2px 5px #97b7f1;
+}
 
-/* .container {
-    padding: 25px;
-} */
+.form_bg {
+  background-color: #08e2e2;
+  -webkit-box-shadow: 2px 2px 5px #6193f0;
+          box-shadow: 2px 2px 5px #6193f0;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+}
 
-
-
-/* .intro_img {
-    z-index: -1;
-    width: auto;
-    height: auto;
-    position: absolute;
-    right: 80px;
-    top: 0;
-} */
-
-/* h1 {
-    margin-bottom: 30px;
-} */
+.form_bg:hover {
+  -webkit-box-shadow: 2px 2px 5px #3972db;
+          box-shadow: 2px 2px 5px #3972db;
+}
+/*# sourceMappingURL=ilya_style_mfucker.css.map */

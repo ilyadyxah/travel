@@ -1,0 +1,39 @@
+.base_bg {
+    background-color: rgba(8, 226, 226, 0.349);
+    box-shadow: 2px 2px 5px rgb(151, 183, 241);
+}
+
+.form_bg {
+    background-color: rgb(8, 226, 226);
+    box-shadow: 2px 2px 5px rgb(97, 147, 240);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+.form_bg:hover {
+    box-shadow: 2px 2px 5px rgb(57, 114, 219);
+}
+
+// .dropdown {
+//     .dropdown-menu {
+//         transition: all 0.5s;
+//         overflow: hidden;
+//         transform-origin: top center;
+//         transform: scale(1, 0);
+//         display: block;
+//     }
+
+//     &:focus {
+//         .dropdown-menu {
+//             transform: scale(1);
+//         }
+//     }
+// }
