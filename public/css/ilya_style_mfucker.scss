@@ -22,18 +22,15 @@
     box-shadow: 2px 2px 5px rgb(57, 114, 219);
 }
 
-// .dropdown {
-//     .dropdown-menu {
-//         transition: all 0.5s;
-//         overflow: hidden;
-//         transform-origin: top center;
-//         transform: scale(1, 0);
-//         display: block;
-//     }
-
-//     &:focus {
-//         .dropdown-menu {
-//             transform: scale(1);
-//         }
-//     }
-// }
+.a_slide:hover .fa-suitcase {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
