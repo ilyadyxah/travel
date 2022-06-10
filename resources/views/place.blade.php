@@ -78,10 +78,11 @@
                         <span id="end_longitude">{{ $place->longitude }}</span>
                     </p>
                 </div>
-                <div id="map"  style="width: 100%; height: 800px"></div>
+               
             </div>
 
         </div>
+         <div id="map"  style="width: 100%; height: 800px"></div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 g-4">
