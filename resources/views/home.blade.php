@@ -10,10 +10,12 @@
         <div class='intro '>
                 <div class="row ">
                     <div class='intro__inner col'>
-                        <h1>Исследуй и путешествуй</h1>
+                        <div class="intro_header">
+                            <h1>Исследуй и путешествуй</h1>
+                        </div>
                         @include('components.filter')
                     </div>
-                    <img class='intro_img' src="{{ asset('images/thousand-01.png') }}" alt="img" />
+                    <!-- <img class='intro_img' src="{{ asset('images/thousand-01.png') }}" alt="img" /> -->
                 </div>
         <div>
     </div>

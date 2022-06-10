@@ -1,79 +1,4 @@
 @extends('layouts.main')
-<!-- Demo styles -->
-<!-- <style>
-    .swiper {
-        width: 100%;
-        height: 100%;
-    }
-
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
-
-    .swiper-slide img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-
-    .swiper {
-        width: 100%;
-        height: 300px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .swiper-slide {
-        background-size: cover;
-        background-position: center;
-    }
-
-    .mySwiper2 {
-        height: 80%;
-        width: 100%;
-    }
-
-    .mySwiper {
-        height: 20%;
-        box-sizing: border-box;
-        padding: 10px 0;
-    }
-
-    .mySwiper .swiper-slide {
-        width: 25%;
-        height: 100%;
-        opacity: 0.4;
-    }
-
-    .mySwiper .swiper-slide-thumb-active {
-        opacity: 1;
-    }
-
-    .swiper-slide img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-</style> -->
 @section('title')
     @parent {{$pageTitle}}
 @endsection
@@ -86,8 +11,8 @@
     <!-- Swiper -->
 
     <div class="row place_card container align-items-start">
-        <div class="col-6 image_slider h-100">
-            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+        <div class="col-6 image_slider">
+            <div  class="swiper mySwiper2">
                 <div class="swiper-wrapper">
                     @foreach($place->images as $image)
                         <div class="swiper-slide">
@@ -110,7 +35,7 @@
         </div>
         <div class="col-6 h-100">
             <div class="bg-light pt-1 px-1 pt-md-1 px-md-1 text-center" >
-                    <div class="place_content overflow-scroll" style="height: 500px;">
+                    <div class="place_content" >
                             <div class="place_box">
                             <h2 class="display-5" data-id="city_name">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</h2>
                             <div class="like_box">

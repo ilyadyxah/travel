@@ -7,7 +7,7 @@
                     <h3>Имя отзывавшегося</h3>
                     <span class="reviewer_experienсe">Гуру</span>
                 </div>
-                <div class="review_tex">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam at a tempora modi? Asperiores, eveniet! Ad eum sed quis eaque? Suscipit atque veritatis itaque sunt fugiat est, perspiciatis illo ex qui accusamus ullam, repellat reprehenderit, voluptatibus quaerat ipsa iste voluptatem! Alias, deleniti! Perspiciatis eligendi ratione culpa magnam soluta.</div>
+                <div class="review_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam at a tempora modi? Asperiores, eveniet! Ad eum sed quis eaque? Suscipit atque veritatis itaque sunt fugiat est, perspiciatis illo ex qui accusamus ullam, repellat reprehenderit, voluptatibus quaerat ipsa iste voluptatem! Alias, deleniti! Perspiciatis eligendi ratione culpa magnam soluta.</div>
             </div>
             <div class="review_bottom">
                 <a href="#">Read more ></a>
