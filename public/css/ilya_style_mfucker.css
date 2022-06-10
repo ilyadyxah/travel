@@ -20,6 +20,14 @@
   -o-transition: all .5s ease;
 }
 
+.map_bg {
+  background-image: url(https://rfmaps.ru/images/konturnaya-karta-mira-m.jpg);
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  padding: 50px;
+}
+
 .form_bg:hover {
   -webkit-box-shadow: 2px 2px 5px #3972db;
           box-shadow: 2px 2px 5px #3972db;
