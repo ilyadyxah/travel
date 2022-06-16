@@ -11,7 +11,7 @@
                 <div class="row ">
                     <div class='intro__inner col'>
                         <div class="intro_header">
-                            <h1>Исследуй и путешествуй</h1>
+                            <h1 class="text-uppercase">Исследуй и путешествуй</h1>
                         </div>
                         @include('components.filter')
                     </div>
