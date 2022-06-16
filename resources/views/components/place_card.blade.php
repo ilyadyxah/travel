@@ -60,11 +60,8 @@
                             </a>
                         @endif
                     @endif
-
-
                 @endauth
             </div>
-
         </div>
         <hr class="dropdown-divider">
         <p style="text-indent: 1.5em; text-align: justify;" class="card-text">{{ Str::ucfirst(mb_substr($place->description, 0, 100)) . '...'}}</p>

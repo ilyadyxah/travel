@@ -24,14 +24,20 @@
                             <i class="fa-solid fa-thumbs-up"></i>
                         </p>
                     </a>
-                    <a  class="col-4 text-decoration-none text-light @if(count($favorites) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'favorite') }}">
+                    <a class="col-4 text-decoration-none text-light @if(count($favorites) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'favorite') }}">
                         <h4>{{ count($favorites) }}</h4>
                         <p class="fs-3">
                             <i class="fa-star fa-solid"></i>
                         </p>
                     </a>
-                    <a  class="col-4 text-decoration-none text-light @if(count($created) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'created') }}">
+                    <a class="col-4 text-decoration-none text-light @if(count($created) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'created') }}">
                         <h4>{{ count($created) }}</h4>
+                        <p class="fs-3">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </p>
+                    </a>
+                    <a class="col-4 text-decoration-none text-light" href="{{ route('show::routes') }}">
+                        <h4>Маршруты</h4>
                         <p class="fs-3">
                             <i class="fa-solid fa-map-location-dot"></i>
                         </p>

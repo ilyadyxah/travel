@@ -56,10 +56,8 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/all.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('js/yandex_map_route_to_place.js') }}"  type="text/javascript"></script>
-<script src="{{ asset('js/yandex_map_create_place.js') }}"  type="text/javascript"></script>
-<script src="{{ asset('js/yandex_map_show_all_places.js') }}"  type="text/javascript"></script>
 <script src="{{ asset('js/save_scroll_coords.js') }}"  type="text/javascript"></script>
+
 @stack('js')
 </body>
 </html>

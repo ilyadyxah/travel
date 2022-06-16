@@ -133,5 +133,9 @@
         document.getElementById('deletedImages').value = deletedImages
 
     }
-
 </script>
+@once
+    @push('js')
+        <script src="{{ asset('js/yandex_map_create_place.js') }}"  type="text/javascript"></script>
+    @endpush
+@endonce
