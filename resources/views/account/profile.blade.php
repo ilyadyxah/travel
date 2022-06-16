@@ -35,6 +35,12 @@
                             <i class="fa-solid fa-map-location-dot"></i>
                         </p>
                     </a>
+                    <a class="col-4 text-decoration-none text-light" href="{{ route('show::routes') }}">
+                        <h4>Маршруты</h4>
+                        <p class="fs-3">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </p>
+                    </a>
                 </div>
                 <form class="d-flex align-items-center flex-column" method="get" action="{{ route('app::parse', ['count' => 10]) }}">
                     @csrf
