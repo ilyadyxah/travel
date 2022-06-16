@@ -20,12 +20,29 @@
   -o-transition: all .5s ease;
 }
 
+h5 {
+  font-size: 1.5rem;
+  font-family: cursive;
+  font-style: italic;
+  text-shadow: 6px 5px 14px #2196f3;
+}
+
+h5:hover {
+  color: #2078c0;
+}
+
 .map_bg {
   background-image: url(https://rfmaps.ru/images/konturnaya-karta-mira-m.jpg);
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
   padding: 50px;
+}
+
+.trips_bg {
+  background: radial-gradient(circle at 95% 5%, rgba(127, 255, 212, 0.77) 0%, #eded06 15%, #00bcd4 50%, rgba(127, 255, 212, 0.71) 100%);
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .form_bg:hover {
@@ -44,5 +61,67 @@
   -moz-transition: all .5s ease;
   -ms-transition: all .5s ease;
   -o-transition: all .5s ease;
+}
+
+.flip {
+  position: relative;
+}
+
+.flip > .front,
+.flip > .back {
+  display: block;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+}
+
+.flip > .front {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.flip > .back {
+  position: absolute;
+  opacity: 0;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+  padding: 20px;
+  background: aliceblue;
+  border-radius: 14px;
+}
+
+.flip:hover > .front {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.flip:hover > .back {
+  opacity: 1;
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.flip.flip-vertical > .back {
+  -webkit-transform: rotateX(-180deg);
+          transform: rotateX(-180deg);
+}
+
+.flip.flip-vertical:hover > .front {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+
+.flip.flip-vertical:hover > .back {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
 }
 /*# sourceMappingURL=ilya_style_mfucker.css.map */
