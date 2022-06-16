@@ -5,9 +5,8 @@
 @section('header')
 @endsection
 @section('content')
-    <section class="profile">
+    <section class="profile ">
         @include('inc.message')
-        <header class="header">
             <div class="details m-2">
                 <img src="@if(Auth::user()->avatar){!!Auth::user()->avatar!!}@else{!! asset('images/default_avatar.png') !!}@endif" class="profile-pic" height="150" width="150">
                 <p class="heading">{{Auth::user()->name}}</p>
@@ -18,19 +17,19 @@
                     <p>Россия</p>
                 </div>
                 <div class="stats">
-                    <a href="{{ route('account.places', 'liked') }}" class="col-4 text-decoration-none text-light @if(count($likes) === 0) disabled @endif">
+                    <a href="{{ route('account.places', 'liked') }}" class="col-4 text-decoration-none  @if(count($likes) === 0) disabled @endif">
                         <h4>{{ count($likes) }}</h4>
                         <p class="fs-3">
                             <i class="fa-solid fa-thumbs-up"></i>
                         </p>
                     </a>
-                    <a  class="col-4 text-decoration-none text-light @if(count($favorites) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'favorite') }}">
+                    <a  class="col-4 text-decoration-none @if(count($favorites) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'favorite') }}">
                         <h4>{{ count($favorites) }}</h4>
                         <p class="fs-3">
                             <i class="fa-star fa-solid"></i>
                         </p>
                     </a>
-                    <a  class="col-4 text-decoration-none text-light @if(count($created) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'created') }}">
+                    <a  class="col-4 text-decoration-none @if(count($created) === 0){{'disabled'}}@endif" href="{{ route('account.places', 'created') }}">
                         <h4>{{ count($created) }}</h4>
                         <p class="fs-3">
                             <i class="fa-solid fa-map-location-dot"></i>
@@ -52,6 +51,7 @@
 
                 </form>
             </div>
-        </header>
     </section>
+
 @endsection
+
