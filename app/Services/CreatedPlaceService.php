@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Place;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,4 +22,16 @@ class CreatedPlaceService
             }
             return $createdPlacesId;
         }
+
+    public function getCreatedPlacesIdsByUser(User $user)
+    {
+        $createdPlacesId = [];
+
+            $data = Place::where('created_by_user_id', $user->id)
+                ->get();
+            foreach ($data as $key => $value){
+                $createdPlacesId[] = $value->id;
+            }
+        return $createdPlacesId;
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Place;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -50,6 +51,19 @@ class FavoriteService
                 $favoritePlacesId[] = $value->place_id;
             }
         }
+        return $favoritePlacesId;
+    }
+
+    public function getFavoritePlacesIdByUser(User $user)
+    {
+        $favoritePlacesId = [];
+
+            $data = DB::table('favorites')
+                ->where('user_id',$user->id )
+                ->get();
+            foreach ($data as $key => $value){
+                $favoritePlacesId[] = $value->place_id;
+            }
         return $favoritePlacesId;
     }
 

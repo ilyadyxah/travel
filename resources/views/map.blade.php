@@ -6,7 +6,12 @@
 
 @endsection
 @section('content')
-    <div class="container">
-        <div id="all_places_map" style="width: 100%; height: 700px"></div>
+    <div class="map_bg">
+        <div id="all_places_map" style="width: 80%; height: 700px"></div>
     </div>
 @endsection
+@once
+    @push('js')
+        <script src="{{ asset('js/yandex_map_show_all_places.js') }}"  type="text/javascript"></script>
+    @endpush
+@endonce

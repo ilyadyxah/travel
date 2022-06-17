@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\PlaceController;
+use App\Http\Controllers\Account\MessageController as AccountMessageController;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomepageController;
@@ -9,8 +11,10 @@ use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MapRenderController;
 use App\Http\Controllers\ParseController;
+use App\Http\Controllers\UsersRouteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccountController as PublicAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +28,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+// mail
+Route::get('/email', function (){
+    return new \App\Mail\NewMessageMail(\App\Models\Message::find(1));
+});
+
  Route::get('/', [HomepageController::class, 'index'])
      ->name('app::home');
 
  Route::match(['get', 'post'], '/journeys', [JourneyController::class, 'getJourneysWithFilters'])
      ->name('app::journeys');
+
+
 
 
 Route::get('/places/{place}', [JourneyController::class, 'show'])
@@ -43,14 +54,41 @@ Route::get('/like/count/{place}', [LikeController::class, 'placeLikeCount'])
     ->where('place', '\d+')
     ->name('like');
 
+
+//public profile
+Route::group(['as' => 'profile.', 'prefix' => 'profile'], function (){
+    Route::get('/{user_slug}', [PublicAccountController::class, 'showProfile'])
+//    ->where('slug', '\w+')
+    ->name('show');
+    Route::get('{title}/journeys/{user_slug}', [JourneyController::class, 'index'])
+//        ->where('place', '\d+')
+        ->name('places.index');
+});
+
+// account
+//routes
+Route::get('/route/{place}', [UsersRouteController::class, 'routeHandling'])
+    ->where('place', '\d+')
+    ->name('route');
+Route::get('/routes', [UsersRouteController::class, 'showRoutes'])
+    ->name('show::routes');
+
 //account
 Route::group(['middleware' => ['auth']], function (){
+
+    //        private or not
+    Route::get('/private/{user}', [AccountController::class, 'privateHandle'])
+        ->where('user', '\d+')
+        ->name('private');
 
     Route::group(['as' => 'account.', 'prefix' => 'my'], function (){
 
         Route::resources([
             '/place' => PlaceController::class,
+            '/message' => AccountMessageController::class,
+
         ]);
+
         Route::get('/profile', [AccountController::class, 'index'])
 //            ->middleware('verified')
             ->name('profile');
@@ -65,8 +103,16 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('/place', [PlaceController::class, 'index'])
             ->name('place');
 
+        Route::get('/message', [AccountMessageController::class, 'index'])
+            ->name('message');
+
+
+
     });
 });
+Route::get('/unauthorized/{user}', [PublicAccountController::class, 'unauthorized'])
+    ->where('user', '\d+')
+    ->name('unauthorized');
 
 //favorites
 Route::get('/favorite/{place}', [FavoriteController::class, 'favoriteHandling'])

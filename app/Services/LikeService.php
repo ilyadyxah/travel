@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Like;
 use App\Models\Place;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -12,11 +14,28 @@ class LikeService
     public function getLikedPlacesId()
     {
         $likedPlacesId = [];
-        $data = Auth::check() ? DB::table('likes')
-            ->where('user_id', Auth::user()->getAuthIdentifier())
-            ->get()->toArray() : DB::table('likes')
-            ->where('session_token', session()->get('_token'))
-            ->get()->toArray();
+        $data = Auth::check()
+            ?
+            DB::table('likes')
+                ->where('user_id', Auth::user()->getAuthIdentifier())
+                ->get()
+                ->toArray()
+            :
+            DB::table('likes')
+                ->where('session_token', session()->get('_token'))
+                ->get()
+                ->toArray();
+        foreach ($data as $key => $value) {
+            $likedPlacesId[] = $value->place_id;
+        }
+        return $likedPlacesId;
+    }
+
+    public function getLikedPlacesIdByUser(User $user)
+    {
+        $likedPlacesId = [];
+        $data = Like::where('user_id', $user->id)
+            ->get();
         foreach ($data as $key => $value) {
             $likedPlacesId[] = $value->place_id;
         }
