@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\Like;
 use App\Models\Place;
 use App\Models\Transport;
+use App\Models\User;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
 use Illuminate\Pagination\Paginator;
@@ -59,6 +60,43 @@ class JourneyController extends Controller
             'pageTitle' => Str::ucfirst($place->title)
 
         ]);
+    }
+    public function index(string $title, string $user_slug)
+    {
+        $user = User::where('slug', $user_slug)->firstOrFail();
+
+        switch ($title) {
+            case 'liked':
+                $places = Place::query()
+                    ->join('likes', 'likes.place_id', '=', 'places.id')
+                    ->where('user_id', $user->id)
+                    ->get('places.*');
+                $type = 'любимые';
+
+                break;
+            case 'favorite':
+                $places = Place::query()
+                    ->join('favorites', 'favorites.place_id', '=', 'places.id')
+                    ->where('user_id', $user->id)
+                    ->get('places.*');
+                $type = 'избранные';
+                break;
+            case 'created':
+                $places = Place::query()
+                    ->where('created_by_user_id', $user->id)
+                    ->get();
+                $type = 'созданные';
+                break;
+        }
+
+        return view('places.index', [
+            'user' => $user,
+            'journeys'=> $places,
+            'likes' => app(LikeService::class)->getLikedPlacesId(),
+            'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
+            'title' => $type
+        ]);
+
     }
 
 }
