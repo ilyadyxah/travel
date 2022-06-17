@@ -10,7 +10,6 @@
 
     <!-- Swiper -->
     <div class="wrapper">
-    <div class="col-6">
         <div id="carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php $i=0; foreach ($place->images as $image): ?>
@@ -31,67 +30,69 @@
         </div>
     </div>
     
-    <div class="col-6 h-100">
-        <div class="bg-light pt-1 px-1 pt-md-1 px-md-1 text-center">
-            <div class="place_content">
-                <div class="place_box">
-                    <h2 class="display-5"
-                        data-id="city_name">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</h2>
-                    <div class="like_box">
-                            <span like="{{$place->id}}" onclick="likeHandle(this)">
-                                @if(in_array($place->id, $likes))
-                                    <i class="fa-solid fa-thumbs-up"></i>
-                                @else
-                                    <i class="fa-regular fa-thumbs-up"></i>
-                                @endif
-                            </span>
-                        <span id="like-{{$place->id}}"
-                                class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}</span>
-                        @auth
-                            <span favorite="{{$place->id}}" id="favorite-{{ $place->id }}"
-                                    onclick="favoriteHandle(this)">
-                                @if(in_array($place->id, $favorites))
-                                    <i class="fa-star fa-solid"></i>
-                                @else
-                                    <i class="fa-star fa-regular"></i>
-                                @endif
-                            </span>
-                        @endauth
-                        @auth
-                            <span route="{{$place->id}}" onclick="routeHandle(this)">
-                                @if(in_array($place->id, $routes))
-                                    <p>удалить маршрут</p>
-                                @else
-                                    <p>добавить маршрут</p>
-                                @endif
-                            </span>
-                        @endauth
+    <div class="wrapper">
+        <div class="">
+            <div class="bg-light pt-1 px-1 pt-md-1 px-md-1 text-center">
+                <div class="place_content">
+                    <div class="place_box">
+                        
+                        <div class="like_box">
+                                <span like="{{$place->id}}" onclick="likeHandle(this)">
+                                    @if(in_array($place->id, $likes))
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                    @else
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                    @endif
+                                </span>
+                            <span id="like-{{$place->id}}"
+                                    class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}</span>
+                            @auth
+                                <span favorite="{{$place->id}}" id="favorite-{{ $place->id }}"
+                                        onclick="favoriteHandle(this)">
+                                    @if(in_array($place->id, $favorites))
+                                        <i class="fa-star fa-solid"></i>
+                                    @else
+                                        <i class="fa-star fa-regular"></i>
+                                    @endif
+                                </span>
+                            @endauth
+                            @auth
+                                <span route="{{$place->id}}" onclick="routeHandle(this)">
+                                    @if(in_array($place->id, $routes))
+                                        <p>удалить маршрут</p>
+                                    @else
+                                        <p>добавить маршрут</p>
+                                    @endif
+                                </span>
+                            @endauth
+                        </div>
+                        <h2 class="display-5"
+                            data-id="city_name">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</h2>
+                    </div>
+                    <div class="place_description">
+                        <p class="text_description">{{ $place->description }}</p>
+                        <p class="text_description"><span>Сложность: </span>{{ $place->complexity }} из 100</p>
+                        <p class="text_description">
+                            <span>На чём можно добраться из города: </span>@foreach($place->transports as $transport){{ Str::ucfirst($transport->title) . ', ' }} @endforeach
+                        </p>
+                        <p class="text_description">
+                            <span>Сколько стоит: </span>{{ $place->cost ? $place->cost . 'руб' : 'бесплатно'}} </p>
+                        <p id="route_description"></p>
+
                     </div>
                 </div>
-                <div class="place_description">
-                    <p class="text_description">{{ $place->description }}</p>
-                    <p class="text_description"><span>Сложность: </span>{{ $place->complexity }} из 100</p>
-                    <p class="text_description">
-                        <span>На чём можно добраться из города: </span>@foreach($place->transports as $transport){{ Str::ucfirst($transport->title) . ', ' }} @endforeach
+            </div>
+            <div class="route">
+                <div class="route_coordinates">
+                    <p>Координаты окончания маршрута:
+                        <!-- Широта -->
+                        <span id="end_latitude">{{ $place->latitude }}</span>,
+                        <!-- Долгота -->
+                        <span id="end_longitude">{{ $place->longitude }}</span>
                     </p>
-                    <p class="text_description">
-                        <span>Сколько стоит: </span>{{ $place->cost ? $place->cost . 'руб' : 'бесплатно'}} </p>
-                    <p id="route_description"></p>
-
                 </div>
             </div>
         </div>
-        <div class="route">
-            <div class="route_coordinates">
-                <p>Координаты окончания маршрута:
-                    <!-- Широта -->
-                    <span id="end_latitude">{{ $place->latitude }}</span>,
-                    <!-- Долгота -->
-                    <span id="end_longitude">{{ $place->longitude }}</span>
-                </p>
-            </div>
-        </div>
-    </div>
     </div>
     <div class="container base_bg p-4">
         <div class="row">
