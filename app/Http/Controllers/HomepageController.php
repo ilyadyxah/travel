@@ -32,7 +32,7 @@ class HomepageController extends Controller
     public function index()
     {
         return view('home', [
-            'journeys' => Place::orderBy('updated_at', 'desc')->paginate(6),
+            'journeys' => Place::orderBy('updated_at', 'desc')->paginate(12),
             'images' => Image::all(),
             'cities' => City::all()->reject(function ($city) {
                 return $city->places->count() === 0;
@@ -43,7 +43,6 @@ class HomepageController extends Controller
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'favorites' => [1, 2, 3],
             'routes' => $this->userRoutes->getSelectedPlaces(),
-            'test' => 1
         ]);
     }
 }

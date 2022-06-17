@@ -1,4 +1,4 @@
-function renderMap() {
+function renderMap(coordinates) {
 
     var myMap = new ymaps.Map('routes', {
         center: [55.751574, 37.573856],
@@ -6,18 +6,8 @@ function renderMap() {
         controls: ['routeButtonControl']
     });
 
-    //Получаем координаты всех путешествий
-    var coordinates = [];
-    $(".place-coords").each(function () {
-        var latitude = $(this).find("input:first-child").val();
-        var longitude = $(this).find("input:last-child").val();
-        coordinates.push([latitude, longitude]);
-    });
-
-    coordinates.sort(function (a, b) {
-        var coordA = a[0]*a[0] + a[1]*a[1];
-        var coordB = b[0]*b[0] + b[1]*b[1];
-        return coordA - coordB;
+    coordinates.forEach(function (item) {
+        item.splice(0, 1);
     })
 
 // Создание экземпляра маршрута.

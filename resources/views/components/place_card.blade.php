@@ -69,9 +69,9 @@
                         @auth
                             <span route="{{$place->id}}" onclick="routeHandle(this)">
                                 @if(in_array($place->id, $routes))
-                                    <p>удалить из маршрут</p>
+                                    <p style="cursor: pointer">удалить из маршрут</p>
                                 @else
-                                    <p>добавить в маршрут</p>
+                                    <p style="cursor: pointer">добавить в маршрут</p>
                                 @endif
                             </span>
                         @endauth

@@ -14,7 +14,7 @@
         <div id="carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php $i=0; foreach ($place->images as $image): ?>
-                    <?php if ($i==0) {$set_ = 'active'; } else {$set_ = ''; } ?> 
+                    <?php if ($i==0) {$set_ = 'active'; } else {$set_ = ''; } ?>
                         <div class='carousel-item <?php echo $set_; ?>' style="background-image: url('<?php echo $image->url; ?>');">
                             <img src='<?php echo $image->url; ?>' class='d-block w-100'>
                         </div>
@@ -30,7 +30,7 @@
                 </button>
         </div>
     </div>
-    
+
     <div class="col-6 h-100">
         <div class="bg-light pt-1 px-1 pt-md-1 px-md-1 text-center">
             <div class="place_content">
@@ -60,9 +60,9 @@
                         @auth
                             <span route="{{$place->id}}" onclick="routeHandle(this)">
                                 @if(in_array($place->id, $routes))
-                                    <p>удалить маршрут</p>
+                                    <p style="cursor: pointer">удалить из маршрута</p>
                                 @else
-                                    <p>добавить маршрут</p>
+                                    <p style="cursor: pointer">добавить в маршрут</p>
                                 @endif
                             </span>
                         @endauth

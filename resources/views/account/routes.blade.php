@@ -12,7 +12,7 @@
     <div class="container" style="display: flex">
         <div class="places-table" style="width: 50%;">
         @forelse($journeys as $place)
-            <div data-id="place_{{ $place->id }}">
+            <div class="place-table-item" id="{{ $place->id }}">
                 <div class="place-coords">
                     <input type="hidden" name="latitude" value="{{ $place->latitude }}">
                     <input type="hidden" data-id="longitude" value="{{ $place->longitude }}">
@@ -36,9 +36,12 @@
                     <div class="col-2">
                         <p>{{ $place->title }}</p>
                     </div>
-                    <div class="col">
+                    <div class="col-5">
                         <p style="text-indent: 1.5em; text-align: justify;"
                            class="card-text">{{ Str::ucfirst(mb_substr($place->description, 0, 100)) . '...'}}</p>
+                    </div>
+                    <div class="col-1">
+                        <span class="point-name" style="font-weight: bold"> метка - A </span>
                     </div>
                     <div class="col-1">
                         <button type="button" class="btn-close btn-close-route" name="{{ $place->id }}" aria-label="Close"></button>
@@ -49,7 +52,7 @@
             <p>Нет маршрутов</p>
         @endforelse
         </div>
-        <div id="routes" style="width:900px; max-width: 40%; height: 700px"></div>
+        <div id="routes" style="width:900px; max-width: 45%; height: 700px"></div>
     </div>
 @endsection
 @once
