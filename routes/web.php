@@ -72,6 +72,8 @@ Route::get('/route/{place}', [UsersRouteController::class, 'routeHandling'])
     ->name('route');
 Route::get('/routes', [UsersRouteController::class, 'showRoutes'])
     ->name('show::routes');
+Route::get('/route/delete/{id}', [UsersRouteController::class, 'delete'])
+    ->name('delete::routes');
 
 //account
 Route::group(['middleware' => ['auth']], function (){

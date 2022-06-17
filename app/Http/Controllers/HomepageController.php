@@ -8,6 +8,7 @@ use App\Models\Place;
 use App\Models\Transport;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
+use App\Services\UserRoutesService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Contracts\View\View;
@@ -15,6 +16,13 @@ use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
+    private UserRoutesService $userRoutes;
+
+    public function __construct(UserRoutesService $userRoutes)
+    {
+        $this->userRoutes = $userRoutes;
+    }
+
     /**
      * Handle the incoming request.
      *
@@ -25,7 +33,7 @@ class HomepageController extends Controller
     {
         return view('home', [
             'journeys' => Place::orderBy('updated_at', 'desc')->paginate(6),
-//            'images' => Image::all(),
+
             'cities' => City::all()->reject(function ($city) {
                 return $city->places->count() === 0;
             }),
@@ -33,7 +41,8 @@ class HomepageController extends Controller
                 return $transport->places->count() === 0;
             }),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
-            'favorites' => app(FavoriteService::class)->getFavoritePlacesId()
+            'favorites' => [1, 2, 3],
+            'routes' => $this->userRoutes->getSelectedPlaces(),
         ]);
     }
 }

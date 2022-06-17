@@ -36,27 +36,20 @@
             }
         }
     </style>
-
 </head>
 <body>
 <x-header/>
-
-{{--@component('components.header')--}}
-{{--@endcomponent--}}
-
 <main>
-
     @yield('header')
-
     @yield('content')
-
 </main>
+
 @component('components.footer')
 @endcomponent
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/all.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('js/save_scroll_coords.js') }}"  type="text/javascript"></script>
+{{--<script src="{{ asset('js/save_scroll_coords.js') }}"  type="text/javascript"></script>--}}
 
 @stack('js')
 </body>

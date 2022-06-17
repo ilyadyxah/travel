@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <div class="map_bg">
-        <div id="all_places_map" style="width: 80%; height: 700px"></div>
+        <div id="all_places_map" style="width: 95%; height: 700px"></div>
     </div>
 @endsection
 @once

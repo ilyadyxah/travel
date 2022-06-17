@@ -34,7 +34,7 @@ function init() {
     };
 
     $.cachedScript("api/mapData").done(function (data, textStatus) {
-        console.log(textStatus);
+        console.log(data);
         objectManager.add(data);
     });
 }

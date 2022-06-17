@@ -10,13 +10,13 @@
             </a>
         </div>
        <div class="back">
-
-        <div class="card_bottom flex-column  text-center ">
-            <a class="card-title text-decoration-none p-1 bg-transparent" href="{{ route('places.show', $place) }}">
-                <h5 class="bg-none">{{Str::ucfirst($place->title)}}</h5>
-            </a>
-            <div class="card_like_container d-flex w-100 justify-content-evenly">
-                <div>
+                <div class="card_bottom flex-column  text-center ">
+                    <a class="card-title text-decoration-none p-1 bg-transparent"
+                       href="{{ route('places.show', $place) }}">
+                        <h5 class="bg-none">{{Str::ucfirst($place->title)}}</h5>
+                    </a>
+                    <div class="card_like_container d-flex w-100 justify-content-evenly">
+                        <div>
                     <span like="{{$place->id}}" onclick="likeHandle(this)">
                     @if(in_array($place->id, $likes))
                             <i class="fa-solid fa-thumbs-up"></i>
@@ -24,52 +24,65 @@
                             <i class="fa-regular fa-thumbs-up"></i>
                         @endif
                 </span>
-                    <span id="like-{{$place->id}}"
-                          class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}
+                            <span id="like-{{$place->id}}"
+                                  class="">{{ $place->likes->count() === 0 ? '' : $place->likes->count() }}
                     </span>
-                </div>
+                        </div>
 
-                @auth
-                    <span favorite="{{$place->id}}"
-                          id="favorite-{{ $place->id }}"
-                          onclick="favoriteHandle(this)">
+                        @auth
+                            <span favorite="{{$place->id}}"
+                                  id="favorite-{{ $place->id }}"
+                                  onclick="favoriteHandle(this)">
                         @if(in_array($place->id, $favorites))
-                            <i class="fa-star fa-solid"></i>
-                        @else
-                            <i class="fa-star fa-regular"></i>
-                        @endif
+                                    <i class="fa-star fa-solid"></i>
+                                @else
+                                    <i class="fa-star fa-regular"></i>
+                                @endif
                     </span>
-                    @if($place->created_by_user_id === Auth::user()->id)
-                        @if(request()->routeIs('account.place*'))
-                            <div class="d-flex justify-content-evenly gap-3">
-                                <a class="text-secondary text-decoration-none" href="{{ route('account.place.edit', [$place]) }}">
-                                    <i class="fa-solid fa-gear"></i>
-                                </a>
-                                <form method="post" action="{{ route('account.place.destroy', $place) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="text-danger text-decoration-none border-0 bg-transparent" type="submit">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </form>
-                            </div>
+                            @if($place->created_by_user_id === Auth::user()->id)
+                                @if(request()->routeIs('account.place*'))
+                                    <div class="d-flex justify-content-evenly gap-3">
+                                        <a class="text-secondary text-decoration-none"
+                                           href="{{ route('account.place.edit', [$place]) }}">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </a>
+                                        <form method="post" action="{{ route('account.place.destroy', $place) }}">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="text-danger text-decoration-none border-0 bg-transparent"
+                                                    type="submit">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </div>
 
-                        @else
-                            <a class="text-secondary text-decoration-none" href="{{ route('account.places', 'created') }}">
-                                <i class="fa-solid fa-list-check"></i>
-                            </a>
-                        @endif
-                    @endif
-                @endauth
+                                @else
+                                    <a class="text-secondary text-decoration-none"
+                                       href="{{ route('account.places', 'created') }}">
+                                        <i class="fa-solid fa-list-check"></i>
+                                    </a>
+                                @endif
+                            @endif
+                        @endauth
+                        @auth
+                            <span route="{{$place->id}}" onclick="routeHandle(this)">
+                                @if(in_array($place->id, $routes))
+                                    <p style="cursor: pointer">удалить из маршрут</p>
+                                @else
+                                    <p style="cursor: pointer">добавить в маршрут</p>
+                                @endif
+                            </span>
+                        @endauth
+                    </div>
+                </div>
+                <hr class="dropdown-divider">
+                <p style="text-indent: 1.5em; text-align: justify;"
+                   class="card-text">{{ Str::ucfirst(mb_substr($place->description, 0, 100)) . '...'}}</p>
+
             </div>
         </div>
-        <hr class="dropdown-divider">
-        <p style="text-indent: 1.5em; text-align: justify;" class="card-text">{{ Str::ucfirst(mb_substr($place->description, 0, 100)) . '...'}}</p>
-
-       </div>
-    </div>
     @empty
-  <h3 class="text-warning text-center vh-100 col align-self-center">Не найдено</h3>
+        <h3 class="text-warning text-center vh-100 col align-self-center">Не найдено</h3>
     @endforelse
 </div>
 

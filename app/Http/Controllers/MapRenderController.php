@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Place;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 
 class MapRenderController extends Controller
 {
-    public function render()
+    public function render(): Factory|View|Application
     {
         return view('map');
     }
@@ -30,7 +33,15 @@ class MapRenderController extends Controller
                 "id" => $place->id,
                 "geometry" => ["type" => "Point", "coordinates" => [$place->latitude, $place->longitude]],
                 "properties" => [
-                "balloonContentHeader" => sprintf("<span style=\"font-size: small; \"><b><a target='_blank' href=%s> $place->title </a></b></span>", route('places.show', ['place' => $place->id]))
+                "balloonContentHeader" =>
+                    "<span style=\"font-size: small; \"><b>$place->title</b></span>"
+                    . sprintf("<b><a target='_blank' href=%s style='text-decoration: none'> > </a></b>", route('places.show', ['place' => $place->id])),
+                "balloonContentBody" =>
+                    sprintf(
+                    "<a target='_blank' href=%s><img src=%s style='height: 200px'></a>",
+                    route('places.show', ['place' => $place->id]),
+                        asset($place->images->first()->url)),
+                    "hintContent" => $place->title,
                 ]
             ];
         }

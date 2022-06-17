@@ -5,6 +5,7 @@ namespace App\View\Components;
 use App\Services\CreatedPlaceService;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
+use App\Services\UserRoutesService;
 use Illuminate\View\Component;
 
 class Header extends Component
@@ -20,10 +21,10 @@ class Header extends Component
     {
         return view('components.header',
             [
-
                 'likes' => app(LikeService::class)->getLikedPlacesId(),
                 'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
                 'created' => app(CreatedPlaceService::class)->getCreatedPlacesIds(),
+                'routes' => app(UserRoutesService::class)->getSelectedPlaces(),
             ]);
     }
 }
