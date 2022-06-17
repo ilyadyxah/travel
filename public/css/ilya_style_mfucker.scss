@@ -37,8 +37,10 @@ h5:hover {
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
-    // background: linear-gradient(192deg, rgba(0, 255, 247, 1) 0%, rgba(58, 183, 153, 1) 50%, rgba(169, 217, 237, 1) 100%);
     padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .trips_bg {
@@ -138,4 +140,39 @@ h5:hover {
     background-color: #b6f4ce;
     ;
     color: #000;
+}
+
+.carousel-item {
+    width: 500px;
+    height: 500px;
+    background-size: cover;
+    // filter: blur(5px);
+    
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        backdrop-filter: blur(6px);
+    }
+}
+
+.blur {
+    width: 100%;
+}
+
+.carousel-inner {
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    box-shadow: 6px -6px 15px 4px lightskyblue;
+}
+.wrapper{
+    box-shadow: inset 6px -6px 15px 4px lightskyblue;
+    padding: 25px 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
 }
