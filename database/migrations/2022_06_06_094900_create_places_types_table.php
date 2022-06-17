@@ -41,5 +41,6 @@ return new class extends Migration
         Schema::table('places_types', function (Blueprint $table) {
 //            $table->dropForeign(['type_id', 'place_id']);
             $table->dropIfExists('places_groups');
-        });    }
+        });
+    }
 };

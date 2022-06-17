@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Place;
 use App\Models\Source;
+use App\Models\User;
 use App\Services\CreatedPlaceService;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
 use App\Services\UserRoutesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class AccountController extends Controller
 {
@@ -79,4 +80,36 @@ class AccountController extends Controller
             return response()->json('error', 400);
         }
     }
+
+    public function privateHandle(User $user)
+    {
+        if ($this->isItYou($user)){
+            try {
+                if ($user->is_private) {
+                    $user->is_private = false;
+                } else {
+                    $user->is_private = true;
+                }
+
+                $user->save();
+
+                $response['is_private'] = $user->is_private;
+                return response()->json($response);
+
+            } catch (\Exception $e) {
+                return response()->json('error', 400);
+            }
+        }
+        return redirect()->route('unauthorized', ['user' => $user]);
+
+    }
+
+    protected function isItYou(User $user): bool
+    {
+        return Auth::user()->getAuthIdentifier() === $user->id;
+    }
+
+
+
+
 }

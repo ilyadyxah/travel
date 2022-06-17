@@ -1,17 +1,15 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
 
-    @forelse($journeys as $place)
-        <div class="col-4 card card_body flip atropos">
-            <div class="front">
-                <a href="{{ route('places.show', $place) }}" class="bg-dark rounded-3">
-                    <img class='card-img'
-                         src="@if($place->main_picture_id) {{ str_starts_with($images->find($place->main_picture_id)->url, 'http')) ? $images->find($place->main_picture_id)->url : Storage::disk('public')->url($images->find($place->main_picture_id)->url }}@else {{ 'https://e7.pngegg.com/pngimages/76/438/png-clipart-classical-compass-winds-cztery-wielkie-wynalazki-hybert-design-golden-compass-golden-frame-technic.png' }} @endif"
-                         alt="{{ $place->title }}"
-                         style="height: 200px; object-fit: cover;"/>
-                </a>
-            </div>
-            <div class="back">
-
+@forelse($journeys as $place)
+    <div class="col-4 card card_body flip atropos">
+        <div class="front">
+             <a href="{{ route('places.show', $place) }}" class="bg-dark rounded-3">
+                <img class='card-img' src="@if($place->main_picture_id) {{ str_starts_with($place->images->find($place->main_picture_id)->url, 'http')) ? $place->images->find($place->main_picture_id)->url : Storage::disk('public')->url($place->images->find($place->main_picture_id)->url }}@else {{ 'https://e7.pngegg.com/pngimages/76/438/png-clipart-classical-compass-winds-cztery-wielkie-wynalazki-hybert-design-golden-compass-golden-frame-technic.png' }} @endif"
+                    alt="{{ $place->title }}"
+                style="height: 200px; object-fit: cover;"/>
+            </a>
+        </div>
+       <div class="back">
                 <div class="card_bottom flex-column  text-center ">
                     <a class="card-title text-decoration-none p-1 bg-transparent"
                        href="{{ route('places.show', $place) }}">
