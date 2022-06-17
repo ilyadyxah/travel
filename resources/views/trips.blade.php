@@ -6,7 +6,7 @@
 
 @endsection
 @section('content')
-    <div class="container">
+    <div class="container trips_bg">
         @include('components.filter_find')
         <div class="row g-4">
             @if ($journeys->count())
@@ -20,7 +20,9 @@
                 </div>
         </div>
     </div>
-
+    <!-- <div class="row justify-content-center container">
+        {{$journeys->links()}}
+    </div> -->
 @endsection
 @once
     @push('js')

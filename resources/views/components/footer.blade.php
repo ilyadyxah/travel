@@ -1,4 +1,4 @@
-    <footer class="my-4 sticky-bottom">
+    <footer class="my-4">
         <ul class="nav justify-content-center pb-3 mb-3">
             <li >
                 <a href="{{ route('app::home') }}" class='nav_link'>Домой</a>

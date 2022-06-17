@@ -1,3 +1,124 @@
+.atropos {
+  position: relative;
+  display: block;
+  -webkit-perspective: 1200px;
+          perspective: 1200px;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.atropos-rotate-touch, .atropos-rotate-scroll-x, .atropos-rotate-scroll-y {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.atropos-rotate-touch-scroll-y {
+  -ms-touch-action: pan-y;
+      touch-action: pan-y;
+}
+
+.atropos-rotate-touch-scroll-x {
+  -ms-touch-action: pan-x;
+      touch-action: pan-x;
+}
+
+.atropos-rotate-touch {
+  -ms-touch-action: none;
+      touch-action: none;
+}
+
+.atropos-scale,
+.atropos-rotate {
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  display: block;
+}
+
+.atropos-shadow,
+.atropos-highlight {
+  position: absolute;
+  pointer-events: none;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+  display: block;
+  opacity: 0;
+}
+
+.atropos-shadow {
+  z-index: -1;
+  background: #000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(30px);
+          filter: blur(30px);
+}
+
+.atropos-highlight {
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(circle at 50%, rgba(255, 255, 255, 0.25), transparent 50%);
+  z-index: 0;
+}
+
+.atropos-rotate {
+  position: relative;
+}
+
+.atropos-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  display: block;
+}
+
+.atropos-active {
+  z-index: 1;
+}
+
+.atropos-active .atropos-shadow {
+  opacity: 1 !important;
+}
+
+[data-atropos-offset] {
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+}
+
+[data-atropos-opacity] {
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+}
+
+[data-atropos-offset][data-atropos-opacity] {
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+}
+
 .base_bg {
   background-color: rgba(8, 226, 226, 0.349);
   -webkit-box-shadow: 2px 2px 5px #97b7f1;
@@ -20,12 +141,29 @@
   -o-transition: all .5s ease;
 }
 
+h5 {
+  font-size: 1.5rem;
+  font-family: cursive;
+  font-style: italic;
+  text-shadow: 6px 5px 14px #2196f3;
+}
+
+h5:hover {
+  color: #2078c0;
+}
+
 .map_bg {
   background-image: url(https://rfmaps.ru/images/konturnaya-karta-mira-m.jpg);
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
   padding: 50px;
+}
+
+.trips_bg {
+  background: radial-gradient(circle at 95% 5%, rgba(127, 255, 212, 0.77) 0%, #eded06 15%, #00bcd4 50%, rgba(127, 255, 212, 0.71) 100%);
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .form_bg:hover {
@@ -44,5 +182,91 @@
   -moz-transition: all .5s ease;
   -ms-transition: all .5s ease;
   -o-transition: all .5s ease;
+}
+
+.flip {
+  position: relative;
+}
+
+.flip > .front,
+.flip > .back {
+  display: block;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+}
+
+.flip > .front {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.flip > .back {
+  position: absolute;
+  opacity: 0;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+  padding: 20px;
+  background: aliceblue;
+  border-radius: 14px;
+}
+
+.flip:hover > .front {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.flip:hover > .back {
+  opacity: 1;
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.flip.flip-vertical > .back {
+  -webkit-transform: rotateX(-180deg);
+          transform: rotateX(-180deg);
+}
+
+.flip.flip-vertical:hover > .front {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+
+.flip.flip-vertical:hover > .back {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+
+.profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  background-color: aquamarine;
+  padding: 35px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.details {
+  text-align: center;
+  border-color: blue;
+  border-radius: 10px;
+  -webkit-box-shadow: 6px -6px 15px 4px lightskyblue;
+          box-shadow: 6px -6px 15px 4px lightskyblue;
+  background-color: #b6f4ce;
+  color: #000;
 }
 /*# sourceMappingURL=ilya_style_mfucker.css.map */

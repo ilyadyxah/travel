@@ -14,11 +14,17 @@ class LikeService
     public function getLikedPlacesId()
     {
         $likedPlacesId = [];
-        $data = Auth::check() ? DB::table('likes')
-            ->where('user_id', Auth::user()->getAuthIdentifier())
-            ->get()->toArray() : DB::table('likes')
-            ->where('session_token', session()->get('_token'))
-            ->get()->toArray();
+        $data = Auth::check()
+            ?
+            DB::table('likes')
+                ->where('user_id', Auth::user()->getAuthIdentifier())
+                ->get()
+                ->toArray()
+            :
+            DB::table('likes')
+                ->where('session_token', session()->get('_token'))
+                ->get()
+                ->toArray();
         foreach ($data as $key => $value) {
             $likedPlacesId[] = $value->place_id;
         }

@@ -11,6 +11,7 @@ use App\Models\Transport;
 use App\Models\User;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
+use App\Services\UserRoutesService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,6 +58,7 @@ class JourneyController extends Controller
             'place' => $place,
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
+            'routes' => app(UserRoutesService::class)->getSelectedPlaces(),
             'pageTitle' => Str::ucfirst($place->title)
 
         ]);

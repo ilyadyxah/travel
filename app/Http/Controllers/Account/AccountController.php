@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Services\CreatedPlaceService;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
+use App\Services\UserRoutesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;

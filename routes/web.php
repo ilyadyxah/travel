@@ -11,6 +11,7 @@ use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MapRenderController;
 use App\Http\Controllers\ParseController;
+use App\Http\Controllers\UsersRouteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController as PublicAccountController;
@@ -65,6 +66,14 @@ Route::group(['as' => 'profile.', 'prefix' => 'profile'], function (){
 });
 
 // account
+//routes
+Route::get('/route/{place}', [UsersRouteController::class, 'routeHandling'])
+    ->where('place', '\d+')
+    ->name('route');
+Route::get('/routes', [UsersRouteController::class, 'showRoutes'])
+    ->name('show::routes');
+
+//account
 Route::group(['middleware' => ['auth']], function (){
 
     //        private or not
