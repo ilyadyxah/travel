@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
 use App\Models\Place;
 use App\Models\Route;
-use App\Services\FavoriteService;
-use App\Services\LikeService;
 use App\Services\UserRoutesService;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class UsersRouteController extends Controller
         return $this->userRoutes->routeHandle($place);
     }
 
-    public function showRoutes()
+    public function showRoutes(): Factory|View|Application
     {
         $places = Place::query()
             ->join('routes', 'routes.place_id', '=', 'places.id')
@@ -37,11 +38,31 @@ class UsersRouteController extends Controller
             ->get();
 
         return view('account.routes', [
-            'journeys'=> $places,
-            'images' => Image::all()
+            'journeys' => $places,
         ]);
-
-
     }
 
+    public function delete($id): JsonResponse
+    {
+        {
+            try {
+                $route = Route::query()
+                    ->where('user_id', Auth::user()->getAuthIdentifier())
+                    ->where('place_id', $id);
+
+                if ($route->exists()) {
+                    $route->delete();
+                    $response = [
+                        'state' => 'success',
+                    ];
+                }
+
+                return response()->json($response);
+
+            } catch (Exception $e) {
+                return response()->json('error', 400);
+            }
+
+        }
+    }
 }

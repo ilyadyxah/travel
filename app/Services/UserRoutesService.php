@@ -18,9 +18,8 @@ class UserRoutesService
                     ->where('place_id', '=', $place->id)
                     ->where('user_id', '=', Auth::user()->getAuthIdentifier());
             } else {
-                $routes = DB::table('routes')
-                    ->where('place_id', '=', $place->id)
-                    ->where('session_token', '=', session()->get('_token'));
+
+                return response()->json('error', 400);
             }
             if ($routes->exists()) {
                 $routes->delete();
@@ -31,7 +30,6 @@ class UserRoutesService
                 DB::table('routes')->insert([
                     'place_id' => $place->id,
                     'user_id' => Auth::user()->id ?? 1,
-                    'session_token' => session()->get('_token'),
                 ]);
                 $response = [
                     'state' => 'removeRoute',
@@ -51,16 +49,11 @@ class UserRoutesService
     {
         $placesId = [];
         $data = Auth::check()
-            ?
-            DB::table('routes')
+            ? DB::table('routes')
                 ->where('user_id', Auth::user()->getAuthIdentifier())
                 ->get()
                 ->toArray()
-            :
-            DB::table('routes')
-                ->where('session_token', session()->get('_token'))
-                ->get()
-                ->toArray();
+            : null;
         foreach ($data as $value) {
             $placesId[] = $value->place_id;
         }

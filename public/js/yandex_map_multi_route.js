@@ -1,10 +1,4 @@
-ymaps.ready(function () {
-
-    $(".btn-close-route").click(function () {
-        console.log(1);
-        var id = $(this).getAttribute('name');
-        console.log(id);
-    })
+function renderMap() {
 
     var myMap = new ymaps.Map('routes', {
         center: [55.751574, 37.573856],
@@ -26,7 +20,6 @@ ymaps.ready(function () {
         return coordA - coordB;
     })
 
-    console.log(coordinates);
 // Создание экземпляра маршрута.
     var multiRoute = new ymaps.multiRouter.MultiRoute({
         // Точки маршрута.
@@ -40,5 +33,5 @@ ymaps.ready(function () {
 
 // Добавление маршрута на карту.
     myMap.geoObjects.add(multiRoute);
-})
-;
+}
+
