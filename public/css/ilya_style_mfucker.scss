@@ -142,9 +142,27 @@ h5:hover {
     color: #000;
 }
 
+
+.wrapper {
+    box-shadow: inset 6px -6px 15px 4px lightskyblue;
+    padding: 25px 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.carousel-inner {
+    width: 650px;
+    height: 650px;
+    margin: auto;
+    box-shadow: 6px -6px 15px 4px lightskyblue;
+}
+
 .carousel-item {
-    width: 500px;
-    height: 500px;
+    width: 650px;
+    height: 650px;
     background-size: cover;
     // filter: blur(5px);
     
@@ -156,23 +174,8 @@ h5:hover {
         backdrop-filter: blur(6px);
     }
 }
-
-.blur {
-    width: 100%;
-}
-
-.carousel-inner {
-    width: 500px;
-    height: 500px;
-    margin: auto;
-    box-shadow: 6px -6px 15px 4px lightskyblue;
-}
-.wrapper{
-    box-shadow: inset 6px -6px 15px 4px lightskyblue;
-    padding: 25px 0;
-    margin: 10px 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-}
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    background-color: #03a9f4a8;
+    border-radius: 50%;
+    }

@@ -16,7 +16,7 @@
                     <?php $i=0; foreach ($place->images as $image): ?>
                     <?php if ($i==0) {$set_ = 'active'; } else {$set_ = ''; } ?> 
                         <div class='carousel-item <?php echo $set_; ?>' style="background-image: url('<?php echo $image->url; ?>');">
-                            <img src='<?php echo $image->url; ?>' class='d-block'>
+                            <img src='<?php echo $image->url; ?>' class='d-block w-100'>
                         </div>
                     <?php $i++; endforeach ?>
                 </div>
