@@ -41,7 +41,7 @@ class HomepageController extends Controller
                 return $transport->places->count() === 0;
             }),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
-            'favorites' => [1, 2, 3],
+            'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
             'routes' => $this->userRoutes->getSelectedPlaces(),
         ]);
     }
