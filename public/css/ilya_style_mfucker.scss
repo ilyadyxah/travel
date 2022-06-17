@@ -154,14 +154,16 @@ h5:hover {
 }
 
 .carousel-inner {
-    width: 650px;
+    width: 100%;
+    min-width: 650px;
     height: 650px;
     margin: auto;
     box-shadow: 6px -6px 15px 4px lightskyblue;
 }
 
 .carousel-item {
-    width: 650px;
+    width: 100%;
+    min-width: 650px;
     height: 650px;
     background-size: cover;
     // filter: blur(5px);
@@ -178,4 +180,28 @@ h5:hover {
 .carousel-control-next-icon{
     background-color: #03a9f4a8;
     border-radius: 50%;
+}
+
+.place_box{
+    justify-content: flex-start;
+}
+
+.like_box{
+background: radial-gradient(ellipse at 75% 84%, rgba(56, 219, 240, 1) 1%, rgba(101, 160, 187, 1) 96%);
+   border: 1px solid #2196f3;
+   padding: 5px;
+   margin: 5px;
+   border-radius:68% 32% 50% 50% / 46% 20% 80% 54%;
+   -webkit-border-radius:68% 32% 50% 50% / 46% 20% 80% 54%;
+   -moz-border-radius:68% 32% 50% 50% / 46% 20% 80% 54%;
+   -ms-border-radius:68% 32% 50% 50% / 46% 20% 80% 54%;
+   -o-border-radius:68% 32% 50% 50% / 46% 20% 80% 54%;
+}
+
+.place_content{
+    background-color: #7fb1ff17;
+    .text_description{
+        font-family: cursive;
     }
+
+}
