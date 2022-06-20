@@ -10,14 +10,12 @@ use App\Models\Image;
 use App\Models\Place;
 use App\Models\Transport;
 use App\Services\UploadService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PlaceController extends Controller
 {
     public function create()
     {
-
         return view('account.places.create', [
             'fieldsToCreate' => Place::getFieldsToCreate(),
             'linkedFields' => Place::getLinkedFields(),
@@ -32,11 +30,11 @@ class PlaceController extends Controller
     public function store(CreateRequest $request)
     {
         $data = $request->validated();
-// сохраняю картинки
+        // сохраняю картинки
         foreach ($request->images as $image) {
-            $ImageData['url'] = app(UploadService::class)
+            $imageData['url'] = app(UploadService::class)
                 ->saveFile($image, 'images');
-            $picture = Image::create($ImageData);
+            $picture = Image::create($imageData);
             // создаю массив с идентификаторами
             $imagesIds[] = $picture->id;
             // в качестве главной картинки выбираю в произвольном порядке
@@ -89,8 +87,7 @@ class PlaceController extends Controller
     public function update(UpdateRequest $request, Place $place)
     {
         $data = $request->validated();
-
-// сохраняю картинки
+        // сохраняю картинки
         if ($request->images) {
             foreach ($request->images as $image) {
                 $ImageData['url'] = app(UploadService::class)
@@ -98,7 +95,6 @@ class PlaceController extends Controller
                 $picture = Image::create($ImageData);
                 // создаю массив с идентификаторами
                 $imagesIds[] = $picture->id;
-
             };
         }
         // удаляю не нужные картинки
@@ -109,7 +105,6 @@ class PlaceController extends Controller
                     ->deleteFile($image->url);
             } else {
                 $imagesIds[] = $image->id;
-
             }
         }
         // в качестве главной картинки выбираю в произвольном порядке из загруженных
@@ -137,12 +132,11 @@ class PlaceController extends Controller
 
             ]);
         }
+
         return back()->with([
             'error' => __('messages.account.places.updated.error'),
             'item' => $place->title
         ])->withInput();
-
-
     }
 
     public function destroy(Place $place)
@@ -154,12 +148,14 @@ class PlaceController extends Controller
 
         $deleted = $place->delete();
         if ($deleted) {
+
             return redirect()->route('account.places', 'created')->with([
                 'success' => __('messages.account.places.deleted.success'),
                 'item' => $place->title
 
             ]);
         }
+
         return back()->with([
             'error' => __('messages.account.places.deleted.error'),
             'item' => $place->title

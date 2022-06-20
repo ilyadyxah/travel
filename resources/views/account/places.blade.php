@@ -19,5 +19,6 @@
     @push('js')
         <script src="{{ asset('js/likeHandle.js')}}"></script>
         <script src="{{ asset('js/favoriteHandle.js')}}"></script>
+        <script src="{{ asset('js/routeHandle.js')}}"></script>
     @endpush
 @endonce

@@ -3,33 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use App\Models\Comment;
 use App\Models\Image;
-use App\Models\Like;
 use App\Models\Place;
 use App\Models\Transport;
 use App\Models\User;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
 use App\Services\UserRoutesService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
-use Symfony\Component\HttpFoundation\Request;
 
 class JourneyController extends Controller
 {
-    public function getJourneysWithFilters(Request $request, $page = 1)
+    public function getJourneysWithFilters(Request $request): Factory|View|Application
     {
         // Определяем фильтры из запроса
         $filters = [
-            'city' => $request->city, // город
-            'transport' => $request->transport, // вид транспорта
-            'complexity' => $request->complexity, // сложность
-            'minDistance' => $request->minDistance, //.. и т.д.
-            'maxDistance' => $request->maxDistance,
-            'minCost' => $request->minCost,
-            'maxCost' => $request->maxCost,
-            'search' => $request->search,
+            'city' => $request->input('city'), // город
+            'transport' => $request->input('transport'), // вид транспорта
+            'complexity' => $request->input('complexity'), // сложность
+            'minDistance' => $request->input('minDistance'), //.. и т.д.
+            'maxDistance' => $request->input('maxDistance'),
+            'minCost' => $request->input('minCost'),
+            'maxCost' => $request->input('maxCost'),
+            'search' => $request->input('search'),
         ];
 
         // Получаем места по 15 штук на заданной странице
@@ -53,7 +54,7 @@ class JourneyController extends Controller
         ]);
     }
 
-    public function show(Place $place)
+    public function show(Place $place): Factory|View|Application
     {
         return view('place', [
             'place' => $place,
@@ -61,11 +62,12 @@ class JourneyController extends Controller
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
             'routes' => app(UserRoutesService::class)->getSelectedPlaces(),
             'pageTitle' => Str::ucfirst($place->title)
-
         ]);
     }
-    public function index(string $title, string $user_slug)
+
+    public function index(string $title, string $user_slug): Factory|View|Application
     {
+
         $user = User::where('slug', $user_slug)->firstOrFail();
 
         switch ($title) {
@@ -94,12 +96,11 @@ class JourneyController extends Controller
 
         return view('places.index', [
             'user' => $user,
-            'journeys'=> $places,
+            'journeys' => $places,
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
-            'title' => $type
+            'title' => $type,
+            'routes' => []
         ]);
-
     }
-
 }

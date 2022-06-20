@@ -27,20 +27,17 @@ class ParseController extends \Illuminate\Routing\Controller
         $data = [];
         $linkedData = [];
         $source = Source::find($inputData['source-id']);
-
         $startId = $source->last_parsed_item_id ?? 284235;
-
 
         for ($i = 0; count($data) < $inputData['count']; $i++) {
             $id = $startId + $i;
             $parseData = file_get_contents($this->getUrl($id));
-//получаю все данные
+            //получаю все данные
             if ($parseData = json_decode($parseData)->item) {
                 $data[$id]['district'] = $parseData->district->name;
                 $data[$id]['region'] = $parseData->region->name;
                 $data[$id]['title'] = $parseData->title;
                 $data[$id]['description'] = strip_tags($parseData->desc);
-//                todo разобраться почему широта и долгота отображаются не корректно
                 $data[$id]['longitude'] = $parseData->geo->lon;
                 $data[$id]['latitude'] = $parseData->geo->lat;
 
@@ -49,8 +46,6 @@ class ParseController extends \Illuminate\Routing\Controller
                 $linkedData[$id]['cities'] = $parseData->local->name ?? 'Россия';
                 $linkedData[$id]['transports'] = isset($parseData->transports) ? $parseData->transports->name : 'пешком';
                 $linkedData[$id]['images'] = $parseData->images;
-
-
             }
         }
         //сохраняю места, если их нет
@@ -69,7 +64,6 @@ class ParseController extends \Illuminate\Routing\Controller
                     'title' =>  $linkedData[$key]['groups']
                 ]);
                 $linkedData[$key]['groups'] = $group->id;
-
 
                 $type = Type::query()->firstOrCreate([
                     'title' => $linkedData[$key]['types']
@@ -112,10 +106,7 @@ class ParseController extends \Illuminate\Routing\Controller
         return redirect()->route('account.profile' )->with([
             'success'=> __('messages.account.places.parsed.success'),
             'item' => count($data) . ' мест',
-
         ]);
-
-//        return response()->json($data);
     }
 
     public function getUrl($id): string

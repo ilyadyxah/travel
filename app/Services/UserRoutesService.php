@@ -49,7 +49,7 @@ class UserRoutesService
         }
     }
 
-    public function getSelectedPlaces(): array|null
+    public function getSelectedPlaces(): array
     {
         $placesId = [];
         $data = Auth::check()
@@ -66,6 +66,6 @@ class UserRoutesService
             return $placesId;
         }
 
-        return null;
+        return [];
     }
 }

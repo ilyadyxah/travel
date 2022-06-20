@@ -8,13 +8,13 @@ use Mockery\Exception;
 
 class UploadService
 {
-
     public function saveFile(UploadedFile $file, string $path): string
     {
         $status = $file->storeAs("places/{$path}", $file->hashName(), 'public');
-        if (!$status){
+        if (!$status) {
             throw new Exception('файл не загружен');
         }
+
         return $status;
     }
 
@@ -24,7 +24,7 @@ class UploadService
      */
     public function deleteFile(?string $path): bool
     {
-        if ($path){
+        if ($path) {
             return Storage::disk('public')->delete($path);
         } else return true;
 

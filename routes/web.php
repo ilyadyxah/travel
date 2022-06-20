@@ -88,7 +88,6 @@ Route::group(['middleware' => ['auth']], function (){
         Route::resources([
             '/place' => PlaceController::class,
             '/message' => AccountMessageController::class,
-
         ]);
 
         Route::get('/profile', [AccountController::class, 'index'])
@@ -107,9 +106,6 @@ Route::group(['middleware' => ['auth']], function (){
 
         Route::get('/message', [AccountMessageController::class, 'index'])
             ->name('message');
-
-
-
     });
 });
 Route::get('/unauthorized/{user}', [PublicAccountController::class, 'unauthorized'])

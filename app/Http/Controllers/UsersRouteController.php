@@ -28,17 +28,12 @@ class UsersRouteController extends Controller
 
     public function showRoutes(): Factory|View|Application
     {
-        $places = Place::query()
-            ->join('routes', 'routes.place_id', '=', 'places.id')
-            ->where('user_id', Auth::user()->getAuthIdentifier())
-            ->get('places.*');
-
-        $places2 = Route::query()
+        $routes = Route::query()
             ->where('user_id', Auth::user()->getAuthIdentifier())
             ->get();
 
         return view('account.routes', [
-            'journeys' => $places,
+            'routes' => $routes,
         ]);
     }
 
