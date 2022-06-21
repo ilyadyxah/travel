@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="col-6 text-center">
-                        <div class="row justify-content-md-center">
+                        <div class="row justify-content-md-center form_bg ">
                             <h3 class="col-10">{{ $route->place->title }}</h3>
                             <button class="btn_info btn-primary col-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlaceInfo{{ $route->place->id }}" aria-expanded="false" aria-controls="collapsePlaceInfo{{ $route->place->id }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
@@ -57,11 +57,12 @@
                 </div>
                 <div class="collapse" id="collapsePlaceInfo{{ $route->place->id }}">
                     <div class="extra_box">
-                        <p style="text-indent: 1.5em; text-align: justify;"
-                        class="card-text">{{ Str::ucfirst(mb_substr($route->place->description, 0, 100)) . '...'}}</p>
+                        <p style="text-align: justify;"
+                        class="card-text">{{ Str::ucfirst(mb_substr($route->place->description, 0,)) . '...'}}</p>
                     </div>
                 </div>
             </div>
+            
         @empty
             <p>Нет маршрутов</p>
         @endforelse
