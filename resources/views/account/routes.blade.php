@@ -17,8 +17,8 @@
                     <input type="hidden" name="latitude" value="{{ $route->place->latitude }}">
                     <input type="hidden" data-id="longitude" value="{{ $route->place->longitude }}">
                 </div>
-                <div class="row g-4">
-                    <div class="col-3">
+                <div class="row route_place">
+                    <div class="col-5">
                         <a href="{{ route('places.show', $route->place) }}" class="bg-dark rounded-3">
                             <img class='card-img' src="
                         @if($route->place->main_picture_id)
@@ -33,18 +33,32 @@
                                  style="height: 150px; object-fit: cover;"/>
                         </a>
                     </div>
-                    <div class="col-2">
-                        <p>{{ $route->place->title }}</p>
+
+                    <div class="col-6 text-center">
+                        <div class="row justify-content-md-center">
+                            <h3 class="col-10">{{ $route->place->title }}</h3>
+                            <button class="btn_info btn-primary col-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlaceInfo{{ $route->place->id }}" aria-expanded="false" aria-controls="collapsePlaceInfo{{ $route->place->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                            </button>    
+                        </div>
+                        <div class="row">
+                            <div class="col-10 text-center">
+                                <h4 class="point-name" style="font-weight: bold"> метка - A </h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-1">
+                        <button type="button" class="btn-close btn-close-route" name="{{ $route->place->id }}" aria-label="Close">
+                        </button>
+                    </div>
+                </div>
+                <div class="collapse" id="collapsePlaceInfo{{ $route->place->id }}">
+                    <div class="extra_box">
                         <p style="text-indent: 1.5em; text-align: justify;"
-                           class="card-text">{{ Str::ucfirst(mb_substr($route->place->description, 0, 100)) . '...'}}</p>
-                    </div>
-                    <div class="col-1">
-                        <span class="point-name" style="font-weight: bold"> метка - A </span>
-                    </div>
-                    <div class="col-1">
-                        <button type="button" class="btn-close btn-close-route" name="{{ $route->place->id }}" aria-label="Close"></button>
+                        class="card-text">{{ Str::ucfirst(mb_substr($route->place->description, 0, 100)) . '...'}}</p>
                     </div>
                 </div>
             </div>

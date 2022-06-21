@@ -15,7 +15,6 @@
                     </div>
                     @include('components.filter')
                 </div>
-            <!-- <img class='intro_img' src="{{ asset('images/thousand-01.png') }}" alt="img" /> -->
             </div>
         </div>
     </div>
