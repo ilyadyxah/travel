@@ -58,10 +58,14 @@ class UserRoutesService
                 ->get()
                 ->toArray()
             : null;
-        foreach ($data as $value) {
-            $placesId[] = $value->place_id;
+        if ($data) {
+            foreach ($data as $value) {
+                $placesId[] = $value->place_id;
+            }
+
+            return $placesId;
         }
 
-        return $placesId;
+        return [];
     }
 }

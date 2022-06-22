@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class LikeService
 {
-
     public function getLikedPlacesId()
     {
         $likedPlacesId = [];
@@ -28,6 +27,7 @@ class LikeService
         foreach ($data as $key => $value) {
             $likedPlacesId[] = $value->place_id;
         }
+
         return $likedPlacesId;
     }
 
@@ -39,6 +39,7 @@ class LikeService
         foreach ($data as $key => $value) {
             $likedPlacesId[] = $value->place_id;
         }
+
         return $likedPlacesId;
     }
 
@@ -70,12 +71,11 @@ class LikeService
                 ];
             }
             $response['total'] = $place->likes->count();
+
             return response()->json($response);
 
         } catch (\Exception $e) {
             return response()->json('error', 400);
         }
-
     }
-
 }

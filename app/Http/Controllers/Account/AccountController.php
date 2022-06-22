@@ -51,12 +51,14 @@ class AccountController extends Controller
                 $type = 'созданные';
                 break;
         }
+
         return view('account.places', [
-            'journeys'=> $places,
+            'journeys' => $places,
             'images' => Image::all(),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
-            'title' => $type
+            'title' => $type,
+            'routes' => app(UserRoutesService::class)->getSelectedPlaces(),
         ]);
     }
 
@@ -74,16 +76,17 @@ class AccountController extends Controller
                     $response['likes'] = app(LikeService::class)->getLikedPlacesId();
                     $response['favorites'] = app(FavoriteService::class)->getFavoritePlacesId();
             }
+
             return response()->json($response);
 
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json('error', 400);
         }
     }
 
     public function privateHandle(User $user)
     {
-        if ($this->isItYou($user)){
+        if ($this->isItYou($user)) {
             try {
                 if ($user->is_private) {
                     $user->is_private = false;
@@ -94,22 +97,21 @@ class AccountController extends Controller
                 $user->save();
 
                 $response['is_private'] = $user->is_private;
+
                 return response()->json($response);
 
             } catch (\Exception $e) {
                 return response()->json('error', 400);
             }
         }
-        return redirect()->route('unauthorized', ['user' => $user]);
 
+        return redirect()->route('unauthorized', ['user' => $user]);
     }
 
     protected function isItYou(User $user): bool
     {
         return Auth::user()->getAuthIdentifier() === $user->id;
     }
-
-
 
 
 }

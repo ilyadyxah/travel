@@ -21,7 +21,8 @@ class LikeController extends Controller
     public function placeLikeCount(Place $place)
     {
         try {
-            $response['count'] = $place->likes->count();;
+            $response['count'] = $place->likes->count();
+
             return response()->json($response);
         } catch (\Exception $e) {
             return response()->json('error', 400);

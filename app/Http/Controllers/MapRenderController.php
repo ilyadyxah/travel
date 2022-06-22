@@ -29,21 +29,22 @@ class MapRenderController extends Controller
         foreach ($places as $place) {
             $data['features'][] =
                 [
-                "type" => "Feature",
-                "id" => $place->id,
-                "geometry" => ["type" => "Point", "coordinates" => [$place->latitude, $place->longitude]],
-                "properties" => [
-                "balloonContentHeader" =>
-                    "<span style=\"font-size: small; \"><b>$place->title</b></span>"
-                    . sprintf("<b><a target='_blank' href=%s style='text-decoration: none'> > </a></b>", route('places.show', ['place' => $place->id])),
-                "balloonContentBody" =>
-                    sprintf(
-                    "<a target='_blank' href=%s><img src=%s style='height: 200px'></a>",
-                    route('places.show', ['place' => $place->id]),
-                        asset($place->images->first()->url)),
-                    "hintContent" => $place->title,
-                ]
-            ];
+                    "type" => "Feature",
+                    "id" => $place->id,
+                    "geometry" => ["type" => "Point", "coordinates" => [$place->latitude, $place->longitude]],
+                    "properties" => [
+                        "balloonContentHeader" =>
+                            "<span style=\"font-size: small; \"><b>$place->title</b></span>"
+                            . sprintf("<b><a target='_blank' href=%s style='text-decoration: none'> > </a></b>",
+                                route('places.show', ['place' => $place->id])),
+                        "balloonContentBody" =>
+                            sprintf(
+                                "<a target='_blank' href=%s><img src=%s style='height: 200px'></a>",
+                                route('places.show', ['place' => $place->id]),
+                                asset($place->images->first()->url)),
+                        "hintContent" => $place->title,
+                    ]
+                ];
         }
 
         return response()->json($data);
