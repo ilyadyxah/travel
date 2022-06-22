@@ -18,7 +18,7 @@ class SourceSeeder extends Seeder
         DB::table('sources')->insert(
             [
                 [   'title' => 'russia.travel',
-                    'url' => 'https://russia.travel'
+                    'url' => 'https://api.russia.travel/api/travels/frontend/v3/json/rus/travel?id='
                 ],
 
 

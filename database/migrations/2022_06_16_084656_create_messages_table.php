@@ -39,7 +39,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('messages');
         Schema::table('messages', function (Blueprint $table) {
-            $table->dropForeign(['from_user_id', 'to_user_id']);
             $table->dropIfExists();
         });
     }

@@ -12,7 +12,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendMessageNotification extends Notification implements ShouldQueue
+class SendMessageNotification extends Notification
 {
     use Queueable;
 
@@ -43,9 +43,10 @@ class SendMessageNotification extends Notification implements ShouldQueue
             } else(
             $recipient_email = $event->message->recipient_email
             );
-
+            $message = (new NewMessageMail($event->message))
+                ->onQueue('emails');
             Mail::to($recipient_email)
-                ->queue(new NewMessageMail($event->message));
+                ->queue($message);
         }
     }
 }
