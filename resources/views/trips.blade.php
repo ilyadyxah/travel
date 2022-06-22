@@ -8,9 +8,9 @@
 @section('content')
     <div class="container trips_bg">
         @include('components.filter_find')
-        <div class="row g-4">
+        <div class="row p-4">
             @if ($journeys->count())
-                <h3> Найдено {{ $journeys->count() }} путешествий </h3>
+                <h4> Найдено {{ $journeys->count() }} путешествий </h4>
                 @include('components/place_card')
             @else
                 <h3>{{ $message }}</h3>
@@ -20,9 +20,7 @@
             </div>
         </div>
     </div>
-    <!-- <div class="row justify-content-center container">
-        {{$journeys->links()}}
-        </div> -->
+    
 @endsection
 @once
     @push('js')

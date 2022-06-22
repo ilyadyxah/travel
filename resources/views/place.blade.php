@@ -6,7 +6,7 @@
 
 @endsection
 @section('content')
-    <p class="container text-center display-3">{{ Str::ucfirst($place->title) }}</p>
+    <p class="container text-center display-3 py-4">{{ Str::ucfirst($place->title) }}</p>
 
     <!-- Swiper -->
         <div class="wrapper row">
@@ -33,7 +33,7 @@
                     <div class="place_box">
                         <div class="like_container">
                             <div class="like_box">
-                                <span like="{{$place->id}}" onclick="likeHandle(this)">
+                                <span style="cursor:pointer;" like="{{$place->id}}" onclick="likeHandle(this)">
                                     @if(in_array($place->id, $likes))
                                         <i class="fa-solid fa-thumbs-up"></i>
                                     @else
@@ -46,7 +46,7 @@
                             </div>
                             @auth
                             <div class="like_box">
-                                <span favorite="{{$place->id}}" id="favorite-{{ $place->id }}"
+                                <span style="cursor:pointer;" favorite="{{$place->id}}" id="favorite-{{ $place->id }}"
                                         onclick="favoriteHandle(this)">
                                     @if(in_array($place->id, $favorites))
                                         <i class="fa-star fa-solid"></i>
@@ -56,17 +56,18 @@
                                 </span>
                             </div>
                             <div class="like_box">
-                                <span route="{{$place->id}}" onclick="routeHandle(this)">
+                                <span style="cursor:pointer;" route="{{$place->id}}" onclick="routeHandle(this)">
                                     @if(in_array($place->id, $routes))
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
-                                        <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
-                                        </svg>
-                                    @else
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
                                         <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
                                         </svg>
+                                    @else
+                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+                                        <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+                                        </svg>
+                                        
                                     @endif
                                 </span>
                             </div>

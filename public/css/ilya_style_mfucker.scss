@@ -48,9 +48,14 @@ h5:hover {
 }
 
 .trips_bg {
-    background: radial-gradient(circle at 95% 5%, rgba(127, 255, 212, 0.77) 0%, rgba(237, 237, 6, 1) 15%, rgba(0, 188, 212, 1) 50%, rgba(127, 255, 212, 0.71) 100%);
+    padding-top: 30px;
+    background: radial-gradient(circle at 95% 5%, rgba(127, 255, 212, 0.77) 0%, rgba(0, 188, 212, 1) 50%, rgba(127, 255, 212, 0.71) 100%);
     background-position: center;
     background-attachment: fixed;
+
+    h3 {
+        font-size: 2rem;
+    }
 }
 
 .form_bg:hover {
@@ -154,6 +159,10 @@ h5:hover {
     justify-content: space-evenly;
 }
 
+.carousel {
+    height: 80vh;
+}
+
 .carousel-inner {
     width: 100%;
     // width: 650px;
@@ -211,6 +220,12 @@ h5:hover {
     -moz-border-radius: 68% 32% 50% 50% / 46% 20% 80% 54%;
     -ms-border-radius: 68% 32% 50% 50% / 46% 20% 80% 54%;
     -o-border-radius: 68% 32% 50% 50% / 46% 20% 80% 54%;
+}
+
+.place_description {
+    display: block;
+    height: 53vh;
+    overflow-y: scroll;
 }
 
 .place_content {
@@ -277,3 +292,11 @@ main {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
+
+.row {
+    margin: auto;
+}
+
+// .custom_height {
+//     height: 80vh;
+// }

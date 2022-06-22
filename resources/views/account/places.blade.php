@@ -3,7 +3,7 @@
     @parent Мои места
 @endsection
 @section('header')
-    <div class="container text-center ">
+    <div class="container text-center pt-4 ">
         <h2>Мои {{ $title }} места</h2>
     </div>
 @endsection

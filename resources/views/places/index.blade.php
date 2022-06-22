@@ -3,7 +3,7 @@
     @parent {{ Str::ucfirst($title) }} места {{ $user->name }}
 @endsection
 @section('header')
-    <div class="container text-center ">
+    <div class="container text-center pt-4">
         <h2>{{ Str::ucfirst($title) }} места {{ $user->name }}</h2>
     </div>
 @endsection
