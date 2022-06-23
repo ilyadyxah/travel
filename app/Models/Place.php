@@ -57,7 +57,7 @@ class Place extends Model
         ];
     }
 
-    public static function GetLinkedModelsWithoutImages()
+    public static function GetLinkedModelsWithoutImages(): array
     {
         $linkedModelsWithoutImages = [];
         foreach (self::getLinkedFields() as $model => $cyrillic){
