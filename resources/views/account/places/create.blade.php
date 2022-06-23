@@ -9,7 +9,7 @@
 @endsection
 @section('content')
     <div class="row g-4 container">
-        <form method="post" action="{{ route('account.place.' . $method, [$param]) }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('account.place.' . $method, [$param ?? null]) }}" enctype="multipart/form-data">
             @csrf
             @if($method == 'update')
                 @method('put')
