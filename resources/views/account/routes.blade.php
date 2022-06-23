@@ -3,14 +3,14 @@
     @parent Мои маршруты
 @endsection
 @section('header')
-    <div class="container text-center ">
+    <div class="container text-center p-4">
         <h2>Мои маршруты</h2>
     </div>
 @endsection
 @section('content')
     @include('inc.message')
-    <div class="container" style="display: flex">
-        <div class="places-table" style="width: 50%;">
+    <div class="container pb-4 row d-flex align-items-stretch" style="height: 75vh" >
+        <div class="places-table col-6 overflow-scroll" style="height: 75vh" >
         @forelse($routes as $route)
             <div class="place-table-item" id="{{ $route->place->id }}">
                 <div class="place-coords">
@@ -36,7 +36,7 @@
 
                     <div class="col-6 text-center">
                         <div class="row justify-content-md-center form_bg ">
-                            <h3 class="col-10">{{ $route->place->title }}</h3>
+                            <h3 class="col-10">{{ Str::ucfirst(mb_substr($route->place->title, 0, 50)) . "..." }}</h3>
                             <button class="btn_info btn-primary col-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlaceInfo{{ $route->place->id }}" aria-expanded="false" aria-controls="collapsePlaceInfo{{ $route->place->id }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -58,16 +58,20 @@
                 <div class="collapse" id="collapsePlaceInfo{{ $route->place->id }}">
                     <div class="extra_box">
                         <p style="text-align: justify;"
-                        class="card-text">{{ Str::ucfirst(mb_substr($route->place->description, 0,)) . '...'}}</p>
+                        class="card-text">{{ Str::ucfirst(mb_substr($route->place->description, 0,)) . '...'}}
+                        </p>
                     </div>
                 </div>
             </div>
-            
         @empty
             <p>Нет маршрутов</p>
         @endforelse
         </div>
-        <div id="routes" style="width:900px; max-width: 45%; height: 700px"></div>
+        <div class="col-6">
+            <div id="routes" class="p-2 my-2" style="width:900px; max-width: 100%; height: 700px">
+            </div>
+        </div>
+
     </div>
 @endsection
 @once

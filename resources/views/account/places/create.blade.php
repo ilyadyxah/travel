@@ -3,7 +3,7 @@
     {{ $title }} места @parent
 @endsection
 @section('header')
-    <div class="container text-center ">
+    <div class="container text-center pt-4 ">
         <p class="h2">{{ $title }} места</p>
     </div>
 @endsection

@@ -18,6 +18,7 @@ async function userInfoSend(url)
 function buttonUpdate(total, elementId)
 {
     const badge = document.querySelector('#' + elementId);
+    console.log(badge, total);
     if(total === 0) {
         badge.innerText = '';
         badge.parentElement.classList.add('disabled')

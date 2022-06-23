@@ -27,6 +27,10 @@ class PlaceController extends Controller
         ]);
     }
 
+    /**
+     * @param CreateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateRequest $request)
     {
         $data = $request->validated();
