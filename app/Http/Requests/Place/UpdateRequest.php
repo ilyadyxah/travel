@@ -32,6 +32,8 @@ class UpdateRequest extends FormRequest
             'complexity' => ['required', 'integer', 'max:10'],
             'cities' => ['required', 'string'],
             'transports' => ['required', 'array'],
+            'groups' => ['required', 'array'],
+            'types' => ['required', 'array'],
             'images.*' => ['image','max:2048'],
             'images' => ['nullable'],
             'cost' => ['string', 'nullable'],

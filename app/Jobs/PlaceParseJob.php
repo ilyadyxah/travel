@@ -70,7 +70,6 @@ class PlaceParseJob implements ShouldQueue
             ]);
         };
 
-
     }
 
     public function getFirstItemWithImage(Source $source, int $startId)

@@ -11,6 +11,7 @@ use App\Models\Place;
 use App\Models\Transport;
 use App\Services\UploadService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PlaceController extends Controller
 {
@@ -19,8 +20,7 @@ class PlaceController extends Controller
         return view('account.places.create', [
             'fieldsToCreate' => Place::getFieldsToCreate(),
             'linkedFields' => Place::getLinkedFields(),
-            'cities' => City::all(),
-            'transports' => Transport::all(),
+            'linkedModelsWithoutImages' => Place::GetLinkedModelsWithoutImages(),
             'method' => 'store',
             'param' => null,
             'title' => 'Добавление',
@@ -78,8 +78,7 @@ class PlaceController extends Controller
         return view('account.places.create', [
             'fieldsToCreate' => Place::getFieldsToCreate(),
             'linkedFields' => Place::getLinkedFields(),
-            'cities' => City::all(),
-            'transports' => Transport::all(),
+            'linkedModelsWithoutImages' => Place::GetLinkedModelsWithoutImages(),
             'place' => $place,
             'method' => 'update',
             'param' => $place,
@@ -122,6 +121,7 @@ class PlaceController extends Controller
             ])->id;
 
         $updated = $place->fill($data)->save();
+
         if ($updated) {
 
             //заполняю сводные таблицы
