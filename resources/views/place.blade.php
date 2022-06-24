@@ -12,12 +12,11 @@
         <div class="wrapper row">
             <div id="carousel" class="carousel col-8" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <?php $i=0; foreach ($place->images as $image): ?>
-                        <?php if ($i==0) {$set_ = 'active'; } else {$set_ = ''; } ?>
-                            <div class='carousel-item <?php echo $set_; ?>' style="background-image: url('<?php echo $image->url; ?>');">
-                                <img src='<?php echo $image->url; ?>' class='d-block w-100'>
+                        @foreach($place->images as $key => $image)
+                            <div class="carousel-item {{ $key == 0 ? 'active' : ''}}" style="background-image: url({{ str_starts_with($image->url, 'http')) ? $image->url : Storage::disk('public')->url($image->url }});">
+                                <img src='{{ str_starts_with($image->url, 'http')) ? $image->url : Storage::disk('public')->url($image->url }}' class='d-block w-100'>
                             </div>
-                        <?php $i++; endforeach ?>
+                        @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,7 +66,7 @@
                                         <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
                                         <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
                                         </svg>
-                                        
+
                                     @endif
                                 </span>
                             </div>
@@ -75,7 +74,7 @@
                         </div>
                             <h2 class="display-5"
                                 data-id="city_name">@foreach($place->cities as $city){{ Str::ucfirst($city->title) }}@endforeach</h2>
-                        
+
                     </div>
                     <div class="place_description">
                         <p class="text_description">{{ $place->description }}</p>
@@ -98,7 +97,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container base_bg p-4">
         <div class="row">
             <div id="map" class=" col-8"  style="width: 60%; height: 400px"></div>

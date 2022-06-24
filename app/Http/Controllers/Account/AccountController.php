@@ -4,16 +4,13 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
-use App\Models\Place;
 use App\Models\Source;
 use App\Models\User;
+use App\Services\AccountInfoService;
 use App\Services\CreatedPlaceService;
 use App\Services\FavoriteService;
 use App\Services\LikeService;
 use App\Services\UserRoutesService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
 class AccountController extends Controller
 {
@@ -29,31 +26,13 @@ class AccountController extends Controller
 
     public function myPlaces(string $title)
     {
-        switch ($title) {
-            case 'liked':
-                $places = Place::query()
-                    ->join('likes', 'likes.place_id', '=', 'places.id')
-                    ->where('user_id', Auth::user()->getAuthIdentifier())
-                    ->get('places.*');
-                $type = 'любимые';
-                break;
-            case 'favorite':
-                $places = Place::query()
-                    ->join('favorites', 'favorites.place_id', '=', 'places.id')
-                    ->where('user_id', Auth::user()->getAuthIdentifier())
-                    ->get('places.*');
-                $type = 'избранные';
-                break;
-            case 'created':
-                $places = Place::query()
-                    ->where('created_by_user_id', Auth::user()->getAuthIdentifier())
-                    ->get();
-                $type = 'созданные';
-                break;
-        }
-
+        $type = match ($title) {
+            'liked' => 'любимые',
+            'favorite' => 'избранные',
+            'created' => 'созданные',
+        };
         return view('account.places', [
-            'journeys' => $places,
+            'journeys' => app(AccountInfoService::class)->getUserPlaces($title),
             'images' => Image::all(),
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
@@ -64,29 +43,11 @@ class AccountController extends Controller
 
     public function getInfo($data)
     {
-        try {
-            switch ($data) {
-                case 'likes':
-                    $response = app(LikeService::class)->getLikedPlacesId();
-                    break;
-                case 'favorites':
-                    $response = app(FavoriteService::class)->getFavoritePlacesId();
-                    break;
-                default:
-                    $response['likes'] = app(LikeService::class)->getLikedPlacesId();
-                    $response['favorites'] = app(FavoriteService::class)->getFavoritePlacesId();
-            }
-
-            return response()->json($response);
-
-        } catch (\Exception $e) {
-            return response()->json('error', 400);
-        }
+        return app(AccountInfoService::class)->getPlacesInfo($data);
     }
 
     public function privateHandle(User $user)
     {
-        if ($this->isItYou($user)) {
             try {
                 if ($user->is_private) {
                     $user->is_private = false;
@@ -103,15 +64,7 @@ class AccountController extends Controller
             } catch (\Exception $e) {
                 return response()->json('error', 400);
             }
-        }
 
-        return redirect()->route('unauthorized', ['user' => $user]);
     }
-
-    protected function isItYou(User $user): bool
-    {
-        return Auth::user()->getAuthIdentifier() === $user->id;
-    }
-
 
 }

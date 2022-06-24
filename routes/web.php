@@ -65,7 +65,6 @@ Route::group(['as' => 'profile.', 'prefix' => 'profile'], function (){
         ->name('places.index');
 });
 
-// account
 //routes
 Route::get('/route/{place}', [UsersRouteController::class, 'routeHandling'])
     ->where('place', '\d+')
@@ -81,7 +80,9 @@ Route::group(['middleware' => ['auth']], function (){
     //        private or not
     Route::get('/private/{user}', [AccountController::class, 'privateHandle'])
         ->where('user', '\d+')
-        ->name('private');
+        ->middleware('isItYou')
+        ->name('private')
+    ;
 
     Route::group(['as' => 'account.', 'prefix' => 'my'], function (){
 

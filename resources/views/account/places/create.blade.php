@@ -9,7 +9,7 @@
 @endsection
 @section('content')
     <div class="row g-4 container">
-        <form method="post" action="{{ route('account.place.' . $method, [$param]) }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('account.place.' . $method, [$param ?? null]) }}" enctype="multipart/form-data">
             @csrf
             @if($method == 'update')
                 @method('put')
@@ -95,7 +95,7 @@
 {{--                            <select multiple id="{{ $field }}" name="{{ $field }}[]" class="form-select m-0" aria-label="Default select example" list="datalistOptions" id="exampleDataList">--}}
                             <input name="{{ $field }}" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Начните печатать..." value="@if(isset($place)){{$place->$field->first()->title}}@else{{old($field)}}@endif">
                             <datalist id="datalistOptions">
-                                @foreach($$field as $item)
+                                @foreach($linkedModelsWithoutImages[$field] as $item)
                                     <option value="{{ $item->title }}">
                                 @endforeach
                             </datalist>
@@ -103,7 +103,7 @@
 
                         @endif
                         <select multiple id="{{ $field }}" name="{{ $field }}[]" class="form-select m-0" aria-label="Default select example">
-                            @foreach($$field as $item)
+                            @foreach($linkedModelsWithoutImages[$field] as $item)
                                 @if(old($field))
                                     <option value="{{ $item->id }}" @if(old($field) !== null && in_array($item->id, old($field))) selected @endif>{{ Str::ucfirst($item->title) }}</option>
                                 @else

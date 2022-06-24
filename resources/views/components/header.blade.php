@@ -166,7 +166,7 @@
                     <li>
                         <a class="dropdown-item d-flex justify-content-between align-items-center @if(count($routes) === 0) disabled @endif" href="{{ route('show::routes') }}">
                             Мои маршруты
-                            <span id="favorites-btn" class="badge bg-secondary ms-1">{{ count($routes) ?  : '' }}</span>
+                            <span id="routes-btn" class="badge bg-secondary ms-1">{{ count($routes) ?  : '' }}</span>
                         </a>
                     </li>
                     <li>

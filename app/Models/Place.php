@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class Place extends Model
 {
@@ -50,7 +51,21 @@ class Place extends Model
             'cities' => 'город',
             'transports' => 'транспорт',
             'images' => 'фото',
+            'groups' => 'группа',
+            'types' => 'тип',
+
         ];
+    }
+
+    public static function GetLinkedModelsWithoutImages(): array
+    {
+        $linkedModelsWithoutImages = [];
+        foreach (self::getLinkedFields() as $model => $cyrillic){
+            if($model === 'images') continue;
+            $linkedModelsWithoutImages[$model] = DB::table($model)->get();
+
+        }
+        return $linkedModelsWithoutImages;
     }
 
     public function cities(): BelongsToMany
@@ -100,7 +115,7 @@ class Place extends Model
 
     public function types(): BelongsToMany
     {
-        return $this->belongsToMany(Group::class, 'places_types',
+        return $this->belongsToMany(Type::class, 'places_types',
             'place_id', 'type_id',
             'id', 'id'
         );

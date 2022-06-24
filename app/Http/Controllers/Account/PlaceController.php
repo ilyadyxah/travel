@@ -9,8 +9,10 @@ use App\Models\City;
 use App\Models\Image;
 use App\Models\Place;
 use App\Models\Transport;
+use App\Services\SaveToDbService;
 use App\Services\UploadService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PlaceController extends Controller
 {
@@ -19,48 +21,23 @@ class PlaceController extends Controller
         return view('account.places.create', [
             'fieldsToCreate' => Place::getFieldsToCreate(),
             'linkedFields' => Place::getLinkedFields(),
-            'cities' => City::all(),
-            'transports' => Transport::all(),
+            'linkedModelsWithoutImages' => Place::GetLinkedModelsWithoutImages(),
             'method' => 'store',
-            'param' => null,
             'title' => 'Добавление',
         ]);
     }
 
+    /**
+     * @param CreateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateRequest $request)
     {
-        $data = $request->validated();
-        // сохраняю картинки
-        foreach ($request->images as $image) {
-            $imageData['url'] = app(UploadService::class)
-                ->saveFile($image, 'images');
-            $picture = Image::create($imageData);
-            // создаю массив с идентификаторами
-            $imagesIds[] = $picture->id;
-            // в качестве главной картинки выбираю в произвольном порядке
-            $data['main_picture_id'] = $imagesIds[array_rand($imagesIds, 1)];
-
-        };
-        $request->images = $imagesIds;
-        // если такой город есть, присваиваю идентификатор , если нет создаю новый город
-        $request->cities = City::query()->where('title', $data['cities'])
-            ->firstOrCreate([
-                'title' => $data['cities']
-            ])->id;
-        //закрепляю место за пользователем, который его создал
-        $data['created_by_user_id'] = Auth::user()->getAuthIdentifier();
-        $created = Place::create($data);
+        $created = app(SaveToDbService::class)->saveCreatedPlaceToDb($request->validated());
         if ($created) {
-
-            //заполняю сводные таблицы
-            foreach (Place::getLinkedFields() as $key => $item) {
-                $created->$key()->attach($request->$key);
-            }
-
             return redirect()->route('account.places', 'created')->with([
                 'success' => __('messages.account.places.created.success'),
                 'item' => $created->title
-
             ]);
         }
         return back()->with([
@@ -74,8 +51,7 @@ class PlaceController extends Controller
         return view('account.places.create', [
             'fieldsToCreate' => Place::getFieldsToCreate(),
             'linkedFields' => Place::getLinkedFields(),
-            'cities' => City::all(),
-            'transports' => Transport::all(),
+            'linkedModelsWithoutImages' => Place::GetLinkedModelsWithoutImages(),
             'place' => $place,
             'method' => 'update',
             'param' => $place,
@@ -87,55 +63,18 @@ class PlaceController extends Controller
     public function update(UpdateRequest $request, Place $place)
     {
         $data = $request->validated();
-        // сохраняю картинки
-        if ($request->images) {
-            foreach ($request->images as $image) {
-                $ImageData['url'] = app(UploadService::class)
-                    ->saveFile($image, 'images');
-                $picture = Image::create($ImageData);
-                // создаю массив с идентификаторами
-                $imagesIds[] = $picture->id;
-            };
-        }
-        // удаляю не нужные картинки
-        foreach ($place->images as $image) {
-            if (in_array($image->id, explode(',', $data['deletedImages']))
-                && !str_starts_with($image->url, 'http')) {
-                app(UploadService::class)
-                    ->deleteFile($image->url);
-            } else {
-                $imagesIds[] = $image->id;
-            }
-        }
-        // в качестве главной картинки выбираю в произвольном порядке из загруженных
-        $data['main_picture_id'] = $imagesIds[array_rand($imagesIds, 1)];
+        $updated = app(SaveToDbService::class)->saveCreatedPlaceToDb($data, $place);
 
-        $request->images = $imagesIds;
-        // если такой город есть, присваиваю идентификатор, если нет создаю новый город
-        $request->cities = City::query()->where('title', $data['cities'])
-            ->firstOrCreate([
-                'title' => $data['cities']
-            ])->id;
-
-        $updated = $place->fill($data)->save();
         if ($updated) {
-
-            //заполняю сводные таблицы
-            foreach (Place::getLinkedFields() as $key => $item) {
-                $place->$key()->detach();
-                $place->$key()->attach($request->$key);
-            }
-
             return redirect()->route('account.places', 'created')->with([
                 'success' => __('messages.account.places.updated.success'),
-                'item' => $place->title
-
+                'item' => $updated->title
             ]);
         }
 
         return back()->with([
             'error' => __('messages.account.places.updated.error'),
-            'item' => $place->title
+            'item' => $updated->title
         ])->withInput();
     }
 
@@ -148,11 +87,9 @@ class PlaceController extends Controller
 
         $deleted = $place->delete();
         if ($deleted) {
-
             return redirect()->route('account.places', 'created')->with([
                 'success' => __('messages.account.places.deleted.success'),
                 'item' => $place->title
-
             ]);
         }
 
@@ -161,5 +98,4 @@ class PlaceController extends Controller
             'item' => $place->title
         ])->withInput();
     }
-
 }
