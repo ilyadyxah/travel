@@ -15,15 +15,10 @@ class SaveToDbService
     {
         $model = Place::query()->firstOrCreate(['title' => $modelData['title']]);
         $model->fill($modelData);
-
         // создаю, связанные с местом, сущности, если таковых нет
         if ($model){
             foreach (Place::getLinkedFields() as $item => $cyrillic) {
-                $item = DB::table($item)->firstOrCreate([
-                    'title' => $linkedData[$item]
-                ]);
-
-                $linkedData[$item] = $item->id;
+//                сначала прохожусь по картинкам
                 if ($item === 'images'){
                     $imageIds=[];
 
@@ -36,12 +31,18 @@ class SaveToDbService
                     }
                     if ($imageIds){
                         $model->main_picture_id = $imageIds[array_rand($imageIds, 1)];
-                        $model->save();
                     }
-
+                    $model->save();
                     $linkedData['images'] = $imageIds;
-
+                    continue;
                 }
+// если такой записи в бд нет, делаю вставку
+                DB::table($item)->updateOrInsert([
+                    'title' => $linkedData[$item]
+                ]);
+                $entity = DB::table($item)->where('title', '=', $linkedData[$item])->first();
+
+                $linkedData[$item] = $entity->id;
             }
             //заполняю связанные таблицы
             foreach ($linkedData as $field => $linkedItem){
