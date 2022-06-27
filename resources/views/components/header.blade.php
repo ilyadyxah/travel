@@ -25,134 +25,128 @@
             <li>
                 <!-- <a href="{{route('login')}}" class='nav_link btn p-1'>Вход</a> -->
                  <div class="dropdown">
-                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
+                    <button type="button" class="btn  dropdown-toggle @if($errors->any()) show @endif" data-bs-toggle="dropdown"
                         aria-expanded="false" data-bs-auto-close="outside">
                         Вход
                     </button>
-                    <form class="dropdown-menu p-4" method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label for="email" class="col-form-label text-md-end">{{ __('Ваш Email') }}</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
+                     <div class="dropdown-menu dropdown-menu-end @if($errors->any()) show @endif" @if($errors->any()) data-bs-popper="none" @endif>
+                         <form class="px-4 py-3" method="POST" action="{{ route('login') }}">
+                             @csrf
+                             <div class="mb-3">
+                                 <label for="email" class="col-form-label text-md-end">{{ __('Ваш Email') }}</label>
+                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                 @error('email')
+                                 <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
-                        </div>
-
-                        <div class=mb-3">
-                            <label for="password" class="col-form-label text-md-end">{{ __('Пароль') }}</label>
-
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
-
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                    {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Запомнить меня') }}
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Войти') }}
-                            </button>
-
-                            @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Забыли пароль?') }}
-                            </a>
-                            @endif
-                        </div>
-                    </form>
-                </div>
+                                 @enderror
+                             </div>
+                             <div class=mb-3">
+                                 <label for="password" class="col-form-label text-md-end">{{ __('Пароль') }}</label>
+                                 <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password" required
+                                        autocomplete="current-password">
+                                 @error('password')
+                                 <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                 </span>
+                                 @enderror
+                             </div>
+                             <div class="mb-3">
+                                 <div class="form-check">
+                                     <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                         {{ old('remember') ? 'checked' : '' }}>
+                                     <label class="form-check-label" for="remember">
+                                         {{ __('Запомнить меня') }}
+                                     </label>
+                                 </div>
+                             </div>
+                             <div class="mb-3 d-flex justify-content-center align-items-center">
+                                 <button type="submit" class="btn btn-primary">
+                                     {{ __('Войти') }}
+                                 </button>
+                             </div>
+                         </form>
+                         <div class="dropdown-divider"></div>
+                         <a class="dropdown-item" href="{{route('register')}}">Впервые здесь? Зарегистрироваться</a>
+                         @if (Route::has('password.request'))
+                             <a class="dropdown-item" href="{{ route('password.request') }}">
+                                 {{ __('Забыли пароль?') }}
+                             </a>
+                         @endif
+                     </div>
+                 </div>
             </li>
-            <li>
-                <!-- <a href="{{route('register')}}" class='nav_link btn p-1'>Регистрация</a> -->
-                <div class="btn-group">
-                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false" data-bs-auto-close="outside">
-                        Регистрация
-                    </button>
-                    <form class="dropdown-menu dropdown-menu-lg-end" method="POST" action="{{ route('register') }}">
-                          @csrf
+{{--            <li>--}}
+{{--                <div class="btn-group">--}}
+{{--                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"--}}
+{{--                        aria-expanded="false" data-bs-auto-close="outside">--}}
+{{--                        Регистрация--}}
+{{--                    </button>--}}
+{{--                    <form class="dropdown-menu dropdown-menu-lg-end " method="POST" action="{{ route('register') }}">--}}
+{{--                          @csrf--}}
 
-                        <div class="row mb-3 dropdown-item">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Ваше Имя') }}</label>
+{{--                        <div class="row mb-3 dropdown-item">--}}
+{{--                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Ваше Имя') }}</label>--}}
 
-                            <div class="col-md">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+{{--                            <div class="col-md">--}}
+{{--                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>--}}
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+{{--                                @error('name')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="row mb-3 dropdown-item">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Ваш Email') }}</label>
+{{--                        <div class="row mb-3 dropdown-item">--}}
+{{--                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Ваш Email') }}</label>--}}
 
-                            <div class="col-md">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+{{--                            <div class="col-md">--}}
+{{--                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">--}}
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+{{--                                @error('email')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="row mb-3 dropdown-item">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Пароль') }}</label>
+{{--                        <div class="row mb-3 dropdown-item">--}}
+{{--                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Пароль') }}</label>--}}
 
-                            <div class="col-md">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+{{--                            <div class="col-md">--}}
+{{--                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">--}}
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+{{--                                @error('password')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="row mb-3 dropdown-item">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Подтвердите пароль') }}</label>
+{{--                        <div class="row mb-3 dropdown-item">--}}
+{{--                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Подтвердите пароль') }}</label>--}}
 
-                            <div class="col-md">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+{{--                            <div class="col-md">--}}
+{{--                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="row mb-0 dropdown-item">
-                            <div class="col-md">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Зарегистрироваться') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </li>
+{{--                        <div class="row mb-0 dropdown-item">--}}
+{{--                            <div class="col-md">--}}
+{{--                                <button type="submit" class="btn btn-primary">--}}
+{{--                                    {{ __('Зарегистрироваться') }}--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </li>--}}
         @endguest
         @auth
             <div class="dropdown">

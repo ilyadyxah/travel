@@ -21,12 +21,26 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
+        $this->setPreviousUrl();
+
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect()->intended('/');
             }
         }
 
         return $next($request);
+    }
+
+    private function setPreviousUrl()
+    {
+        // Get URLs
+        $urlPrevious = url()->previous();
+        $urlBase = url()->to('/');
+
+        // Set the previous url that we came from to redirect to after successful login but only if is internal
+        if(($urlPrevious != $urlBase . '/login') && (str_starts_with($urlPrevious, $urlBase))) {
+            session()->put('url.intended', $urlPrevious);
+        }
     }
 }

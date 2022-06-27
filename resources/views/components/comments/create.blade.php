@@ -5,8 +5,19 @@
         <div class="col-4 text-center form_bg p-2">
             <h3 class="" >Поделитесь впечатлениями</h3>
             <form action="" class="row justify-content-md-center ">
-                <input type="text" class="col-md-12" style="height: 200px" >
-                <p class="d-flex justify-content-center"><input type="button" class='btn' value="Оставить отзыв"></p>
+                <input type="text" class="col-md-12" @guest() disabled @endguest style="height: 200px" >
+                    <p class="d-flex justify-content-center">
+                        <input type="submit" class='btn' value="Оставить отзыв" @guest() disabled @endguest>
+                    </p>
+                @guest()
+                    <p>
+                        <a href="{{ route('login') }}" class="btn-success btn-sm text-decoration-none">
+                            Авторизуйтесь
+                        </a>
+                        , чтобы оставить отзыв
+                    </p>
+                @endguest
+
             </form>
         </div>
     </div>
