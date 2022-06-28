@@ -45,6 +45,7 @@ class Place extends Model
         ];
     }
 
+
     public static function getLinkedFields(): array
     {
         return [
@@ -95,9 +96,16 @@ class Place extends Model
     /**
      * @return HasMany
      */
-    public function comments()
+    public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        $id = Target::query()->where('table', '=', $this->table)->first()->id;
+        return $this->hasMany(Comment::class, 'target_id', 'id')
+            ->where('target_table_id', '=', $id);
+    }
+
+    public function targetId(): int
+    {
+        return Target::where('table', '=', $this->table)->first()->id;
     }
 
     public function likes()
@@ -125,6 +133,7 @@ class Place extends Model
     {
         return $this->hasMany(Route::class);
     }
+
 
     public function sluggable(): array
     {

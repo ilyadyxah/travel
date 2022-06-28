@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             CitiesPlacesSeeder::class,
             PlacesImagesSeeder::class,
             PlacesLikesSeeder::class,
+            TargetSeeder::class,
             CommentsSeeder::class,
             TransportsSeeder::class,
             PlacesTransportsSeeder::class,

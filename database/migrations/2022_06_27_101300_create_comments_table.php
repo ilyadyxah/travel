@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->default(1);
-            $table->unsignedBigInteger('place_id');
-            $table->char('user_name', 150);
+            $table->foreignId('user_id')
+                ->default(1)
+                ->constrained('users');
+            $table->unsignedBigInteger('target_id');
+            $table->foreignId('target_table_id')
+                ->constrained('targets');
             $table->text('message');
             $table->timestamps();
+            $table->index(['target_table_id', 'target_id']);
         });
     }
 

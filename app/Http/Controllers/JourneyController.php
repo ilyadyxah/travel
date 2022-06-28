@@ -61,7 +61,7 @@ class JourneyController extends Controller
             'likes' => app(LikeService::class)->getLikedPlacesId(),
             'favorites' => app(FavoriteService::class)->getFavoritePlacesId(),
             'routes' => app(UserRoutesService::class)->getSelectedPlaces(),
-            'pageTitle' => Str::ucfirst($place->title)
+            'pageTitle' => Str::ucfirst($place->title),
         ]);
     }
 

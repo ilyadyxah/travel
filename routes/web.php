@@ -3,6 +3,7 @@
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\PlaceController;
 use App\Http\Controllers\Account\MessageController as AccountMessageController;
+use App\Http\Controllers\Account\CommentController as AccountCommentController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FavoriteController;
@@ -15,7 +16,6 @@ use App\Http\Controllers\UsersRouteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController as PublicAccountController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,6 +89,7 @@ Route::group(['middleware' => ['auth']], function (){
         Route::resources([
             '/place' => PlaceController::class,
             '/message' => AccountMessageController::class,
+            '/comment' => AccountCommentController::class,
         ]);
 
         Route::get('/profile', [AccountController::class, 'index'])
@@ -107,6 +108,8 @@ Route::group(['middleware' => ['auth']], function (){
 
         Route::get('/message', [AccountMessageController::class, 'index'])
             ->name('message');
+        Route::get('/comment', [AccountCommentController::class, 'index'])
+        ->name('comment');
     });
 });
 Route::get('/unauthorized/{user}', [PublicAccountController::class, 'unauthorized'])

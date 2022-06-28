@@ -7,6 +7,8 @@
 @endsection
 @section('content')
     <p class="container text-center display-3 py-4">{{ Str::ucfirst($place->title) }}</p>
+    @include('inc.message')
+
 
     <!-- Swiper -->
         <div class="wrapper row">
@@ -97,14 +99,14 @@
             </div>
         </div>
     </div>
-    @component('components.comments.create')
+    @component('components.comments.create', [
+                    'target_table_id' => $place->targetId(),
+                    'target_id' => $place->id
+                    ])
     @endcomponent
     <div class="row row-cols-1 row-cols-md-2 g-4">
-        @include('components/review')
-        @include('components/review')
-        @include('components/review')
-        @include('components/review')
-        @include('components/review')
+        @component('components.review', ['comments' => $place->comments,])
+        @endcomponent
     </div>
 
     <!-- Swiper JS -->
