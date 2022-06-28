@@ -62,7 +62,6 @@ class PlaceParseJob implements ShouldQueue
             $linkedData['transports'] = isset($parseData->transports) ? $parseData->transports->name : 'пешком';
             $linkedData['images'] = $parseData->images;
         }
-
         if(app(SaveToDbService::class)->saveParsedPlaceToDb($data, $linkedData)){
             app(SaveToDbService::class)->saveToDb($this->source, [
                 'last_parsed_item_id' => $id,
