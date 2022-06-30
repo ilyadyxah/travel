@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'message' => ['min:50', 'required', 'string', 'max:500'],
+            'target_table_id' => ['nullable', 'integer'],
+            'target_id' => ['nullable', 'integer'],
         ];
     }
 }

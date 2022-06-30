@@ -3,7 +3,7 @@
         <div id="map" class=" col-8"  style="width: 60%; height: 400px"></div>
         <div class="col-4 text-center form_bg p-2">
             <h3 class="" >Поделитесь впечатлениями</h3>
-            <form action="{{ route('account.comment.store') }}" method="post" class="row justify-content-md-center" enctype="multipart/form-data">
+            <form action="{{ route('account.comments.store') }}" method="post" class="row justify-content-md-center" enctype="multipart/form-data">
                 @csrf
                 @method('post')
                 <input hidden name="target_table_id" value="{{ $target_table_id }}">

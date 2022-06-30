@@ -5,14 +5,28 @@
         <div class="review_inner">
             <div class="review_body">
                 <div class="review_head">
-                    <h3>{{ Str::ucfirst($comment->user->name) }} @if($comment->user == Auth::user())(это Вы)@endif</h3>
 
+                    <h3>{{ Str::ucfirst($comment->user->name) }} @if($comment->user == Auth::user())(это Вы)@endif</h3>
+                    <small>{{ date('d-m-Y', strtotime($comment->updated_at)) }}</small>
                     <span class="reviewer_experienсe">Гуру</span>
                 </div>
-                <div class="review_text">{{ Str::ucfirst($comment->message) }}</div>
+                <div class="review_text position-relative">
+                <textarea id="{{$comment->id}}" name="message-{{$comment->id}}" style="resize: none;" disabled
+                    class="border-0 w-100 bg-transparent"
+                          maxlength="500"
+                          minlength="10"
+                >{{ Str::ucfirst($comment->message) }}</textarea>
+                </div>
             </div>
             <div class="review_bottom">
                 <a href="#">Read more ></a>
+                <label for="message-{{$comment->id}}" message-name="{{ $comment->id }}" onclick="changeAttribute(this, 'disabled'); toggleClassName(document.getElementById('save-{{$comment->id}}'), ['opacity-0']); toggleClassName(this, ['bg-transparent', 'bg-warning']);">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </label>
+                <div comment-save="{{$comment->id}}" id="save-{{$comment->id}}" class="opacity-0" onclick="updateComment(this)">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </div>
+
                 <div class="review_bottom_extra">
                 <span>
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -82,3 +96,10 @@ fill="#009688" stroke="none">
 @empty
     <h3>Комментариев пока нет</h3>
 @endforelse
+
+@push('js')
+    <script src="{{ asset('js/changeAttribute.js')}}"></script>
+    <script src="{{ asset('js/toggleClassName.js')}}"></script>
+    <script src="{{ asset('js/updateComment.js')}}"></script>
+
+@endpush

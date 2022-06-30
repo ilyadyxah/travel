@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Comment\CreateRequest;
+use App\Http\Requests\Comment\UpdateRequest;
 use App\Models\Comment;
 use App\Services\SaveToDbService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
@@ -77,13 +79,31 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(), [
+                'message' => ['min:50', 'required', 'string', 'max:500'],
+                'target_table_id' => ['nullable', 'integer'],
+                'target_id' => ['nullable', 'integer'],
+            ]);
+
+            $messages = $validator->messages();
+
+
+            if (count($messages) === 0) {
+                $comment = $comment->fill($request->all());
+                   $comment->save();
+                return response()->json([ 'status' =>'true', 'instance' => $comment]);
+            } else return response()->json(['status' =>'false', 'instance' => $comment, 'messages' => $messages]);
+
+        }catch(\Exception $e){
+            return response()->json(['status' =>'error'], 400);
+        }
     }
 
     /**

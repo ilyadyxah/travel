@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth']], function (){
         Route::resources([
             '/place' => PlaceController::class,
             '/message' => AccountMessageController::class,
-            '/comment' => AccountCommentController::class,
+            '/comments' => AccountCommentController::class,
         ]);
 
         Route::get('/profile', [AccountController::class, 'index'])
@@ -108,8 +108,10 @@ Route::group(['middleware' => ['auth']], function (){
 
         Route::get('/message', [AccountMessageController::class, 'index'])
             ->name('message');
-        Route::get('/comment', [AccountCommentController::class, 'index'])
-        ->name('comment');
+        Route::get('/comments', [AccountCommentController::class, 'index'])
+        ->name('comments');
+//        Route::put('/comments/{comment}', [AccountCommentController::class, 'update'])
+//            ->name('comments.update');
     });
 });
 Route::get('/unauthorized/{user}', [PublicAccountController::class, 'unauthorized'])
