@@ -2,7 +2,7 @@
 @forelse($comments as $comment)
 <section class='review_card'>
     <div class="review_card_box">
-        <div class="review_inner">
+        <div class="review_inner flex-grow-1">
             <div class="review_body">
                 <div class="review_head">
 
@@ -20,23 +20,26 @@
             </div>
             <div class="review_bottom">
                 <a href="#">Read more ></a>
-                <label for="message-{{$comment->id}}" message-name="{{ $comment->id }}" onclick="changeAttribute(this, 'disabled'); toggleClassName(document.getElementById('save-{{$comment->id}}'), ['opacity-0']); toggleClassName(this, ['bg-transparent', 'bg-warning']);">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </label>
-                <div comment-save="{{$comment->id}}" id="save-{{$comment->id}}" class="opacity-0" onclick="updateComment(this)">
-                    <i class="fa-solid fa-floppy-disk"></i>
-                </div>
-
-                <div class="review_bottom_extra">
+                @if($comment->user == Auth::user())
+                    <label for="message-{{$comment->id}}" message-name="{{ $comment->id }}" onclick="changeAttribute(this, 'disabled'); toggleClassName(document.getElementById('save-{{$comment->id}}'), ['opacity-0']); toggleClassName(document.getElementById('delete-{{$comment->id}}'), ['opacity-0']); toggleClassName(this, ['bg-transparent', 'bg-warning']);">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </label>
+                    <div comment-save="{{$comment->id}}" id="save-{{$comment->id}}" class="opacity-0" onclick="updateComment(this, 'update')">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </div>
+                    <div comment-delete="{{$comment->id}}" id="delete-{{$comment->id}}" class="" onclick="updateComment(this, 'delete')" style="color: red;">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                    <div class="review_bottom_extra">
                 <span>
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1280.000000pt" height="1096.000000pt" viewBox="0 0 1280.000000 1096.000000"
- preserveAspectRatio="xMidYMid meet">
+                         width="1280.000000pt" height="1096.000000pt" viewBox="0 0 1280.000000 1096.000000"
+                         preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.15, written by Peter Selinger 2001-2017
 </metadata>
 <g transform="translate(0.000000,1096.000000) scale(0.100000,-0.100000)"
-fill="#009688" stroke="none">
+   fill="#009688" stroke="none">
 <path d="M9595 10950 c-55 -5 -289 -23 -520 -40 -231 -17 -539 -39 -685 -50
 -146 -11 -821 -60 -1500 -110 -679 -50 -1356 -99 -1505 -110 -525 -39 -1094
 -80 -2320 -170 -682 -50 -1283 -97 -1335 -106 -431 -68 -820 -265 -1125 -569
@@ -61,15 +64,15 @@ fill="#009688" stroke="none">
 55z"/>
 </g>
 </svg> 127</span>
-                <span>
+                        <span>
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1280.000000pt" height="1133.000000pt" viewBox="0 0 1280.000000 1133.000000"
- preserveAspectRatio="xMidYMid meet">
+                         width="1280.000000pt" height="1133.000000pt" viewBox="0 0 1280.000000 1133.000000"
+                         preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.15, written by Peter Selinger 2001-2017
 </metadata>
 <g transform="translate(0.000000,1133.000000) scale(0.100000,-0.100000)"
-fill="#009688" stroke="none">
+   fill="#009688" stroke="none">
 <path d="M3139 11319 c-408 -27 -834 -123 -1165 -260 -251 -104 -542 -274
 -744 -435 -119 -95 -371 -349 -470 -474 -503 -634 -784 -1509 -757 -2360 10
 -290 39 -472 113 -703 202 -627 670 -1387 1430 -2323 1102 -1358 2896 -3120
@@ -81,7 +84,9 @@ fill="#009688" stroke="none">
 -631 711 -1003 907 -478 252 -1010 349 -1661 305z"/>
 </g>
 </svg> 18</span>
-                </div>
+                    </div>
+                @endif
+
             </div>
         </div>
         <div class="avatar_img_box">
@@ -101,5 +106,6 @@ fill="#009688" stroke="none">
     <script src="{{ asset('js/changeAttribute.js')}}"></script>
     <script src="{{ asset('js/toggleClassName.js')}}"></script>
     <script src="{{ asset('js/updateComment.js')}}"></script>
+
 
 @endpush

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Comment\CreateRequest;
 use App\Http\Requests\Comment\UpdateRequest;
 use App\Models\Comment;
+use App\Models\Status;
+use App\Services\CommentValidationService;
 use App\Services\SaveToDbService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,35 +87,43 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
+
         try {
-            $validator = Validator::make($request->all(), [
-                'message' => ['min:50', 'required', 'string', 'max:500'],
-                'target_table_id' => ['nullable', 'integer'],
-                'target_id' => ['nullable', 'integer'],
-            ]);
+            $validation = app(CommentValidationService::class)->validate($request);
 
-            $messages = $validator->messages();
+            //todo вынести в отдельное исключение
+            if(Auth::user()->getAuthIdentifier() !== $comment->user_id){
+                throw new \Exception('Кажется, это не Ваш комментарий');
+            }
 
+            $data = $validation['fields'];
 
-            if (count($messages) === 0) {
-                $comment = $comment->fill($request->all());
-                   $comment->save();
-                return response()->json([ 'status' =>'true', 'instance' => $comment]);
-            } else return response()->json(['status' =>'false', 'instance' => $comment, 'messages' => $messages]);
+            if ($validation['status'] === 'validated') {
+
+                //меняю статус в зависимости от текущего статуса
+                if(isset($data['status_id'])){
+                    $comment->status->title === 'active' ?
+                        $data['status_id'] = Status::where('title', '=', 'deleted')->first()->id :
+                        $data['status_id'] = Status::where('title', '=', 'active')->first()->id;
+                }
+                $comment = $comment->fill($data);
+                $comment->save();
+                return response()->json([ 'status' => array_keys($data), 'instance' => $comment]);
+            } else return response()->json(['status' =>'invalid', 'instance' => $comment, 'messages' => $data]);
 
         }catch(\Exception $e){
-            return response()->json(['status' =>'error'], 400);
+            return response()->json(['status' =>'error', 'instance' => $comment, 'messages' => $e->getMessage()], 400);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+//
     }
 }

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FirstUserSeeder::class,
             CitySeeder::class,
+            StatusesSeeder::class,
             ImagesSeeder::class,
             PlaceSeeder::class,
             CitiesPlacesSeeder::class,

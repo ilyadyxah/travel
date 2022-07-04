@@ -110,8 +110,6 @@ Route::group(['middleware' => ['auth']], function (){
             ->name('message');
         Route::get('/comments', [AccountCommentController::class, 'index'])
         ->name('comments');
-//        Route::put('/comments/{comment}', [AccountCommentController::class, 'update'])
-//            ->name('comments.update');
     });
 });
 Route::get('/unauthorized/{user}', [PublicAccountController::class, 'unauthorized'])

@@ -18,10 +18,17 @@ class Comment extends Model
         'target_table_id',
         'user_id',
         'message',
+        'status_id',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
+
 }

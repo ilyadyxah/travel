@@ -25,8 +25,10 @@ class UpdateRequest extends FormRequest
     {
         return [
             'message' => ['min:50', 'required', 'string', 'max:500'],
-            'target_table_id' => ['nullable', 'integer'],
-            'target_id' => ['nullable', 'integer'],
+            'target_table_id' => ['required', 'integer'],
+            'target_id' => ['required', 'integer'],
+            'status_id' => ['required', 'integer'],
+
         ];
     }
 }
