@@ -135,6 +135,7 @@ return [
     ],
     'attributes' => [
         'title' => 'Название',
+        'message' => 'Сообщение',
         'description' => 'Описание',
         'image' => 'Фото',
         'images' => 'Фото',

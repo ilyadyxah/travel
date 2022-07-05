@@ -29,9 +29,10 @@ class CommentsSeeder extends Seeder
 
         for ($i = 1; $i <= $commentsNum; $i++){
             $data[] = [
-                'place_id' => $faker->numberBetween(1,10),
-                'user_name' => $faker->firstName() . ' ' . $faker->lastName(),
                 'message' => $faker->sentence(10),
+                'target_table_id' => 1,
+                'target_id' => $faker->numberBetween(1,10),
+
             ];
         }
         return $data;

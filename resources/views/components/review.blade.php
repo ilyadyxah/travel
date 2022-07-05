@@ -1,25 +1,48 @@
 <!-- Карточка отзыва -->
-<section class='review_card'>
-    <div class="review_card_box">
-        <div class="review_inner">
-            <div class="review_body">
-                <div class="review_head">
-                    <h3>Имя отзывавшегося</h3>
-                    <span class="reviewer_experienсe">Гуру</span>
-                </div>
-                <div class="review_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam at a tempora modi? Asperiores, eveniet! Ad eum sed quis eaque? Suscipit atque veritatis itaque sunt fugiat est, perspiciatis illo ex qui accusamus ullam, repellat reprehenderit, voluptatibus quaerat ipsa iste voluptatem! Alias, deleniti! Perspiciatis eligendi ratione culpa magnam soluta.</div>
-            </div>
-            <div class="review_bottom">
-                <a href="#">Read more ></a>
-                <div class="review_bottom_extra">
-                <span><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1280.000000pt" height="1096.000000pt" viewBox="0 0 1280.000000 1096.000000"
- preserveAspectRatio="xMidYMid meet">
+@forelse($comments as $comment)
+    @if($comment->status->title !== 'active')
+        @continue
+    @else
+        <section class='review_card'>
+            <div class="review_card_box">
+                <div class="review_inner flex-grow-1">
+                    <div class="review_body">
+                        <div class="review_head">
+
+                            <h3>{{ Str::ucfirst($comment->user->name) }} @if($comment->user == Auth::user())(это Вы)@endif</h3>
+                            <small>{{ date('d-m-Y', strtotime($comment->updated_at)) }}</small>
+                            <span class="reviewer_experienсe">Гуру</span>
+                        </div>
+                        <div class="review_text position-relative">
+                <textarea id="{{$comment->id}}" name="message-{{$comment->id}}" style="resize: none;" disabled
+                          class="border-0 w-100 bg-transparent"
+                          maxlength="500"
+                          minlength="10"
+                >{{ Str::ucfirst($comment->message) }}</textarea>
+                        </div>
+                    </div>
+                    <div class="review_bottom">
+                        <a href="#">Read more ></a>
+                        @if($comment->user == Auth::user())
+                            <label for="message-{{$comment->id}}" message-name="{{ $comment->id }}" onclick="changeAttribute(this, 'disabled'); toggleClassName(document.getElementById('save-{{$comment->id}}'), ['opacity-0']); toggleClassName(document.getElementById('delete-{{$comment->id}}'), ['opacity-0']); toggleClassName(this, ['bg-transparent', 'bg-warning']);">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </label>
+                            <div comment-save="{{$comment->id}}" id="save-{{$comment->id}}" class="opacity-0" onclick="updateComment(this, 'update')">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                            </div>
+                            <div comment-delete="{{$comment->id}}" id="delete-{{$comment->id}}" class="" onclick="updateComment(this, 'delete')" style="color: red;">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </div>
+                            <div class="review_bottom_extra">
+                <span>
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                         width="1280.000000pt" height="1096.000000pt" viewBox="0 0 1280.000000 1096.000000"
+                         preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.15, written by Peter Selinger 2001-2017
 </metadata>
 <g transform="translate(0.000000,1096.000000) scale(0.100000,-0.100000)"
-fill="#009688" stroke="none">
+   fill="#009688" stroke="none">
 <path d="M9595 10950 c-55 -5 -289 -23 -520 -40 -231 -17 -539 -39 -685 -50
 -146 -11 -821 -60 -1500 -110 -679 -50 -1356 -99 -1505 -110 -525 -39 -1094
 -80 -2320 -170 -682 -50 -1283 -97 -1335 -106 -431 -68 -820 -265 -1125 -569
@@ -44,15 +67,15 @@ fill="#009688" stroke="none">
 55z"/>
 </g>
 </svg> 127</span>
-                <span>
+                                <span>
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1280.000000pt" height="1133.000000pt" viewBox="0 0 1280.000000 1133.000000"
- preserveAspectRatio="xMidYMid meet">
+                         width="1280.000000pt" height="1133.000000pt" viewBox="0 0 1280.000000 1133.000000"
+                         preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.15, written by Peter Selinger 2001-2017
 </metadata>
 <g transform="translate(0.000000,1133.000000) scale(0.100000,-0.100000)"
-fill="#009688" stroke="none">
+   fill="#009688" stroke="none">
 <path d="M3139 11319 c-408 -27 -834 -123 -1165 -260 -251 -104 -542 -274
 -744 -435 -119 -95 -371 -349 -470 -474 -503 -634 -784 -1509 -757 -2360 10
 -290 39 -472 113 -703 202 -627 670 -1387 1430 -2323 1102 -1358 2896 -3120
@@ -64,33 +87,27 @@ fill="#009688" stroke="none">
 -631 711 -1003 907 -478 252 -1010 349 -1661 305z"/>
 </g>
 </svg> 18</span>
+                            </div>
+                        @endif
+
+                    </div>
+                </div>
+                <div class="avatar_img_box">
+                    <a href="{{ route('profile.show', $comment->user->slug) }}"  class="@if($comment->user->is_private) disabled @endif position-relative">
+                        <img style="object-fit: cover;" src="{!! $comment->user->avatar ?? asset('images/default_avatar.png') !!}" width="80" height="80" class="rounded-circle">
+                        <i style="left: 0;" class="position-absolute fa-solid  {{$comment->user->is_private ? "fa-lock": "fa-lock-open"}}"></i>
+                    </a>
+
                 </div>
             </div>
-        </div>
-        <div class="avatar_img_box"><svg class='avatar_img' version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="973.000000pt" height="1280.000000pt" viewBox="0 0 973.000000 1280.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.15, written by Peter Selinger 2001-2017
-</metadata>
-<g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
-fill="#009688" stroke="none">
-<path d="M4605 12794 c-503 -38 -801 -110 -1130 -274 -202 -101 -318 -183
--470 -335 -134 -133 -206 -224 -297 -377 -278 -466 -418 -1162 -418 -2079 0
--777 185 -1435 567 -2016 113 -173 222 -304 387 -468 373 -371 784 -590 1273
--676 185 -33 511 -33 696 0 471 83 880 295 1244 645 525 505 861 1211 958
-2016 35 286 30 828 -11 1245 -63 646 -230 1148 -500 1513 -82 109 -282 305
--394 385 -114 81 -376 213 -519 262 -197 67 -405 112 -651 140 -128 15 -621
-28 -735 19z"/>
-<path d="M3310 6274 c-833 -164 -1370 -324 -1793 -535 -211 -105 -355 -195
--509 -317 -362 -288 -614 -686 -763 -1202 -153 -531 -220 -1200 -241 -2415
-l-6 -360 31 -46 c222 -329 729 -666 1351 -897 720 -267 1539 -415 2680 -484
-273 -16 1339 -16 1610 0 1140 69 1962 218 2680 484 621 231 1130 569 1351 897
-l31 46 -6 350 c-15 827 -47 1352 -107 1775 -219 1539 -876 2175 -2680 2594
--171 39 -399 87 -558 117 l-104 19 -84 -80 c-239 -227 -599 -383 -1013 -441
--124 -18 -505 -18 -630 0 -410 56 -782 218 -1016 443 -45 43 -85 78 -90 77 -5
-0 -65 -12 -134 -25z"/>
-</g>
-</svg></div>
-    </div>
-</section>
+        </section>
+
+    @endif
+@empty
+    <h3>Комментариев пока нет</h3>
+@endforelse
+@push('js')
+    <script src="{{ asset('js/changeAttribute.js')}}"></script>
+    <script src="{{ asset('js/toggleClassName.js')}}"></script>
+    <script src="{{ asset('js/updateComment.js')}}"></script>
+@endpush
