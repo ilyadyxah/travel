@@ -1,36 +1,39 @@
 <!-- Карточка отзыва -->
 @forelse($comments as $comment)
-<section class='review_card'>
-    <div class="review_card_box">
-        <div class="review_inner flex-grow-1">
-            <div class="review_body">
-                <div class="review_head">
+    @if($comment->status->title !== 'active')
+        @continue
+    @else
+        <section class='review_card'>
+            <div class="review_card_box">
+                <div class="review_inner flex-grow-1">
+                    <div class="review_body">
+                        <div class="review_head">
 
-                    <h3>{{ Str::ucfirst($comment->user->name) }} @if($comment->user == Auth::user())(это Вы)@endif</h3>
-                    <small>{{ date('d-m-Y', strtotime($comment->updated_at)) }}</small>
-                    <span class="reviewer_experienсe">Гуру</span>
-                </div>
-                <div class="review_text position-relative">
+                            <h3>{{ Str::ucfirst($comment->user->name) }} @if($comment->user == Auth::user())(это Вы)@endif</h3>
+                            <small>{{ date('d-m-Y', strtotime($comment->updated_at)) }}</small>
+                            <span class="reviewer_experienсe">Гуру</span>
+                        </div>
+                        <div class="review_text position-relative">
                 <textarea id="{{$comment->id}}" name="message-{{$comment->id}}" style="resize: none;" disabled
-                    class="border-0 w-100 bg-transparent"
+                          class="border-0 w-100 bg-transparent"
                           maxlength="500"
                           minlength="10"
                 >{{ Str::ucfirst($comment->message) }}</textarea>
-                </div>
-            </div>
-            <div class="review_bottom">
-                <a href="#">Read more ></a>
-                @if($comment->user == Auth::user())
-                    <label for="message-{{$comment->id}}" message-name="{{ $comment->id }}" onclick="changeAttribute(this, 'disabled'); toggleClassName(document.getElementById('save-{{$comment->id}}'), ['opacity-0']); toggleClassName(document.getElementById('delete-{{$comment->id}}'), ['opacity-0']); toggleClassName(this, ['bg-transparent', 'bg-warning']);">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </label>
-                    <div comment-save="{{$comment->id}}" id="save-{{$comment->id}}" class="opacity-0" onclick="updateComment(this, 'update')">
-                        <i class="fa-solid fa-floppy-disk"></i>
+                        </div>
                     </div>
-                    <div comment-delete="{{$comment->id}}" id="delete-{{$comment->id}}" class="" onclick="updateComment(this, 'delete')" style="color: red;">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                    <div class="review_bottom_extra">
+                    <div class="review_bottom">
+                        <a href="#">Read more ></a>
+                        @if($comment->user == Auth::user())
+                            <label for="message-{{$comment->id}}" message-name="{{ $comment->id }}" onclick="changeAttribute(this, 'disabled'); toggleClassName(document.getElementById('save-{{$comment->id}}'), ['opacity-0']); toggleClassName(document.getElementById('delete-{{$comment->id}}'), ['opacity-0']); toggleClassName(this, ['bg-transparent', 'bg-warning']);">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </label>
+                            <div comment-save="{{$comment->id}}" id="save-{{$comment->id}}" class="opacity-0" onclick="updateComment(this, 'update')">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                            </div>
+                            <div comment-delete="{{$comment->id}}" id="delete-{{$comment->id}}" class="" onclick="updateComment(this, 'delete')" style="color: red;">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </div>
+                            <div class="review_bottom_extra">
                 <span>
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                          width="1280.000000pt" height="1096.000000pt" viewBox="0 0 1280.000000 1096.000000"
@@ -64,7 +67,7 @@ Created by potrace 1.15, written by Peter Selinger 2001-2017
 55z"/>
 </g>
 </svg> 127</span>
-                        <span>
+                                <span>
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                          width="1280.000000pt" height="1133.000000pt" viewBox="0 0 1280.000000 1133.000000"
                          preserveAspectRatio="xMidYMid meet">
@@ -84,28 +87,27 @@ Created by potrace 1.15, written by Peter Selinger 2001-2017
 -631 711 -1003 907 -478 252 -1010 349 -1661 305z"/>
 </g>
 </svg> 18</span>
+                            </div>
+                        @endif
+
                     </div>
-                @endif
+                </div>
+                <div class="avatar_img_box">
+                    <a href="{{ route('profile.show', $comment->user->slug) }}"  class="@if($comment->user->is_private) disabled @endif position-relative">
+                        <img style="object-fit: cover;" src="{!! $comment->user->avatar ?? asset('images/default_avatar.png') !!}" width="80" height="80" class="rounded-circle">
+                        <i style="left: 0;" class="position-absolute fa-solid  {{$comment->user->is_private ? "fa-lock": "fa-lock-open"}}"></i>
+                    </a>
 
+                </div>
             </div>
-        </div>
-        <div class="avatar_img_box">
-            <a href="{{ route('profile.show', $comment->user->slug) }}"  class="@if($comment->user->is_private) disabled @endif position-relative">
-                <img style="object-fit: cover;" src="{!! $comment->user->avatar ?? asset('images/default_avatar.png') !!}" width="80" height="80" class="rounded-circle">
-                <i style="left: 0;" class="position-absolute fa-solid  {{$comment->user->is_private ? "fa-lock": "fa-lock-open"}}"></i>
-            </a>
+        </section>
 
-        </div>
-    </div>
-</section>
+    @endif
 @empty
     <h3>Комментариев пока нет</h3>
 @endforelse
-
 @push('js')
     <script src="{{ asset('js/changeAttribute.js')}}"></script>
     <script src="{{ asset('js/toggleClassName.js')}}"></script>
     <script src="{{ asset('js/updateComment.js')}}"></script>
-
-
 @endpush

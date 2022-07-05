@@ -90,7 +90,6 @@ class CommentController extends Controller
 
         try {
             $validation = app(CommentValidationService::class)->validate($request);
-
             //todo вынести в отдельное исключение
             if(Auth::user()->getAuthIdentifier() !== $comment->user_id){
                 throw new \Exception('Кажется, это не Ваш комментарий');
